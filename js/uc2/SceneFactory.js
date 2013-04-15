@@ -27,8 +27,8 @@ define(["kick", 'uc2/planet/PlanetFactory',
             camera.clearColor = [0.1, 0.1, 0.1, 1];
             cameraGO.addComponent(camera);
             var cameraTransform = cameraGO.transform;
-            cameraTransform.localPosition = [-5.5, -5.5, 13.0];
-            cameraTransform.localRotationEuler = [0, -40, 0];
+            cameraTransform.localPosition = [0, 0, 3.0];
+            cameraTransform.localRotationEuler = [0, 0, 0];
 
             // build skybox
             var texture = new kick.texture.Texture({
