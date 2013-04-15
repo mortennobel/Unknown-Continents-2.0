@@ -1,7 +1,7 @@
-define(["kick", 'uc2/planet/PlanetFactory',
+define(["kick", 'uc2/planet/PlanetFactory','uc2/planet/DebugRotateComponent',
         'text!shaders/webgl-noise/noise2D.glsl', 'text!shaders/webgl-noise/noise3D.glsl'
     ],
-    function (kick, PlanetFactory, noise2D, noise3D) {
+    function (kick, PlanetFactory, DebugRotateComponent, noise2D, noise3D) {
     "use strict";
 
     return function () {
@@ -27,8 +27,8 @@ define(["kick", 'uc2/planet/PlanetFactory',
             camera.clearColor = [0.1, 0.1, 0.1, 1];
             cameraGO.addComponent(camera);
             var cameraTransform = cameraGO.transform;
-            cameraTransform.localPosition = [-5.5, -5.5, 13.0];
-            cameraTransform.localRotationEuler = [0, -40, 0];
+            cameraTransform.localPosition = [0, 0, 3.0];
+            cameraTransform.localRotationEuler = [0, 0, 0];
 
             // build skybox
             var texture = new kick.texture.Texture({
@@ -43,6 +43,8 @@ define(["kick", 'uc2/planet/PlanetFactory',
                 }
             });
             cameraGO.addComponent(skyBox);
+            cameraGO.addComponent(new DebugRotateComponent());
+
         }
 
         function buildLight(scene){

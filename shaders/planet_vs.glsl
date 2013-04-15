@@ -2,6 +2,7 @@ attribute vec3 vertex;
 attribute vec3 normal;
 attribute vec2 uv1;
 
+uniform mat4 _m;
 uniform mat4 _mvProj;
 uniform mat4 _mv;
 uniform mat4 _lightMat;
@@ -12,6 +13,8 @@ varying vec3 vNormal;
 varying vec3 vEcPosition;
 varying vec4 vShadowMapCoord;
 
+varying vec3 vWPos; // world position
+
 void main(void) {
     vec4 v = vec4(vertex, 1.0);
     gl_Position = _mvProj * v;
@@ -19,4 +22,5 @@ void main(void) {
     vEcPosition = (_mv * v).xyz;
     vNormal= normalize(_norm * normal);
     vShadowMapCoord = _lightMat * v;
+    vWPos = (_m * v).xyz;
 }
