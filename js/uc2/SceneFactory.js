@@ -1,7 +1,7 @@
-define(["kick", 'uc2/planet/PlanetFactory',
+define(["kick", 'uc2/planet/PlanetFactory','uc2/planet/DebugRotateComponent',
         'text!shaders/webgl-noise/noise2D.glsl', 'text!shaders/webgl-noise/noise3D.glsl'
     ],
-    function (kick, PlanetFactory, noise2D, noise3D) {
+    function (kick, PlanetFactory, DebugRotateComponent, noise2D, noise3D) {
     "use strict";
 
     return function () {
@@ -43,6 +43,8 @@ define(["kick", 'uc2/planet/PlanetFactory',
                 }
             });
             cameraGO.addComponent(skyBox);
+            cameraGO.addComponent(new DebugRotateComponent());
+
         }
 
         function buildLight(scene){
