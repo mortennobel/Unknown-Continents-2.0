@@ -29,6 +29,20 @@ define(["kick", 'uc2/planet/PlanetFactory',
             var cameraTransform = cameraGO.transform;
             cameraTransform.localPosition = [-5.5, -5.5, 13.0];
             cameraTransform.localRotationEuler = [0, -40, 0];
+
+            // build skybox
+            var texture = new kick.texture.Texture({
+                textureType: kick.core.Constants.GL_TEXTURE_CUBE_MAP,
+                dataURI: "image/skybox.jpg"
+            });
+            var skyBox = new kick.scene.Skybox();
+            skyBox.material = new kick.material.Material( {
+                shader: engine.project.load(engine.project.ENGINE_SHADER_SKYBOX),
+                uniformData: {
+                    mainTexture: texture
+                }
+            });
+            cameraGO.addComponent(skyBox);
         }
 
         function buildLight(scene){
