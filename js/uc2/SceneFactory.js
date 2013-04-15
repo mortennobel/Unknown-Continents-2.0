@@ -1,10 +1,23 @@
-define(["kick"],
-    function (kick) {
+define(["kick", 'uc2/planet/PlanetFactory',
+        'text!shaders/webgl-noise/noise2D.glsl', 'text!shaders/webgl-noise/noise3D.glsl'
+    ],
+    function (kick, PlanetFactory, noise2D, noise3D) {
     "use strict";
 
-    return function (engine) {
+    return function () {
+        var engine = kick.core.Engine.instance,
+            scene = engine.activeScene,
+            addCustomNoiseFunctionsToGLSL = function(){
+                // allows other shaders to use noise functions when using the
+                // #pragma include "noise2D.glsl"
+                // or
+                // #pragma include "noise3D.glsl"
+                var glslConstants = kick.material.GLSLConstants;
+                glslConstants["noise2D.glsl"] = noise2D;
+                glslConstants["noise3D.glsl"] = noise3D;
+            };
 
-        var scene = engine.activeScene;
+        addCustomNoiseFunctionsToGLSL();
 
         function buildCamera(scene) {
             var cameraGO = scene.createGameObject({name: "Camera"});
@@ -16,29 +29,6 @@ define(["kick"],
             var cameraTransform = cameraGO.transform;
             cameraTransform.localPosition = [-5.5, -5.5, 13.0];
             cameraTransform.localRotationEuler = [0, -40, 0];
-        }
-
-        function buildPlanet(scene){
-            var ballGO = scene.createGameObject({name: "Ball"});
-            var ballMeshRenderer = new kick.scene.MeshRenderer();
-            var planet_radius = 1;
-            ballMeshRenderer.mesh = new kick.mesh.Mesh(
-                {
-                    dataURI: "kickjs://mesh/uvsphere/?slices=25&stacks=50&radius=" + planet_radius,
-                    name: "Default object"
-                });
-
-            var shader = engine.project.load(engine.project.ENGINE_SHADER_SPECULAR);
-            ballMeshRenderer.material = new kick.material.Material( {
-                shader: shader,
-                uniformData: {
-                    mainColor: [1.0, 0.0, 0.9, 1.0],
-                    mainTexture: engine.project.load(engine.project.ENGINE_TEXTURE_WHITE),
-                    specularExponent: 50,
-                    specularColor: [1, 1, 1, 1]
-                }
-            });
-            ballGO.addComponent(ballMeshRenderer);
         }
 
         function buildLight(scene){
@@ -58,7 +48,7 @@ define(["kick"],
         }
 
         buildCamera(scene);
-        buildPlanet(scene);
+        PlanetFactory.buildPlanet(scene);
         buildLight(scene);
         var fullWindow = scene.createGameObject({name: "FullWindow"});
         fullWindow.addComponent(new kick.components.FullWindow());
