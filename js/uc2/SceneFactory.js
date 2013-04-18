@@ -1,7 +1,7 @@
 define(["kick", 'uc2/planet/PlanetFactory','uc2/planet/DebugRotateComponent',
-        'text!shaders/webgl-noise/noise2D.glsl', 'text!shaders/webgl-noise/noise3D.glsl'
+        'text!shaders/webgl-noise/noise2D.glsl', 'text!shaders/webgl-noise/noise3D.glsl', 'text!shaders/webgl-noise/noise4D.glsl'
     ],
-    function (kick, PlanetFactory, DebugRotateComponent, noise2D, noise3D) {
+    function (kick, PlanetFactory, DebugRotateComponent, noise2D, noise3D, noise4D) {
     "use strict";
 
     return function () {
@@ -15,6 +15,7 @@ define(["kick", 'uc2/planet/PlanetFactory','uc2/planet/DebugRotateComponent',
                 var glslConstants = kick.material.GLSLConstants;
                 glslConstants["noise2D.glsl"] = noise2D;
                 glslConstants["noise3D.glsl"] = noise3D;
+                glslConstants["noise4D.glsl"] = noise4D;
             };
 
         addCustomNoiseFunctionsToGLSL();
