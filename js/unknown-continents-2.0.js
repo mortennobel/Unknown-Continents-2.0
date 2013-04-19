@@ -6,7 +6,8 @@ requirejs.config({
         kick: debug ? 'js/libs/kick-debug': 'js/libs/kick',
         text: 'js/libs/text',
         uc2: 'js/uc2'
-    }
+    },
+    waitSeconds: 30
 });
 
 requirejs(['kick', 'uc2/SceneFactory'],
