@@ -11,9 +11,10 @@ define(['kick', 'uc2/planet/MakePlanetTexture',
             /**
              * @method buildPlanet
              * @param {kick.scene.Scene} scene
+             * @param {PlanetConfig} config
              * @static
              */
-            buildPlanet: function(scene){
+            buildPlanet: function(scene, planetConfig){
                 var engine = kick.core.Engine.instance;
                 var ballGO = scene.createGameObject({name: "Ball"});
                 var ballMeshRenderer = new kick.scene.MeshRenderer();
