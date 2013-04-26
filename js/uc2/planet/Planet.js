@@ -1,5 +1,5 @@
-define(["kick"],
-    function (kick) {
+define(["kick", 'uc2/planet/Sun'],
+    function (kick, Sun) {
         "use strict";
 
         /**
@@ -11,7 +11,9 @@ define(["kick"],
                 thisObj = this,
                 updateMaterial = function(){
                     material.setUniform("mainColor", planetConfig.planetColor || [1.0, 0.0, 0.9, 1.0]);
-                };
+                },
+                sunVisible = false,
+                sun;
 
             /**
              * @property config
@@ -30,6 +32,17 @@ define(["kick"],
                         planetConfig = newValue;
                         if (material){
                             updateMaterial();
+                            if (sunVisible != planetConfig.showLightDirection){
+                                if (!sun){
+                                    var scene = thisObj.gameObject.scene;
+                                    var gameObject = scene.createGameObject();
+                                    sun = new Sun();
+                                    gameObject.addComponent(sun);
+                                    gameObject.transform.position = [10,10,10];
+                                }
+                            }
+                            sun.showLightDirection = planetConfig.showLightDirection;
+                            sun.lightDirection = planetConfig.lightDirection;
                         }
                     }
                 }

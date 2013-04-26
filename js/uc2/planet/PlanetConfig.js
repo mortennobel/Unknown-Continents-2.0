@@ -6,6 +6,7 @@ define(["kick"],
          * Configuration class for planet
          */
         return function () {
+            var thisObj = this;
             /**
              * @property seed
              * @type {number}
@@ -39,6 +40,11 @@ define(["kick"],
             planetColor256[2] = this.planetColor[2] * 255;
             planetColor256[3] = this.planetColor[3];
             Object.defineProperties(this, {
+                lightDirection:{
+                    get:function(){
+                        return [thisObj.lightDirectionX, thisObj.lightDirectionY, thisObj.lightDirectionZ];
+                    }
+                },
                 /**
                  * Allows usage of replacement material on camera rendering
                  * Default value is null.
@@ -49,10 +55,10 @@ define(["kick"],
                     get: function () { return planetColor256; },
                     set: function (value) {
                         planetColor256 = value;
-                        this.planetColor[0] = planetColor256[0]/255;
-                        this.planetColor[1] = planetColor256[1]/255;
-                        this.planetColor[2] = planetColor256[2]/255;
-                        this.planetColor[3] = planetColor256[3];
+                        this.planetColor[0] = parseFloat(planetColor256[0]/255);
+                        this.planetColor[1] = parseFloat(planetColor256[1]/255);
+                        this.planetColor[2] = parseFloat(planetColor256[2]/255);
+                        this.planetColor[3] = parseFloat(planetColor256[3]);
                     }
                 }
             });

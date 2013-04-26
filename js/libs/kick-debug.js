@@ -19209,6 +19209,7 @@ define('kick/core/WebGLDebugUtils',["./Constants"], function (Constants) {
                         if (opt_onFunc) {
                             opt_onFunc(functionName, arguments);
                         }
+                        try{
                         var result = ctx[functionName].apply(ctx, arguments);
                         var err = ctx.getError();
                         if (err != 0) {
@@ -19216,6 +19217,9 @@ define('kick/core/WebGLDebugUtils',["./Constants"], function (Constants) {
                             opt_onErrorFunc(err, functionName, arguments);
                         }
                         return result;
+                        } catch (E){
+                            debugger;
+                        }
                     };
                 }
 
