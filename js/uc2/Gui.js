@@ -60,6 +60,8 @@ define([],
                 //planet color
                 var pc = gui.addColor(createColorWrapper(planetConfig.planet,'color'),'color');
                 pc.onChange(onChangeListener);
+                var slt = gui.add(planetConfig.planet,'showTexture');
+                slt.onChange(onChangeListener);
 
                 //light direction
                 var light = gui.addFolder('LightDirection');
@@ -72,6 +74,7 @@ define([],
                 ldz.onChange(onChangeListener);
                 var sld = light.add(planetConfig.sun,'showLightDirection');
                 sld.onChange(onChangeListener);
+
             }
         };
     });
