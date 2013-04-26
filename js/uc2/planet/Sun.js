@@ -9,7 +9,7 @@ define(["kick"],
             this.radius = 10;
 
             var meshRenderer,
-                enabled,
+                enabled = true,
                 thisObj = this;
             this.activated = function(){
                 var engine = kick.core.Engine.instance;
@@ -23,9 +23,7 @@ define(["kick"],
                         }
                     })
                 });
-                if (enabled){
-                    thisObj.gameObject.addComponent(meshRenderer);
-                }
+                thisObj.gameObject.addComponent(meshRenderer);
                 thisObj.gameObject.transform.position = position ;
             };
 
@@ -33,10 +31,13 @@ define(["kick"],
                 lightDirection:{
                     set:function(val){
                         var Vec3 = kick.math.Vec3;
-                        position  = Vec3.normalize(position , val);
+                        if (!Vec3.length(val)==0){
+                            position  = Vec3.normalize(position , val);
+                        }
                         Vec3.scale(position , position , thisObj.radius);
-                        thisObj.gameObject.transform.position = position;
-                        console.log(val, position);
+                        if (thisObj.gameObject){
+                            thisObj.gameObject.transform.position = position;
+                        }
                     }
                 },
                 showLightDirection:{

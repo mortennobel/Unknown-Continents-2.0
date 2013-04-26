@@ -1,6 +1,6 @@
-define(['kick', 'uc2/planet/MakePlanetTexture', 'uc2/planet/Planet',
+define(['kick', 'uc2/planet/MakePlanetTexture', 'uc2/planet/PlanetScape',
     'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
-    function (kick, MakePlanetTexture, Planet, planet_vs, planet_fs) {
+    function (kick, MakePlanetTexture, PlanetScape, planet_vs, planet_fs) {
         "use strict";
 
         /**
@@ -11,11 +11,12 @@ define(['kick', 'uc2/planet/MakePlanetTexture', 'uc2/planet/Planet',
             /**
              * @method buildPlanet
              * @param {kick.scene.Scene} scene
-             * @param {PlanetConfig} config
+             * @param {PlanetScapeConfig} config
+             * @return PlanetScape
              * @static
              */
-            buildPlanet: function(scene, planetConfig){
-                planetConfig = planetConfig || {};
+            buildPlanet: function(scene, planetScapeConfig){
+                planetScapeConfig = planetScapeConfig || {};
                 var engine = kick.core.Engine.instance;
                 var ballGO = scene.createGameObject({name: "Ball"});
                 var ballMeshRenderer = new kick.scene.MeshRenderer();
@@ -40,8 +41,8 @@ define(['kick', 'uc2/planet/MakePlanetTexture', 'uc2/planet/Planet',
                     }
                 });
                 ballGO.addComponent(ballMeshRenderer);
-                var planet = new Planet();
-                planet.config = planetConfig;
+                var planet = new PlanetScape();
+                planet.config = planetScapeConfig;
                 ballGO.addComponent(planet);
                 return planet;
             }

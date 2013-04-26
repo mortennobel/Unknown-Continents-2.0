@@ -6,11 +6,11 @@ define(["kick", 'uc2/planet/Sun'],
          * Planet instance
          */
         return function () {
-            var planetConfig,
+            var planetScapeConfig,
                 material,
                 thisObj = this,
                 updateMaterial = function(){
-                    material.setUniform("mainColor", planetConfig.planetColor || [1.0, 0.0, 0.9, 1.0]);
+                    material.setUniform("mainColor", planetScapeConfig.planetColor || [1.0, 0.0, 0.9, 1.0]);
                 },
                 sunVisible = false,
                 sun;
@@ -27,12 +27,12 @@ define(["kick", 'uc2/planet/Sun'],
                  * @type kick.material.Shader
                  */
                 config: {
-                    get: function () { return planetConfig; },
+                    get: function () { return planetScapeConfig; },
                     set: function (newValue) {
-                        planetConfig = newValue;
+                        planetScapeConfig = newValue;
                         if (material){
                             updateMaterial();
-                            if (sunVisible != planetConfig.showLightDirection){
+                            if (sunVisible != planetScapeConfig.showLightDirection){
                                 if (!sun){
                                     var scene = thisObj.gameObject.scene;
                                     var gameObject = scene.createGameObject();
@@ -41,8 +41,8 @@ define(["kick", 'uc2/planet/Sun'],
                                     gameObject.transform.position = [10,10,10];
                                 }
                             }
-                            sun.showLightDirection = planetConfig.showLightDirection;
-                            sun.lightDirection = planetConfig.lightDirection;
+                            sun.showLightDirection = planetScapeConfig.showLightDirection;
+                            sun.lightDirection = planetScapeConfig.lightDirection;
                         }
                     }
                 }

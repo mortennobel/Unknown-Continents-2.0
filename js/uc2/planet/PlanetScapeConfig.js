@@ -3,10 +3,18 @@ define(["kick"],
         "use strict";
 
         /**
-         * Configuration class for planet
+         * Configuration class for a planet scape
          */
         return function () {
-            var thisObj = this;
+            var thisObj = this,
+                convertToArray = function(value){
+                    if (Array.isArray(value)){
+                        return value;
+                    }
+                    if (typeof value === "string" && value.charAt(0) === '#'){
+                        return [(parseInt(value.substring(1), 16)>>16)%256,(parseInt(value.substring(1), 16)>>8)%256,(parseInt(value.substring(1), 16))%256,0];
+                    }
+                };
             /**
              * @property seed
              * @type {number}
@@ -52,13 +60,16 @@ define(["kick"],
                  * @type kick.material.Shader
                  */
                 planetColor256: {
-                    get: function () { return planetColor256; },
+                    get: function () {
+                        return planetColor256;
+                    },
                     set: function (value) {
                         planetColor256 = value;
-                        this.planetColor[0] = parseFloat(planetColor256[0]/255);
-                        this.planetColor[1] = parseFloat(planetColor256[1]/255);
-                        this.planetColor[2] = parseFloat(planetColor256[2]/255);
-                        this.planetColor[3] = parseFloat(planetColor256[3]);
+                        value = convertToArray(value);
+                        this.planetColor[0] = parseFloat(value[0]/255);
+                        this.planetColor[1] = parseFloat(value[1]/255);
+                        this.planetColor[2] = parseFloat(value[2]/255);
+                        this.planetColor[3] = parseFloat(value[3]);
                     }
                 }
             });
