@@ -1,6 +1,6 @@
-define(['kick', 'uc2/planet/MakePlanetTexture',
+define(['kick', 'uc2/planet/MakePlanetTexture', 'uc2/planet/Planet',
     'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
-    function (kick, MakePlanetTexture, planet_vs, planet_fs) {
+    function (kick, MakePlanetTexture, Planet, planet_vs, planet_fs) {
         "use strict";
 
         /**
@@ -15,6 +15,7 @@ define(['kick', 'uc2/planet/MakePlanetTexture',
              * @static
              */
             buildPlanet: function(scene, planetConfig){
+                planetConfig = planetConfig || {};
                 var engine = kick.core.Engine.instance;
                 var ballGO = scene.createGameObject({name: "Ball"});
                 var ballMeshRenderer = new kick.scene.MeshRenderer();
@@ -33,13 +34,15 @@ define(['kick', 'uc2/planet/MakePlanetTexture',
                 ballMeshRenderer.material = new kick.material.Material( {
                     shader: shader,
                     uniformData: {
-                        mainColor: [1.0, 0.0, 0.9, 1.0],
                         mainTexture: planet_texture,
                         specularExponent: 50,
                         specularColor: [1, 1, 1, 1]
                     }
                 });
                 ballGO.addComponent(ballMeshRenderer);
+                var planet = new Planet();
+                planet.config = planetConfig;
+                ballGO.addComponent(planet);
             }
         };
     });

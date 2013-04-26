@@ -14,7 +14,6 @@ uniform float _time;
 #pragma include "shadowmap.glsl"
 #pragma include "noise4D.glsl"
 
-
 void main(void)
 {
     vec3 normal = normalize(vNormal);
@@ -58,5 +57,5 @@ void main(void)
         noise = 0.5 + amplitude * noiseSum;
     }
 
-    gl_FragColor = vec4(noise ,noise ,noise ,1.0);
+    gl_FragColor = vec4(noise ,noise ,noise ,1.0) * mainColor;
 }

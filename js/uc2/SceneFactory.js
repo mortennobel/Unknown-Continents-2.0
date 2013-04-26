@@ -1,7 +1,7 @@
-define(["kick", 'uc2/planet/PlanetFactory','uc2/planet/DebugRotateComponent',
+define(["kick", 'uc2/planet/PlanetFactory','uc2/planet/DebugRotateComponent','uc2/planet/PlanetConfig',
         'text!shaders/webgl-noise/noise2D.glsl', 'text!shaders/webgl-noise/noise3D.glsl', 'text!shaders/webgl-noise/noise4D.glsl'
     ],
-    function (kick, PlanetFactory, DebugRotateComponent, noise2D, noise3D, noise4D) {
+    function (kick, PlanetFactory, DebugRotateComponent, PlanetConfig, noise2D, noise3D, noise4D) {
     "use strict";
 
     return function () {
@@ -65,7 +65,9 @@ define(["kick", 'uc2/planet/PlanetFactory','uc2/planet/DebugRotateComponent',
         }
 
         buildCamera(scene);
-        PlanetFactory.buildPlanet(scene);
+        var planetConfig = new PlanetConfig();
+        // planetConfig.planetColor = [1,1,1,1];
+        var planet = PlanetFactory.buildPlanet(scene, planetConfig);
         buildLight(scene);
         var fullWindow = scene.createGameObject({name: "FullWindow"});
         fullWindow.addComponent(new kick.components.FullWindow());
