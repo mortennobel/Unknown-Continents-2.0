@@ -1,8 +1,8 @@
-define(["kick", 'uc2/planet/PlanetScapeFactory','uc2/planet/DebugRotateComponent','uc2/planet/PlanetScapeConfig', 'uc2/Gui',
+define(["kick", 'uc2/planet/PlanetScape','uc2/planet/DebugRotateComponent','uc2/planet/PlanetScapeConfig', 'uc2/Gui',
         'text!shaders/webgl-noise/noise2D.glsl', 'text!shaders/webgl-noise/noise3D.glsl', 'text!shaders/webgl-noise/noise4D.glsl',
         'text!shaders/cellular-noise/cellular2D.glsl','text!shaders/cellular-noise/cellular2x2.glsl','text!shaders/cellular-noise/cellular2x2x2.glsl','text!shaders/cellular-noise/cellular3D.glsl'
     ],
-    function (kick, PlanetScapeFactory, DebugRotateComponent, PlanetScapeConfig, Gui, noise2D, noise3D, noise4D, cellular2D, cellular2x2, cellular2x2x2, cellular3D) {
+    function (kick, PlanetScape, DebugRotateComponent, PlanetScapeConfig, Gui, noise2D, noise3D, noise4D, cellular2D, cellular2x2, cellular2x2x2, cellular3D) {
     "use strict";
 
     return function () {
@@ -71,7 +71,7 @@ define(["kick", 'uc2/planet/PlanetScapeFactory','uc2/planet/DebugRotateComponent
 
         buildCamera(scene);
         var planetConfig = new PlanetScapeConfig();
-        var planet = PlanetScapeFactory.buildPlanet(scene, planetConfig);
+        var planet = new PlanetScape(scene, planetConfig);
         var gui = Gui.createGui(planet,planetConfig);
         buildLight(scene);
         var fullWindow = scene.createGameObject({name: "FullWindow"});
