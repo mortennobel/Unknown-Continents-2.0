@@ -71,9 +71,8 @@ define(["kick", 'uc2/planet/PlanetFactory','uc2/planet/DebugRotateComponent','uc
 
         buildCamera(scene);
         var planetConfig = new PlanetConfig();
-        // planetConfig.planetColor = [1,1,1,1];
         var planet = PlanetFactory.buildPlanet(scene, planetConfig);
-        Gui.createGui(planet,planetConfig);
+        var gui = Gui.createGui(planet,planetConfig);
         buildLight(scene);
         var fullWindow = scene.createGameObject({name: "FullWindow"});
         fullWindow.addComponent(new kick.components.FullWindow());
