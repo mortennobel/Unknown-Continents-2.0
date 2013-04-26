@@ -13,6 +13,10 @@ define([],
 
                 pc.onChange(function(value) {
                     planet.config = planetConfig;
+                    if (debug){
+                        console.log('planetColor: ' + planetConfig.planetColor);
+                        console.log('planetColor256: ' + planetConfig.planetColor256);
+                    }
                 });
                 pc.onFinishChange(function(value) {
                 });
