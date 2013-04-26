@@ -12,7 +12,7 @@ requirejs.config({
 
 requirejs(['kick', 'uc2/SceneFactory'],
     function (kick,SceneFactory) {
-        var engine = new kick.core.Engine('canvas', {
+        new kick.core.Engine('canvas', {
             enableDebugContext: debug
         });
         SceneFactory();
