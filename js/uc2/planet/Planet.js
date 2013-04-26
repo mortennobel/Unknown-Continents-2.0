@@ -8,18 +8,33 @@ define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
         return function () {
 
             var material,
-                debugMaterial,
+                showTextureMaterial,
+                showTexture,
                 thisObj = this,
-                meshRenderer,
+                planetMeshRenderer,
                 planetScapeConfig,
                 updateMaterial = function(){
                     if (material){
                         material.setUniform("mainColor", planetScapeConfig.color || [1.0, 0.0, 0.9, 1.0]);
+                        planetMeshRenderer.material = showTexture ? showTextureMaterial : material;
                     }
                 },
                 makePlanetTexture = function () {
-                    var engine = kick.core.Engine.instance;
-                    return engine.project.load(engine.project.ENGINE_TEXTURE_WHITE);
+                    // texture width / height must be power of 2 and square
+                    var textureDim = 2;
+                    var textureColors = 4; // RGB
+                    var data = new Uint8Array(textureDim * textureDim * textureColors);
+                    // color a single pixel
+                    data[0] = 255;
+                    data[1] = 255;
+                    data[2] = 255;
+                    data[3] = 255;
+
+                    var texture = new kick.texture.Texture();
+                    texture.internalFormat = kick.core.Constants.GL_RGBA;
+                    texture.magFilter = kick.core.Constants.GL_NEAREST;
+                    texture.setImageData ( textureDim, textureDim, 0, kick.core.Constants.GL_UNSIGNED_BYTE,  data);
+                    return texture;
                 };
 
             Object.defineProperties(this, {
@@ -32,7 +47,9 @@ define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
                 config: {
                     set: function (newValue) {
                         planetScapeConfig = newValue;
+                        showTexture = newValue.showTexture;
                         updateMaterial();
+
                     }
                 }
             });
@@ -41,7 +58,7 @@ define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
                 var engine = kick.core.Engine.instance;
                 var scene = engine.activeScene;
                 var planetGameObject = scene.createGameObject({name: "Ball"});
-                var planetMeshRenderer = new kick.scene.MeshRenderer();
+                planetMeshRenderer = new kick.scene.MeshRenderer();
                 var planet_radius = 1;
                 var planet_texture = makePlanetTexture(engine, 256, 256);
                 planetMeshRenderer.mesh = new kick.mesh.Mesh(
@@ -60,6 +77,12 @@ define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
                         mainTexture: planet_texture,
                         specularExponent: 50,
                         specularColor: [1, 1, 1, 1]
+                    }
+                });
+                showTextureMaterial = new kick.material.Material( {
+                    shader: engine.project.load(engine.project.ENGINE_SHADER_UNLIT),
+                    uniformData: {
+                        mainTexture: planet_texture
                     }
                 });
                 planetMeshRenderer.material = material;

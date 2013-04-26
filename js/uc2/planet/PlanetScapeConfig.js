@@ -16,10 +16,11 @@ define(["kick"],
             this.sun = {
                 lightDirection: [1,1,1],
                 showLightDirection: debug
-            }
+            };
 
             this.planet = {
-                color: [0.9, 1.0, 0.2, 1.0]
+                color: [0.9, 1.0, 0.2, 1.0],
+                showTexture: false
             };
 
         };
