@@ -17,6 +17,7 @@ define(['kick', 'uc2/planet/MakePlanetTexture', 'uc2/planet/PlanetScape',
              */
             buildPlanet: function(scene, planetScapeConfig){
                 planetScapeConfig = planetScapeConfig || {};
+
                 var engine = kick.core.Engine.instance;
                 var ballGO = scene.createGameObject({name: "Ball"});
                 var ballMeshRenderer = new kick.scene.MeshRenderer();
@@ -41,10 +42,10 @@ define(['kick', 'uc2/planet/MakePlanetTexture', 'uc2/planet/PlanetScape',
                     }
                 });
                 ballGO.addComponent(ballMeshRenderer);
-                var planet = new PlanetScape();
-                planet.config = planetScapeConfig;
-                ballGO.addComponent(planet);
-                return planet;
+                var planetScape = new PlanetScape();
+                planetScape.config = planetScapeConfig;
+                ballGO.addComponent(planetScape);
+                return planetScape;
             }
         };
     });

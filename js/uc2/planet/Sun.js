@@ -6,7 +6,7 @@ define(["kick"],
         return function(){
             var thisObj = this,
                 position = kick.math.Vec3.create();
-            this.radius = 10;
+            this.radius = 50;
 
             var meshRenderer,
                 enabled = true,
@@ -25,6 +25,7 @@ define(["kick"],
                 });
                 thisObj.gameObject.addComponent(meshRenderer);
                 thisObj.gameObject.transform.position = position ;
+                thisObj.gameObject.transform.localScale = [0.5,0.5,0.5];
             };
 
             Object.defineProperties(this, {

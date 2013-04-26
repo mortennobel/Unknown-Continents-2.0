@@ -3,9 +3,10 @@ define(["kick", 'uc2/planet/Sun'],
         "use strict";
 
         /**
-         * Planet instance
+         * PlanetScape constructor function
+         * A planet scape is the scene except for the skybox
          */
-        return function () {
+        return function (scene) {
             var planetScapeConfig,
                 material,
                 thisObj = this,
@@ -32,15 +33,6 @@ define(["kick", 'uc2/planet/Sun'],
                         planetScapeConfig = newValue;
                         if (material){
                             updateMaterial();
-                            if (sunVisible != planetScapeConfig.showLightDirection){
-                                if (!sun){
-                                    var scene = thisObj.gameObject.scene;
-                                    var gameObject = scene.createGameObject();
-                                    sun = new Sun();
-                                    gameObject.addComponent(sun);
-                                    gameObject.transform.position = [10,10,10];
-                                }
-                            }
                             sun.showLightDirection = planetScapeConfig.showLightDirection;
                             sun.lightDirection = planetScapeConfig.lightDirection;
                         }
@@ -52,6 +44,11 @@ define(["kick", 'uc2/planet/Sun'],
                 var meshRenderer = thisObj.gameObject.getComponentOfType(kick.scene.MeshRenderer);
                 material = meshRenderer.material;
                 updateMaterial();
+                var scene = thisObj.gameObject.scene;
+                var gameObject = scene.createGameObject();
+                sun = new Sun();
+                gameObject.addComponent(sun);
+                sun.lightDirection = [100,0,0];
             };
         };
     });
