@@ -1,7 +1,8 @@
 define(["kick", 'uc2/planet/PlanetFactory','uc2/planet/DebugRotateComponent','uc2/planet/PlanetConfig', 'uc2/Gui',
-        'text!shaders/webgl-noise/noise2D.glsl', 'text!shaders/webgl-noise/noise3D.glsl', 'text!shaders/webgl-noise/noise4D.glsl'
+        'text!shaders/webgl-noise/noise2D.glsl', 'text!shaders/webgl-noise/noise3D.glsl', 'text!shaders/webgl-noise/noise4D.glsl',
+        'text!shaders/webgl-noise/cellular2D.glsl','text!shaders/webgl-noise/cellular2x2.glsl','text!shaders/webgl-noise/cellular2x2x2.glsl','text!shaders/webgl-noise/cellular3D.glsl'
     ],
-    function (kick, PlanetFactory, DebugRotateComponent, PlanetConfig, Gui, noise2D, noise3D, noise4D) {
+    function (kick, PlanetFactory, DebugRotateComponent, PlanetConfig, Gui, noise2D, noise3D, noise4D, cellular2D, cellular2x2, cellular2x2x2, cellular3D) {
     "use strict";
 
     return function () {
@@ -16,6 +17,10 @@ define(["kick", 'uc2/planet/PlanetFactory','uc2/planet/DebugRotateComponent','uc
                 glslConstants["noise2D.glsl"] = noise2D;
                 glslConstants["noise3D.glsl"] = noise3D;
                 glslConstants["noise4D.glsl"] = noise4D;
+                glslConstants["cellular2D.glsl"] = cellular2D;
+                glslConstants["cellular2x2.glsl"] = cellular2x2;
+                glslConstants["cellular2x2x2.glsl"] = cellular2x2x2;
+                glslConstants["cellular3D.glsl"] = cellular3D;
             };
 
         addCustomNoiseFunctionsToGLSL();
