@@ -43,6 +43,7 @@ define(['kick', 'uc2/planet/MakePlanetTexture', 'uc2/planet/Planet',
                 var planet = new Planet();
                 planet.config = planetConfig;
                 ballGO.addComponent(planet);
+                return planet;
             }
         };
     });
