@@ -29,6 +29,12 @@ define(["kick"],
             };
 
             Object.defineProperties(this, {
+                config: {
+                    set : function(val){
+                        thisObj.lightDirection = val.lightDirection;
+                        thisObj.showLightDirection = val.showLightDirection;
+                    }
+                },
                 lightDirection:{
                     set:function(val){
                         var Vec3 = kick.math.Vec3;

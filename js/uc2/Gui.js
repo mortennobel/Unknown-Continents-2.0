@@ -25,6 +25,24 @@ define([],
                     }
                 });
                 return o;
+            },
+            createArrayWrapper = function(obj, arrayName, indeces, exposedNames){
+                var o = {};
+                for (var i=0;i<indeces.length;i++){
+                    (function(i){
+                        console.log(indeces[i], exposedNames[i]);
+                        Object.defineProperty(o, exposedNames[i], {
+                            get: function(){
+                                return obj[arrayName][indeces[i]];
+                            },
+                            set: function(value){
+                                obj[arrayName][indeces[i]] = value;
+                                console.log(obj[arrayName], value, i);
+                            }
+                        });
+                    })(i);
+                }
+                return o;
             };
 
         /**
@@ -32,25 +50,28 @@ define([],
          * @class Gui
          */
         return {
-            createGui: function(planet, planetConfig){
+            createGui: function(planetScape, planetConfig){
                 var gui = new  dat.GUI();
 
+                var onChangeListener = function(value) {
+                    planetScape.config = planetConfig;
+                };
+
                 //planet color
-                var pc = gui.addColor(createColorWrapper(planetConfig,'planetColor'),'planetColor');
-                pc.onChange(function(value) {
-                    planet.config = planetConfig;
-                });
+                var pc = gui.addColor(createColorWrapper(planetConfig.planet,'color'),'color');
+                pc.onChange(onChangeListener);
 
                 //light direction
                 var light = gui.addFolder('LightDirection');
-                var ldx = light.add(planetConfig,'lightDirectionX',-1,1);
-                ldx.onChange(function(value) {planet.config = planetConfig;});
-                var ldy = light.add(planetConfig,'lightDirectionY',-1,1);
-                ldy.onChange(function(value) {planet.config = planetConfig;});
-                var ldz = light.add(planetConfig,'lightDirectionZ',-1,1);
-                ldz.onChange(function(value) {planet.config = planetConfig;});
-                var sld = light.add(planetConfig,'showLightDirection');
-                sld.onChange(function(value) {planet.config = planetConfig;});
+                var wrappedDirectionArray = createArrayWrapper(planetConfig.sun, "lightDirection", [0,1,2], ["lightDirectionX","lightDirectionY","lightDirectionZ"]);
+                var ldx = light.add(wrappedDirectionArray,'lightDirectionX',-1,1);
+                ldx.onChange(onChangeListener);
+                var ldy = light.add(wrappedDirectionArray,'lightDirectionY',-1,1);
+                ldy.onChange(onChangeListener);
+                var ldz = light.add(wrappedDirectionArray,'lightDirectionZ',-1,1);
+                ldz.onChange(onChangeListener);
+                var sld = light.add(planetConfig.sun,'showLightDirection');
+                sld.onChange(onChangeListener);
             }
         };
     });
