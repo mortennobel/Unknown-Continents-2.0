@@ -1,5 +1,3 @@
-#version 120
-
 // Cellular noise ("Worley noise") in 3D in GLSL.
 // Copyright (c) Stefan Gustavson 2011-04-19. All rights reserved.
 // This code is released under the conditions of the MIT license.
@@ -70,11 +68,12 @@ vec2 cellular2x2x2(vec3 P) {
 #endif
 }
 
-
-varying vec3 vTexCoord3D;
-
-void main(void) {
-	vec2 F = cellular2x2x2(vTexCoord3D.xyz);
-	float n = smoothstep(0.4, 0.5, F.x);
-	gl_FragColor = vec4(n, n, n, 1.0);
-}
+// example usage:
+//
+// varying vec3 vTexCoord3D;
+//
+// void main(void) {
+//	vec2 F = cellular2x2x2(vTexCoord3D.xyz);
+//	float n = smoothstep(0.4, 0.5, F.x);
+//	gl_FragColor = vec4(n, n, n, 1.0);
+// }
