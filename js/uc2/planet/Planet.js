@@ -25,10 +25,12 @@ define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
                     var textureColors = 4; // RGB
                     var data = new Uint8Array(textureDim * textureDim * textureColors);
                     // color a single pixel
-                    data[0] = 255;
-                    data[1] = 255;
-                    data[2] = 255;
-                    data[3] = 255;
+                    for (var i=0;i<4;i=i+3){
+                    data[0+i*4] = 255;
+                    data[1+i*4] = 255;
+                    data[2+i*4] = 255;
+                    data[3+i*4] = 255;
+                    }
 
                     var texture = new kick.texture.Texture();
                     texture.internalFormat = kick.core.Constants.GL_RGBA;
@@ -57,13 +59,13 @@ define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
             this.activated = function(){
                 var engine = kick.core.Engine.instance;
                 var scene = engine.activeScene;
-                var planetGameObject = scene.createGameObject({name: "Ball"});
+                var planetGameObject = scene.createGameObject({name: "Planet"});
                 planetMeshRenderer = new kick.scene.MeshRenderer();
                 var planet_radius = 1;
                 var planet_texture = makePlanetTexture(engine, 256, 256);
                 planetMeshRenderer.mesh = new kick.mesh.Mesh(
                     {
-                        dataURI: "kickjs://mesh/uvsphere/?slices=25&stacks=50&radius=" + planet_radius,
+                        dataURI: "kickjs://mesh/uvsphere/?slices=100&stacks=200&radius=" + planet_radius,
                         name: "Default object"
                     });
 
@@ -71,16 +73,15 @@ define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
                     vertexShaderSrc: planet_vs,
                     fragmentShaderSrc: planet_fs
                 });
+
                 material = new kick.material.Material( {
                     shader: shader,
                     uniformData: {
-                        mainTexture: planet_texture,
-                        specularExponent: 50,
-                        specularColor: [1, 1, 1, 1]
+                        mainTexture: planet_texture
                     }
                 });
                 showTextureMaterial = new kick.material.Material( {
-                    shader: engine.project.load(engine.project.ENGINE_SHADER_UNLIT),
+                    shader: engine.project.load(engine.project.ENGINE_SHADER_DIFFUSE),
                     uniformData: {
                         mainTexture: planet_texture
                     }

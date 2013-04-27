@@ -53,27 +53,10 @@ define(["kick", 'uc2/planet/PlanetScape','uc2/planet/DebugRotateComponent','uc2/
 
         }
 
-        function buildLight(scene){
-            var lightGO = scene.createGameObject({name:"Light"}),
-                light = new kick.scene.Light({
-                    type: kick.scene.Light.TYPE_DIRECTIONAL,
-                    color: [1.0, 1.0, 1.0]
-                });
-            lightGO.addComponent(light);
-            lightGO.transform.localRotationEuler = [0,0,0];
-
-            var lightAmbient = new kick.scene.Light({
-                type: kick.scene.Light.TYPE_AMBIENT,
-                color: [0.1,0.1,0.1]
-            });
-            lightGO.addComponent(lightAmbient);
-        }
-
         buildCamera(scene);
         var planetConfig = new PlanetScapeConfig();
         var planetScape = new PlanetScape(scene, planetConfig);
         var gui = Gui.createGui(planetScape,planetConfig);
-        buildLight(scene);
         var fullWindow = scene.createGameObject({name: "FullWindow"});
         fullWindow.addComponent(new kick.components.FullWindow());
     }

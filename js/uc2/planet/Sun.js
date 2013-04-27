@@ -1,30 +1,54 @@
-define(["kick"],
-    function (kick) {
+define(["kick", 'uc2/planet/Planet'],
+    function (kick, Planet) {
         "use strict";
 
         //Sun object
         return function(){
             var thisObj = this,
-                position = kick.math.Vec3.create();
+                position = kick.math.Vec3.create(),
+                lightComponent,
+                lightAmbientComponent,
+                meshRenderer,
+                enabled = true,
+                thisObj = this,
+                transform,
+                planetTransform,
+                ambientColor = [0.1,0.1,0.1],
+                buildLight = function(){
+                    var lightGO = thisObj.gameObject;
+                    lightComponent = new kick.scene.Light({
+                        type: kick.scene.Light.TYPE_DIRECTIONAL,
+                        color: [1.0, 1.0, 1.0]
+                    });
+                    lightGO.addComponent(lightComponent);
+                    lightGO.transform.localRotationEuler = [0,0,0];
+
+                    lightAmbientComponent = new kick.scene.Light({
+                        type: kick.scene.Light.TYPE_AMBIENT,
+                        color: [0.1,0.1,0.1]
+                    });
+                    lightGO.addComponent(lightAmbientComponent);
+                };
             this.radius = 50;
 
-            var meshRenderer,
-                enabled = true,
-                thisObj = this;
             this.activated = function(){
                 var engine = kick.core.Engine.instance;
+                transform = thisObj.gameObject.transform;
+                var planetComponent = thisObj.gameObject.scene.findComponentsOfType(Planet)[0];
+                planetTransform = planetComponent.gameObject.transform;
+                buildLight();
+
                 var mesh = engine.project.load(engine.project.ENGINE_MESH_UVSPHERE);
                 meshRenderer = new kick.scene.MeshRenderer({
                     mesh: mesh,
                     material: new kick.material.Material( {
                         shader: engine.project.load(engine.project.ENGINE_SHADER_UNLIT),
                         uniformData: {
-                            specularColor: [0, 0, 1, 1]
                         }
                     })
                 });
                 thisObj.gameObject.addComponent(meshRenderer);
-                thisObj.gameObject.transform.position = position ;
+                thisObj.lightDirection = position;
                 thisObj.gameObject.transform.localScale = [0.5,0.5,0.5];
             };
 
@@ -33,6 +57,7 @@ define(["kick"],
                     set : function(val){
                         thisObj.lightDirection = val.lightDirection;
                         thisObj.showLightDirection = val.showLightDirection;
+                        thisObj.ambientColor = val.ambientColor;
                     }
                 },
                 lightDirection:{
@@ -42,8 +67,9 @@ define(["kick"],
                             position  = Vec3.normalize(position , val);
                         }
                         Vec3.scale(position , position , thisObj.radius);
-                        if (thisObj.gameObject){
-                            thisObj.gameObject.transform.position = position;
+                        if (transform){
+                            transform.position = position;
+                            transform.lookAt(planetTransform, [0,1,0]);
                         }
                     }
                 },
@@ -59,6 +85,17 @@ define(["kick"],
                                 }
                             }
                         }
+                    }
+                },
+                ambientColor:{
+                    set:function(val){
+                        ambientColor = [val[0], val[1], val[2]];
+                        if (lightAmbientComponent){
+                            lightAmbientComponent.color = ambientColor;
+                        }
+                    },
+                    get: function(){
+                        return ambientColor;
                     }
                 }
                 });

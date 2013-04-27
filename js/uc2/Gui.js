@@ -8,13 +8,14 @@ define([],
                 if (typeof value === "string" && value.charAt(0) === '#'){
                     return [(parseInt(value.substring(1), 16)>>16)%256,(parseInt(value.substring(1), 16)>>8)%256,(parseInt(value.substring(1), 16))%256,0];
                 }
+                return [0,0,0,0];
             },
             createColorWrapper = function(obj, colorName){
                 var o = {};
                 Object.defineProperty(o, colorName, {
                     get: function(){
                         var array = obj[colorName];
-                        return [array[0]*255,array[1]*255,array[2]*255,array[3] ];
+                        return [array[0]*255,array[1]*255,array[2]*255,array[3]?array[3]:0];
                     },
                     set: function(value){
                         value = convertToArray(value);
@@ -37,7 +38,6 @@ define([],
                             },
                             set: function(value){
                                 obj[arrayName][indeces[i]] = value;
-                                console.log(obj[arrayName], value, i);
                             }
                         });
                     })(i);
@@ -53,27 +53,31 @@ define([],
             createGui: function(planetScape, planetConfig){
                 var gui = new  dat.GUI();
 
-                var onChangeListener = function(value) {
+                var onChangeListener = function() {
                     planetScape.config = planetConfig;
                 };
 
-                //planet color
-                var pc = gui.addColor(createColorWrapper(planetConfig.planet,'color'),'color');
-                pc.onChange(onChangeListener);
-                var slt = gui.add(planetConfig.planet,'showTexture');
-                slt.onChange(onChangeListener);
+                // planet color
+                gui.addColor(createColorWrapper(planetConfig.planet,'color'),'color')
+                    .onChange(onChangeListener);
+                gui.add(planetConfig.planet,'showTexture')
+                    .onChange(onChangeListener);
 
+                // sun properties
+                var sun = gui.addFolder('Sun');
+                sun.addColor(createColorWrapper(planetConfig.sun,'ambientColor'),'ambientColor')
+                    .onChange(onChangeListener);
                 //light direction
-                var light = gui.addFolder('LightDirection');
+                var light = sun.addFolder('LightDirection');
                 var wrappedDirectionArray = createArrayWrapper(planetConfig.sun, "lightDirection", [0,1,2], ["lightDirectionX","lightDirectionY","lightDirectionZ"]);
-                var ldx = light.add(wrappedDirectionArray,'lightDirectionX',-1,1);
-                ldx.onChange(onChangeListener);
-                var ldy = light.add(wrappedDirectionArray,'lightDirectionY',-1,1);
-                ldy.onChange(onChangeListener);
-                var ldz = light.add(wrappedDirectionArray,'lightDirectionZ',-1,1);
-                ldz.onChange(onChangeListener);
-                var sld = light.add(planetConfig.sun,'showLightDirection');
-                sld.onChange(onChangeListener);
+                light.add(wrappedDirectionArray,'lightDirectionX',-1,1)
+                    .onChange(onChangeListener);
+                light.add(wrappedDirectionArray,'lightDirectionY',-1,1)
+                    .onChange(onChangeListener);
+                light.add(wrappedDirectionArray,'lightDirectionZ',-1,1)
+                    .onChange(onChangeListener);
+                sun.add(planetConfig.sun,'showLightDirection')
+                    .onChange(onChangeListener);
 
             }
         };
