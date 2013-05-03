@@ -21,14 +21,14 @@ define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
                 },
                 makePlanetTexture = function () {
                     // texture width / height must be power of 2 and square
-                    var textureDim = 2;
+                    var textureDim = 256;
                     var textureColors = 4; // RGB
                     var data = new Uint8Array(textureDim * textureDim * textureColors);
                     // color a single pixel
-                    for (var i=0;i<4;i=i+3){
-                    data[0+i*4] = 255;
-                    data[1+i*4] = 255;
-                    data[2+i*4] = 255;
+                    for (var i=0;i<4*textureDim*textureDim;i=i+3){
+                    data[0+i*4] = Math.random()*255;
+                    data[1+i*4] = Math.random()*255;
+                    data[2+i*4] = Math.random()*255;
                     data[3+i*4] = 255;
                     }
 
