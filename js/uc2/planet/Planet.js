@@ -144,18 +144,11 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
             }
 
             Object.defineProperties(this, {
-                /**
-                 * Allows usage of replacement material on camera rendering
-                 * Default value is null.
-                 * @property replacementMaterial
-                 * @type kick.material.Shader
-                 */
                 config: {
                     set: function (newValue) {
                         planetScapeConfig = newValue;
                         showTexture = newValue.showTexture;
                         updateMaterial();
-
                     }
                 }
             });

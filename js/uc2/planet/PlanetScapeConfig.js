@@ -26,7 +26,8 @@ define(["kick"],
             };
 
             this.atmosphere = {
-                color: [1.0, 1.0, 1.0, 0.1]
+                color: [0.0, 0.0, 1.0, 0.5],
+                size: 0.01
             };
         };
     });

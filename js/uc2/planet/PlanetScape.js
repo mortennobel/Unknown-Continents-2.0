@@ -26,19 +26,13 @@ define(["kick", 'uc2/planet/Sun', 'uc2/planet/Planet', 'uc2/planet/Atmosphere'],
 
             var atmosphereGameObject = scene.createGameObject();
             atmosphere = new Atmosphere();
-            atmosphere.config = planetScapeConfig.atmosphere ;
+            atmosphere.config = planetScapeConfig.atmosphere;
             atmosphereGameObject.addComponent(atmosphere);
             /**
              * @property config
              * @type {PlanetConfig}
              */
             Object.defineProperties(this, {
-                /**
-                 * Allows usage of replacement material on camera rendering
-                 * Default value is null.
-                 * @property replacementMaterial
-                 * @type kick.material.Shader
-                 */
                 config: {
                     get: function () { return planetScapeConfig; },
                     set: function (newValue) {
