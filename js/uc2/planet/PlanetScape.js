@@ -17,7 +17,6 @@ define(["kick", 'uc2/planet/Sun', 'uc2/planet/Planet'],
             planet.config = planetScapeConfig.planet;
             planetGameObject.addComponent(planet);
 
-
             var sunGameObject = scene.createGameObject();
             sun = new Sun();
             sun.config = planetScapeConfig.sun;

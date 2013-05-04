@@ -13,6 +13,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                 thisObj = this,
                 planetMeshRenderer,
                 planetScapeConfig,
+                rotation = [0,0,0,1],
                 rotationSpeed = 1000.01,
                 updateMaterial = function(){
                     if (material){
@@ -100,7 +101,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
             };
 
             this.update = function(){
-                thisObj.gameObject.transform.localRotationEuler = [0,rotationSpeed*time.time*0.01,0];
+                thisObj.gameObject.transform.localRotation = kick.math.Quat.rotateY(rotation,rotation,rotationSpeed*time.deltaTime);
             };
         }
     });
