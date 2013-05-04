@@ -8,7 +8,6 @@ varying vec2 uv;
 varying vec3 pos;
 
 #pragma include "light.glsl"
-#pragma include "shadowmap.glsl"
 
 uniform vec4 mainColor;
 uniform sampler2D heightMap;
