@@ -1,4 +1,4 @@
-define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_composition_fs.glsl'],
+define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
     function (kick, planet_vs, planet_fs) {
         "use strict";
 
@@ -125,20 +125,20 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                 var xminus = x - length / 2;
 
                 if (yminus < 0) {
-                    yminus = size - 1 - length / 2;
+                    yminus = 0;//size - 1 - length / 2;
                 }
                 if (xminus < 0) {
                     xminus = size - 1 - length / 2;
                 }
                 if (yplus > size - 1) {
-                    yplus = length / 2;
+                    yplus = size - 1;//length / 2;
                 }
                 if (xplus > size - 1) {
                     xplus = length / 2;
                 }
                 setColor(x,y,
-                    (getColor(x,yplus) + getColor(x,yminus) + getColor(xminus,y) + getColor(xminus,y)) / 4
-                        + (Math.pow(2.0, -h*iteration) * (range * Math.random() - range / 2))
+                    (getColor(x,yplus) + getColor(x,yminus) + getColor(xminus,y) + getColor(xplus,y)) / 4
+                        //+ (Math.pow(2.0, -h*iteration) * (range * Math.random() - range / 2))
                 );
             }
 
