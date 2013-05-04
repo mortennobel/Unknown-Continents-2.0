@@ -23,6 +23,12 @@ define(["kick", 'uc2/planet/Sun', 'uc2/planet/Planet'],
             sunGameObject.addComponent(sun);
             sun.lightDirection = [100,0,0];
 
+            /*var sunGameObject = scene.createGameObject();
+            sun = new Sun();
+            sun.config = planetScapeConfig.sun;
+            sunGameObject.addComponent(sun);
+            sun.lightDirection = [100,0,0];
+*/
             /**
              * @property config
              * @type {PlanetConfig}

@@ -184,7 +184,8 @@ define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
                 material = new kick.material.Material( {
                     shader: shader,
                     uniformData: {
-                        mainTexture: planet_texture
+                        heightMap: planet_texture
+
                     }
                 });
                 showTextureMaterial = new kick.material.Material( {
