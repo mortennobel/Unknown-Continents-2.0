@@ -25,16 +25,18 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                 },
                 makePlanetTexture = function () {
                     // texture width / height must be power of 2 and square
-                    var textureDim = 256;
+                    var textureDim = 1024;
                     var textureColors = 4; // RGB
                     var data = new Uint8Array(textureDim * textureDim * textureColors);
                     // color a single pixel
-                    for (var i=0;i<4*textureDim*textureDim;i=i+3){
-                    data[0+i*4] = Math.random()*255;
-                    data[1+i*4] = Math.random()*255;
-                    data[2+i*4] = Math.random()*255;
-                    data[3+i*4] = 255;
-                    }
+                    /*for (var i=0;i< textureDim*textureDim;i++){
+                        data[0+i*4] = i*255/textureDim/textureDim;
+                        data[1+i*4] = i*255/textureDim/textureDim;
+                        data[2+i*4] = i*255/textureDim/textureDim;
+                        data[3+i*4] = 255;
+                    }*/
+
+                    var data = buildMap(10);
 
                     var texture = new kick.texture.Texture();
                     texture.internalFormat = kick.core.Constants.GL_RGBA;
@@ -42,6 +44,103 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                     texture.setImageData ( textureDim, textureDim, 0, kick.core.Constants.GL_UNSIGNED_BYTE,  data);
                     return texture;
                 };
+
+            var size;
+            var map;
+            var h = 0.5;
+            var range = 512;
+            var initialValues = 128;
+
+            function setColor(x,y,color){
+                map[0 + x*4 + y*size*4] = color;
+                map[1 + x*4 + y*size*4] = color;
+                map[2 + x*4 + y*size*4] = color;
+                map[3 + x*4 + y*size*4] = color;
+            }
+
+            function getColor(x,y){
+                return map[x*4 + y*size*4];
+            }
+
+            function buildMap(iterations){
+                var rand = Math.random();
+                size = Math.pow(2,iterations)+1;
+                map = new Uint8Array(size*size*4);
+                //map[x + y * size]
+                setColor(0,0,initialValues);
+                setColor(0,size-1,initialValues);
+                setColor(size-1,0,initialValues);
+                setColor(size-1,size-1,initialValues);
+
+                var stepsize;
+                for (var i = 0; i < iterations; i++) {
+                    var resolution = Math.pow(2, i);
+
+                    for (var x = 0; x < resolution; x++) {
+                        for (var y = 0; y < resolution; y++) {
+                            stepsize = (size - 1) / resolution;
+                            diamondStep(x * stepsize, y * stepsize, stepsize, i);
+                        }
+                    }
+
+                    for (var x = 0; x < resolution; x++) {
+                        for (var y = 0; y < resolution; y++) {
+                            stepsize = (size - 1) / resolution;
+                            squareStep(x * stepsize, y * stepsize + stepsize / 2, stepsize,i);    //left
+                            squareStep((x + 1) * stepsize, y * stepsize + stepsize / 2, stepsize,i);//right
+                            squareStep(x * stepsize + stepsize / 2, (y + 1) * stepsize, stepsize,i);//bottom
+                            squareStep(x * stepsize + stepsize / 2, y * stepsize, stepsize,i);    //top
+                        }
+                    }
+                }
+                return squareify(map);
+            }
+
+            //hack hack the edges away
+            function squareify(map){
+                var result = new Uint8Array((size-1)*(size-1)*4);
+
+                for (var x = 0; x < (size-1);++x){
+                    for (var y = 0; y < (size-1);y++){
+                        for (var idx = 0;idx<4;idx++){
+                            result[idx+4*(x+y*(size-1))] = map[idx+4*(x+y*(size))];
+                        }
+                    }
+                }
+                return result;
+            }
+
+
+            function diamondStep(x,y,length,iteration){
+                setColor(x + length / 2,y + length / 2,
+                    (getColor(x,y) + getColor(x + length,y) + getColor(x,y + length) + getColor(x + length,y + length)) / 4
+                    + (Math.pow(2.0, -h*iteration) * (range * Math.random() - range / 2))
+                );
+            }
+
+            function squareStep(x,y,length,iteration){
+                var yplus = y + length / 2;
+                var xplus = x + length / 2;
+                var yminus = y - length / 2;
+                var xminus = x - length / 2;
+
+                if (yminus < 0) {
+                    yminus = size - 1 - length / 2;
+                }
+                if (xminus < 0) {
+                    xminus = size - 1 - length / 2;
+                }
+                if (yplus > size - 1) {
+                    yplus = length / 2;
+                }
+                if (xplus > size - 1) {
+                    xplus = length / 2;
+                }
+                setColor(x,y,
+                    (getColor(x,yplus) + getColor(x,yminus) + getColor(xminus,y) + getColor(xminus,y)) / 4
+                        + (Math.pow(2.0, -h*iteration) * (range * Math.random() - range / 2))
+                );
+            }
 
             Object.defineProperties(this, {
                 /**
