@@ -10,19 +10,31 @@ define([],
                 }
                 return [0,0,0,0];
             },
-            createColorWrapper = function(obj, colorName){
+            createColorWrapper = function(obj, colorName, onlyVec3){
                 var o = {};
                 Object.defineProperty(o, colorName, {
                     get: function(){
                         var array = obj[colorName];
-                        return [array[0]*255,array[1]*255,array[2]*255,array[3]?array[3]:0];
+                        if (onlyVec3){
+                            return [array[0]*255,array[1]*255,array[2]*255,1];
+                        } else {
+                            return [array[0]*255,array[1]*255,array[2]*255,array[3]?array[3]:0];
+                        }
+
                     },
                     set: function(value){
                         value = convertToArray(value);
-                        obj[colorName] = [parseFloat(value[0]/255),
-                            parseFloat(value[1]/255),
-                            parseFloat(value[2]/255),
-                            parseFloat(value[3])];
+                        if (onlyVec3){
+                            obj[colorName] = [parseFloat(value[0]/255),
+                                                        parseFloat(value[1]/255),
+                                                        parseFloat(value[2]/255)];
+                        } else {
+                            obj[colorName] = [parseFloat(value[0]/255),
+                                                        parseFloat(value[1]/255),
+                                                        parseFloat(value[2]/255),
+                                                        parseFloat(value[3])];
+                        }
+
                     }
                 });
                 return o;
@@ -65,7 +77,7 @@ define([],
 
                 // sun properties
                 var sun = gui.addFolder('Sun');
-                sun.addColor(createColorWrapper(planetConfig.sun,'ambientColor'),'ambientColor')
+                sun.addColor(createColorWrapper(planetConfig.sun,'ambientColor',true),'ambientColor')
                     .onChange(onChangeListener);
                 //light direction
                 var light = sun.addFolder('LightDirection');

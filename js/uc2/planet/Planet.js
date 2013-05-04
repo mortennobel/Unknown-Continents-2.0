@@ -6,19 +6,21 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
          * Planet class constructor function
          */
         return function () {
-
-            var material,
+            var time,
+                material,
                 showTextureMaterial,
                 showTexture,
                 thisObj = this,
                 planetMeshRenderer,
                 planetScapeConfig,
+                rotationSpeed = 1000.01,
                 updateMaterial = function(){
                     if (material){
                         material.setUniform("mainColor", planetScapeConfig.color || [1.0, 0.0, 0.9, 1.0]);
                         material.setUniform("maxHeight", new Float32Array([planetScapeConfig.maxHeight || 0.01]) );
                         planetMeshRenderer.material = showTexture ? showTextureMaterial : material;
                     }
+                    rotationSpeed = planetScapeConfig.rotationSpeed || 1000.01;
                 },
                 makePlanetTexture = function () {
                     // texture width / height must be power of 2 and square
@@ -59,6 +61,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
 
             this.activated = function(){
                 var engine = kick.core.Engine.instance;
+                time = engine.time;
                 var scene = engine.activeScene;
                 var planetGameObject = scene.createGameObject({name: "Planet"});
                 planetMeshRenderer = new kick.scene.MeshRenderer();
@@ -94,6 +97,10 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                 planetGameObject.addComponent(planetMeshRenderer);
 
                 updateMaterial();
+            };
+
+            this.update = function(){
+                thisObj.gameObject.transform.localRotationEuler = [0,rotationSpeed*time.time*0.01,0];
             };
         }
     });

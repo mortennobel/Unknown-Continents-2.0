@@ -10,6 +10,7 @@ varying vec3 pos;
 #pragma include "light.glsl"
 #pragma include "shadowmap.glsl"
 
+uniform vec4 mainColor;
 uniform sampler2D heightMap;
 uniform sampler2D mainTexture;
 uniform float maxHeight;
@@ -47,6 +48,6 @@ void main(void)
     float specularExponent = 0.1;
     getDirectionalLight(nBumped, _dLight, specularExponent, diffuse, specular);
 
-	gl_FragColor = vec4(texture2D(mainTexture,uv).xyz*max(diffuse, _ambient),1.0);
+	gl_FragColor = mainColor*vec4(texture2D(mainTexture,uv).xyz*max(diffuse, _ambient),1.0);
     //gl_FragColor = vec4(nBumped,1.0);
 }
