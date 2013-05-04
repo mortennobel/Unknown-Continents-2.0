@@ -1,5 +1,5 @@
-define(["kick", 'uc2/planet/Sun', 'uc2/planet/Planet'],
-    function (kick, Sun, Planet) {
+define(["kick", 'uc2/planet/Sun', 'uc2/planet/Planet', 'uc2/planet/Atmosphere'],
+    function (kick, Sun, Planet, Atmosphere) {
         "use strict";
 
         /**
@@ -8,7 +8,8 @@ define(["kick", 'uc2/planet/Sun', 'uc2/planet/Planet'],
          */
         return function (scene, planetScapeConfig) {
             var sun,
-                planet;
+                planet,
+                atmosphere;
 
             planetScapeConfig = planetScapeConfig || {};
 
@@ -23,12 +24,10 @@ define(["kick", 'uc2/planet/Sun', 'uc2/planet/Planet'],
             sunGameObject.addComponent(sun);
             sun.lightDirection = [100,0,0];
 
-            /*var sunGameObject = scene.createGameObject();
-            sun = new Sun();
-            sun.config = planetScapeConfig.sun;
-            sunGameObject.addComponent(sun);
-            sun.lightDirection = [100,0,0];
-*/
+            var atmosphereGameObject = scene.createGameObject();
+            atmosphere = new Atmosphere();
+            atmosphere.config = planetScapeConfig.atmosphere ;
+            atmosphereGameObject.addComponent(atmosphere);
             /**
              * @property config
              * @type {PlanetConfig}
@@ -46,6 +45,7 @@ define(["kick", 'uc2/planet/Sun', 'uc2/planet/Planet'],
                         planetScapeConfig = newValue;
                         sun.config = newValue.sun;
                         planet.config = newValue.planet;
+                        atmosphere.config = planetScapeConfig.atmosphere ;
                     }
                 }
              });

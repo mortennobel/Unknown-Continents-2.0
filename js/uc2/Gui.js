@@ -62,36 +62,40 @@ define([],
          * @class Gui
          */
         return {
-            createGui: function(planetScape, planetConfig){
+            createGui: function(planetScape, planetScapeConfig){
                 var gui = new  dat.GUI();
 
                 var onChangeListener = function() {
-                    planetScape.config = planetConfig;
+                    planetScape.config = planetScapeConfig;
                 };
+
+                var atmosphere = gui.addFolder('Atmosphere');
+                atmosphere.addColor(createColorWrapper(planetScapeConfig.atmosphere,'color'),'color')
+                    .onChange(onChangeListener);
 
                 // planet color
                 var sun = gui.addFolder('Planet');
-                sun.addColor(createColorWrapper(planetConfig.planet,'color'),'color')
+                sun.addColor(createColorWrapper(planetScapeConfig.planet,'color'),'color')
                     .onChange(onChangeListener);
-                sun.add(planetConfig.planet,'showTexture')
+                sun.add(planetScapeConfig.planet,'showTexture')
                     .onChange(onChangeListener);
-                sun.add(planetConfig.planet,'maxHeight', 0.000,0.01)
+                sun.add(planetScapeConfig.planet,'maxHeight', 0.000,0.01)
                     .onChange(onChangeListener);
 
                 // sun properties
                 var sun = gui.addFolder('Sun');
-                sun.addColor(createColorWrapper(planetConfig.sun,'ambientColor',true),'ambientColor')
+                sun.addColor(createColorWrapper(planetScapeConfig.sun,'ambientColor',true),'ambientColor')
                     .onChange(onChangeListener);
                 //light direction
                 var light = sun.addFolder('LightDirection');
-                var wrappedDirectionArray = createArrayWrapper(planetConfig.sun, "lightDirection", [0,1,2], ["lightDirectionX","lightDirectionY","lightDirectionZ"]);
+                var wrappedDirectionArray = createArrayWrapper(planetScapeConfig.sun, "lightDirection", [0,1,2], ["lightDirectionX","lightDirectionY","lightDirectionZ"]);
                 light.add(wrappedDirectionArray,'lightDirectionX',-1,1)
                     .onChange(onChangeListener);
                 light.add(wrappedDirectionArray,'lightDirectionY',-1,1)
                     .onChange(onChangeListener);
                 light.add(wrappedDirectionArray,'lightDirectionZ',-1,1)
                     .onChange(onChangeListener);
-                sun.add(planetConfig.sun,'showLightDirection')
+                sun.add(planetScapeConfig.sun,'showLightDirection')
                     .onChange(onChangeListener);
 
             }

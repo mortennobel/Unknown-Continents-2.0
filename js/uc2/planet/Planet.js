@@ -1,4 +1,5 @@
-define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
+define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_composition_fs.glsl'],
+//define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
     function (kick, planet_vs, planet_fs) {
         "use strict";
 

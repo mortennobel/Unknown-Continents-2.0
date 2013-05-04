@@ -21,9 +21,12 @@ define(["kick"],
 
             this.planet = {
                 color: [1.0, 1.0, 1.0, 1.0],
-                maxHeight: 0.02,
+                maxHeight: 0.006,
                 showTexture: false
             };
 
+            this.atmosphere = {
+                color: [1.0, 1.0, 1.0, 0.1]
+            };
         };
     });
