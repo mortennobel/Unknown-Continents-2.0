@@ -125,13 +125,13 @@ define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
                 var xminus = x - length / 2;
 
                 if (yminus < 0) {
-                    yminus = 0;//size - 1 - length / 2;
+                    yminus = size - 1 - length / 2;
                 }
                 if (xminus < 0) {
                     xminus = size - 1 - length / 2;
                 }
                 if (yplus > size - 1) {
-                    yplus = size - 1;//length / 2;
+                    yplus = length / 2;
                 }
                 if (xplus > size - 1) {
                     xplus = length / 2;
