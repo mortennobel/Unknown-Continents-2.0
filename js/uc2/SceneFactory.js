@@ -50,7 +50,6 @@ define(["kick", 'uc2/planet/PlanetScape','uc2/planet/DebugRotateComponent','uc2/
             });
             cameraGO.addComponent(skyBox);
             cameraGO.addComponent(new DebugRotateComponent());
-
         }
 
         buildCamera(scene);

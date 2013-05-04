@@ -70,9 +70,12 @@ define([],
                 };
 
                 // planet color
-                gui.addColor(createColorWrapper(planetConfig.planet,'color'),'color')
+                var sun = gui.addFolder('Planet');
+                sun.addColor(createColorWrapper(planetConfig.planet,'color'),'color')
                     .onChange(onChangeListener);
-                gui.add(planetConfig.planet,'showTexture')
+                sun.add(planetConfig.planet,'showTexture')
+                    .onChange(onChangeListener);
+                sun.add(planetConfig.planet,'maxHeight', 0.000,0.01)
                     .onChange(onChangeListener);
 
                 // sun properties
