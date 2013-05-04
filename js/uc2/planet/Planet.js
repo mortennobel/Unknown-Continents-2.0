@@ -1,4 +1,4 @@
-define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
+define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_composition_fs.glsl'],
     function (kick, planet_vs, planet_fs) {
         "use strict";
 
@@ -16,6 +16,7 @@ define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
                 updateMaterial = function(){
                     if (material){
                         material.setUniform("mainColor", planetScapeConfig.color || [1.0, 0.0, 0.9, 1.0]);
+                        material.setUniform("maxHeight", new Float32Array([planetScapeConfig.maxHeight || 0.01]) );
                         planetMeshRenderer.material = showTexture ? showTextureMaterial : material;
                     }
                 },
@@ -63,12 +64,15 @@ define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
                 planetMeshRenderer = new kick.scene.MeshRenderer();
                 var planet_radius = 1;
                 var planet_texture = makePlanetTexture(engine, 256, 256);
-                planetMeshRenderer.mesh = new kick.mesh.Mesh(
+                var mesh = new kick.mesh.Mesh(
                     {
                         dataURI: "kickjs://mesh/uvsphere/?slices=100&stacks=200&radius=" + planet_radius,
                         name: "Default object"
                     });
-
+                var meshData = mesh.meshData;
+                meshData.recalculateTangents();
+                mesh.meshData = meshData;
+                planetMeshRenderer.mesh = mesh;
                 var shader = new kick.material.Shader({
                     vertexShaderSrc: planet_vs,
                     fragmentShaderSrc: planet_fs
