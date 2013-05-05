@@ -49,7 +49,9 @@ define([],
                                 return obj[arrayName][indeces[i]];
                             },
                             set: function(value){
-                                obj[arrayName][indeces[i]] = value;
+                                var v = obj[arrayName];
+                                v[indeces[i]] = value;
+                                obj[arrayName] = v;
                             }
                         });
                     })(i);
