@@ -14,16 +14,16 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                 showTexture,
                 thisObj = this,
                 planetMeshRenderer,
-                planetScapeConfig,
+                planetScapeConfig = {},
                 rotation = [0,0,0,1],
-                rotationSpeed = 1000.01,
+                rotationSpeed = 0.0001,
                 updateMaterial = function(){
                     if (material){
                         material.setUniform("mainColor", planetScapeConfig.color || [1.0, 0.0, 0.9, 1.0]);
                         material.setUniform("maxHeight", new Float32Array([planetScapeConfig.maxHeight || 2.00]) );
                         planetMeshRenderer.material = showTexture ? showTextureMaterial : material;
                     }
-                    rotationSpeed = planetScapeConfig.rotationSpeed || 1000.01;
+                    rotationSpeed = planetScapeConfig.rotationSpeed || 0.0001;
                 },
                 makePlanetTexture = function () {
                     // texture width / height must be power of 2 and square
@@ -55,7 +55,6 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
 
             function setColor(x,y,color){
                 map[x + y*size] = color;
-
             }
 
             function getColor(x,y){
@@ -156,7 +155,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                 var engine = kick.core.Engine.instance;
                 time = engine.time;
                 var scene = engine.activeScene;
-                var planetGameObject = scene.createGameObject({name: "Planet"});
+                var planetGameObject = thisObj.gameObject;
                 planetMeshRenderer = new kick.scene.MeshRenderer();
                 var planet_radius = 1;
                 var planet_texture = makePlanetTexture(engine, 256, 256);
@@ -186,7 +185,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                     vertexShaderSrc: unlit_planet_vs,
                     fragmentShaderSrc: unlit_planet_fs
                 });
-                showTextureMaterial = new kick.material.Material( {
+                showTextureMaterial = new kick.material.Material({
                     shader: unlitShader,
                     uniformData: {
                         mainTexture: planet_texture,

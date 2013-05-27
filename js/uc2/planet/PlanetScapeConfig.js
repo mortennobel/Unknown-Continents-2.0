@@ -29,5 +29,11 @@ define(["kick"],
                 color: [0.0, 0.0, 1.0, 0.5],
                 size: 0.01
             };
+
+            this.moon = {
+                color: [1.0, 1.0, 1.0, 1.0],
+                maxHeight: 2.000,
+                showTexture: false
+            };
         };
     });

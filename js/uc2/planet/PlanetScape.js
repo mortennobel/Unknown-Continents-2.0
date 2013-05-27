@@ -1,5 +1,5 @@
-define(["kick", 'uc2/planet/Sun', 'uc2/planet/Planet', 'uc2/planet/Atmosphere'],
-    function (kick, Sun, Planet, Atmosphere) {
+define(["kick", 'uc2/planet/Sun', 'uc2/planet/Planet','uc2/planet/Moon', 'uc2/planet/Atmosphere'],
+    function (kick, Sun, Planet, Moon, Atmosphere) {
         "use strict";
 
         /**
@@ -9,6 +9,7 @@ define(["kick", 'uc2/planet/Sun', 'uc2/planet/Planet', 'uc2/planet/Atmosphere'],
         return function (scene, planetScapeConfig) {
             var sun,
                 planet,
+                moon,
                 atmosphere;
 
             planetScapeConfig = planetScapeConfig || {};
@@ -17,6 +18,11 @@ define(["kick", 'uc2/planet/Sun', 'uc2/planet/Planet', 'uc2/planet/Atmosphere'],
             planet = new Planet();
             planet.config = planetScapeConfig.planet;
             planetGameObject.addComponent(planet);
+
+            var moonGameObject = scene.createGameObject();
+            moon = new Moon();
+            moon.config = planetScapeConfig.moon;
+            moonGameObject.addComponent(moon);
 
             var sunGameObject = scene.createGameObject();
             sun = new Sun();
