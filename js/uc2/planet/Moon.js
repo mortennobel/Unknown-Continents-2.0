@@ -13,6 +13,8 @@ define(["kick", "./Planet"],
                 moonConfig,
                 planet;
 
+            this.rotationOffset = 0;
+
             Object.defineProperty(this, "config", {
                 set:function(newValue){
                     moonConfig = newValue;
@@ -21,7 +23,7 @@ define(["kick", "./Planet"],
                     }
                 },
                 get:function(){
-                    return moonConfigM
+                    return moonConfig;
                 }
             });
 
@@ -38,7 +40,7 @@ define(["kick", "./Planet"],
             };
 
             this.update = function(){
-                var pos = [distance*Math.sin(time.time * movementSpeed), 0, distance * Math.cos(time.time * movementSpeed)];
+                var pos = [distance*Math.sin(thisObj.rotationOffset + time.time * movementSpeed), 0, distance * Math.cos(thisObj.rotationOffset + time.time * movementSpeed)];
                 thisObj.gameObject.transform.localPosition = pos;
             };
         }

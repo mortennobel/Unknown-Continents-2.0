@@ -19,10 +19,13 @@ define(["kick", 'uc2/planet/Sun', 'uc2/planet/Planet','uc2/planet/Moon', 'uc2/pl
             planet.config = planetScapeConfig.planet;
             planetGameObject.addComponent(planet);
 
-            var moonGameObject = scene.createGameObject();
-            moon = new Moon();
-            moon.config = planetScapeConfig.moon;
-            moonGameObject.addComponent(moon);
+            for (var i=0;i<planetScapeConfig.numberOfMoons;i++){
+                var moonGameObject = scene.createGameObject();
+                moon = new Moon();
+                moon.config = planetScapeConfig.moon;
+                moon.rotationOffset = 2*Math.PI*i/planetScapeConfig.numberOfMoons;
+                moonGameObject.addComponent(moon);
+            }
 
             var sunGameObject = scene.createGameObject();
             sun = new Sun();

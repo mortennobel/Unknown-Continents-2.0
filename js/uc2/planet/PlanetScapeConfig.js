@@ -32,10 +32,13 @@ define(["kick"],
                 size: 0.01
             };
 
+            this.numberOfMoons = 3;
+
             this.moon = {
                 color: [1.0, 1.0, 1.0, 1.0],
                 maxHeight: 2.000,
-                showTexture: false
+                showTexture: false,
+                iterations: 10
             };
         };
     });
