@@ -29,7 +29,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                         material.setUniform("maxHeight", new Float32Array([planetScapeConfig.maxHeight || 2.00]) );
                         planetMeshRenderer.material = showTexture ? showTextureMaterial : material;
                     }
-                    rotationSpeed = planetScapeConfig.rotationSpeed || 0.0001;
+                    rotationSpeed = planetScapeConfig.rotationSpeed/1000 || 0.0001;
                 },
                 makePlanetTexture = function () {
 
@@ -151,6 +151,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                     set: function (newValue) {
                         planetScapeConfig = newValue;
                         showTexture = newValue.showTexture;
+                        rotationSpeed = newValue.rotationSpeed / 1000;
                         updateMaterial();
                     }
                 }
