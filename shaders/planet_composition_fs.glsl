@@ -31,8 +31,8 @@ vec3 normal(vec2 tc)
     vec2 dUV = dFdx(tc);
     vec2 dUV2 = 2.0*fwidth(tc);
     
-    float udiff = 3.0*scaledHeight*(texture2D(heightMap, tc+vec2(dUV.x,0)).r-texture2D(heightMap, tc-vec2(dUV.x,0)).r)/dUV2.x;
-    float vdiff = 3.0*scaledHeight*(texture2D(heightMap, tc+vec2(0,dUV.y)).r-texture2D(heightMap, tc-vec2(0,dUV.y)).r)/dUV2.y;
+    float udiff = 3.0*scaledHeight*(texture2D(heightMap, tc+vec2(dUV.x,0)).a-texture2D(heightMap, tc-vec2(dUV.x,0)).a)/dUV2.x;
+    float vdiff = 3.0*scaledHeight*(texture2D(heightMap, tc+vec2(0,dUV.y)).a-texture2D(heightMap, tc-vec2(0,dUV.y)).a)/dUV2.y;
     return normalize(n - udiff * u_tangent - vdiff * v_tangent);
 }
 
@@ -48,5 +48,5 @@ void main(void)
     getDirectionalLight(nBumped, _dLight, specularExponent, diffuse, specular);
 
 	gl_FragColor = mainColor*vec4(texture2D(mainTexture,uv).xyz*max(diffuse, _ambient),1.0);
-    //gl_FragColor = vec4(nBumped,1.0);
+    // gl_FragColor = vec4(texture2D(heightMap,uv).aaa, 1.0);
 }
