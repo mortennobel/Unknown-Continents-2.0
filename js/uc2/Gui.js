@@ -88,6 +88,8 @@ define([],
                     .onChange(onChangeListener);
                 planet.add(planetScapeConfig.planet,'rotationSpeed', -1,1)
                     .onChange(onChangeListener);
+                planet.add(planetScapeConfig.planet,'iterations').min(2).max(10).step(1)
+                    .onChange(onChangeListener);
 
                 // sun properties
                 var sun = gui.addFolder('Sun');
@@ -104,6 +106,8 @@ define([],
                     .onChange(onChangeListener);
                 sun.add(planetScapeConfig.sun,'showLightDirection')
                     .onChange(onChangeListener);
+
+
 
             }
         };

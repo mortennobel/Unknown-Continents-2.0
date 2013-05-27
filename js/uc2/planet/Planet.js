@@ -19,10 +19,10 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                 thisObj = this,
                 planetMeshRenderer,
                 planetScapeConfig = {},
+                iterations,
+                texture,
                 rotation = [0,0,0,1],
                 rotationSpeed = 1000.01,
-                iterations = 10,
-                textureDim = Math.pow(2,iterations),
                 updateMaterial = function(){
                     if (material){
                         material.setUniform("mainColor", planetScapeConfig.color || [1.0, 0.0, 0.9, 1.0]);
@@ -30,9 +30,9 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                         planetMeshRenderer.material = showTexture ? showTextureMaterial : material;
                     }
                     rotationSpeed = planetScapeConfig.rotationSpeed/1000 || 0.0001;
-                },
-                makePlanetTexture = function () {
+                };
 
+            this.makePlanetTexture = function () {
                     var textureColors = 1; // Alpha
                     //var data = new Uint8Array(textureDim * textureDim * textureColors);
                     // color a single pixel
@@ -42,10 +42,12 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                         data[2+i*4] = i*255/textureDim/textureDim;
                         data[3+i*4] = 255;
                     }*/
+                    var textureDim = Math.pow(2,planetScapeConfig.iterations);
 
-                    var data = buildMap(iterations);
-
-                    var texture = new kick.texture.Texture();
+                    var data = buildMap(planetScapeConfig.iterations);
+                    if (!texture){
+                        texture = new kick.texture.Texture();
+                    }
                     texture.internalFormat = kick.core.Constants.GL_ALPHA;
                     texture.magFilter = kick.core.Constants.GL_LINEAR;
                     texture.setImageData ( textureDim, textureDim, 0, kick.core.Constants.GL_UNSIGNED_BYTE,  data);
@@ -153,9 +155,18 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                         showTexture = newValue.showTexture;
                         rotationSpeed = newValue.rotationSpeed / 1000;
                         updateMaterial();
+                        if (iterations !== newValue.iterations ){
+                            iterations = newValue.iterations;
+                            thisObj.makePlanetTexture();
+                            if (material){
+                                material.setUniform("bumpmapTextureStep",new Float32Array([1/Math.pow(2,planetScapeConfig.iterations)]) );
+                            }
+                        }
                     }
                 }
             });
+
+
 
             this.activated = function(){
                 var engine = kick.core.Engine.instance;
@@ -164,7 +175,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                 var planetGameObject = thisObj.gameObject;
                 planetMeshRenderer = new kick.scene.MeshRenderer();
                 var planet_radius = 1;
-                var planet_texture = makePlanetTexture(engine, 256, 256);
+                var planet_texture = thisObj.makePlanetTexture();
                 var mesh = new kick.mesh.Mesh(
                     {
                         dataURI: "kickjs://mesh/uvsphere/?slices=100&stacks=200&radius=" + planet_radius,
@@ -183,7 +194,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                     shader: shader,
                     uniformData: {
                         heightMap: planet_texture,
-                        bumpmapTextureStep: 1/textureDim
+                        bumpmapTextureStep: 1/Math.pow(2,planetScapeConfig.iterations)
                     }
                 });
 

@@ -23,7 +23,8 @@ define(["kick"],
                 rotationSpeed: 0.05,
                 color: [1.0, 1.0, 1.0, 1.0],
                 maxHeight: 2.000,
-                showTexture: false
+                showTexture: false,
+                iterations: 10
             };
 
             this.atmosphere = {
