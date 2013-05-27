@@ -13,7 +13,8 @@ requirejs.config({
 requirejs(['kick', 'uc2/SceneFactory'],
     function (kick,SceneFactory) {
         new kick.core.Engine('canvas', {
-            enableDebugContext: debug
+            enableDebugContext: debug,
+            antialias: true
         });
         SceneFactory();
     },
