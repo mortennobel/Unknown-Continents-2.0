@@ -8,6 +8,10 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
          * Planet class constructor function
          */
         return function () {
+
+            // texture width / height must be power of 2 and square
+
+
             var time,
                 material,
                 showTextureMaterial,
@@ -17,6 +21,8 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                 planetScapeConfig,
                 rotation = [0,0,0,1],
                 rotationSpeed = 1000.01,
+                iterations = 10,
+                textureDim = Math.pow(2,iterations),
                 updateMaterial = function(){
                     if (material){
                         material.setUniform("mainColor", planetScapeConfig.color || [1.0, 0.0, 0.9, 1.0]);
@@ -26,8 +32,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                     rotationSpeed = planetScapeConfig.rotationSpeed || 1000.01;
                 },
                 makePlanetTexture = function () {
-                    // texture width / height must be power of 2 and square
-                    var textureDim = 1024;
+
                     var textureColors = 1; // Alpha
                     //var data = new Uint8Array(textureDim * textureDim * textureColors);
                     // color a single pixel
@@ -38,7 +43,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                         data[3+i*4] = 255;
                     }*/
 
-                    var data = buildMap(10);
+                    var data = buildMap(iterations);
 
                     var texture = new kick.texture.Texture();
                     texture.internalFormat = kick.core.Constants.GL_ALPHA;
@@ -178,7 +183,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                     shader: shader,
                     uniformData: {
                         heightMap: planet_texture,
-                        bumpmapTextureStep: 1/1024
+                        bumpmapTextureStep: 1/textureDim
                     }
                 });
 
