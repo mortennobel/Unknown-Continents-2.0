@@ -27,8 +27,8 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                 makePlanetTexture = function () {
                     // texture width / height must be power of 2 and square
                     var textureDim = 1024;
-                    var textureColors = 4; // RGB
-                    var data = new Uint8Array(textureDim * textureDim * textureColors);
+                    var textureColors = 1; // Alpha
+                    //var data = new Uint8Array(textureDim * textureDim * textureColors);
                     // color a single pixel
                     /*for (var i=0;i< textureDim*textureDim;i++){
                         data[0+i*4] = i*255/textureDim/textureDim;
@@ -40,7 +40,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                     var data = buildMap(10);
 
                     var texture = new kick.texture.Texture();
-                    texture.internalFormat = kick.core.Constants.GL_RGBA;
+                    texture.internalFormat = kick.core.Constants.GL_ALPHA;
                     texture.magFilter = kick.core.Constants.GL_NEAREST;
                     texture.setImageData ( textureDim, textureDim, 0, kick.core.Constants.GL_UNSIGNED_BYTE,  data);
                     return texture;
@@ -53,20 +53,18 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
             var initialValues = 128;
 
             function setColor(x,y,color){
-                map[0 + x*4 + y*size*4] = color;
-                map[1 + x*4 + y*size*4] = color;
-                map[2 + x*4 + y*size*4] = color;
-                map[3 + x*4 + y*size*4] = color;
+                map[x + y*size] = color;
+
             }
 
             function getColor(x,y){
-                return map[x*4 + y*size*4];
+                return map[x + y*size];
             }
 
             function buildMap(iterations){
                 var rand = Math.random();
                 size = Math.pow(2,iterations)+1;
-                map = new Uint8Array(size*size*4);
+                map = new Uint8Array(size*size);
                 //map[x + y * size]
                 setColor(0,0,initialValues);
                 setColor(0,size-1,initialValues);
@@ -99,13 +97,13 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
 
             //hack hack the edges away
             function squareify(map){
-                var result = new Uint8Array((size-1)*(size-1)*4);
+                var result = new Uint8Array((size-1)*(size-1));
 
                 for (var x = 0; x < (size-1);++x){
                     for (var y = 0; y < (size-1);y++){
-                        for (var idx = 0;idx<4;idx++){
-                            result[idx+4*(x+y*(size-1))] = map[idx+4*(x+y*(size))];
-                        }
+
+                        result[(x+y*(size-1))] = map[(x+y*(size))];
+
                     }
                 }
                 return result;
