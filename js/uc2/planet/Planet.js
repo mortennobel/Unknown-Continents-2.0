@@ -1,6 +1,7 @@
-define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_composition_fs.glsl'],
+define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_composition_fs.glsl',
+    'text!shaders/unlit_alpha_vs.glsl', 'text!shaders/unlit_alpha_fs.glsl'],
 //define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
-    function (kick, planet_vs, planet_fs) {
+    function (kick, planet_vs, planet_fs, unlit_planet_vs, unlit_planet_fs) {
         "use strict";
 
         /**
@@ -180,10 +181,16 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
 
                     }
                 });
+
+                var unlitShader = new kick.material.Shader({
+                    vertexShaderSrc: unlit_planet_vs,
+                    fragmentShaderSrc: unlit_planet_fs
+                });
                 showTextureMaterial = new kick.material.Material( {
-                    shader: engine.project.load(engine.project.ENGINE_SHADER_DIFFUSE),
+                    shader: unlitShader,
                     uniformData: {
-                        mainTexture: planet_texture
+                        mainTexture: planet_texture,
+                        mainColor: [1,1,1,1]
                     }
                 });
                 planetMeshRenderer.material = material;
