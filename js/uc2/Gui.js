@@ -84,7 +84,7 @@ define([],
                     .onChange(onChangeListener);
                 sun.add(planetScapeConfig.planet,'showTexture')
                     .onChange(onChangeListener);
-                sun.add(planetScapeConfig.planet,'maxHeight', 0.000,0.01)
+                sun.add(planetScapeConfig.planet,'maxHeight', 0.000,5.01)
                     .onChange(onChangeListener);
 
                 // sun properties

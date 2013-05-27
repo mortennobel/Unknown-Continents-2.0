@@ -13,8 +13,7 @@ uniform vec4 mainColor;
 uniform sampler2D heightMap;
 uniform sampler2D mainTexture;
 uniform float maxHeight;
-
-#extension GL_OES_standard_derivatives : enable
+uniform float bumpmapTextureStep;
 
 // pragma include "noise2D.glsl for snoise(vec2 v)
 // pragma include "noise3D.glsl"] for snoise(vec3 v)
@@ -28,11 +27,9 @@ vec3 normal(vec2 tc)
 {
     // scale height with angle
     float scaledHeight = maxHeight*(dot(n, -normalize(pos)));
-    vec2 dUV = dFdx(tc);
-    vec2 dUV2 = 2.0*fwidth(tc);
-    
-    float udiff = 3.0*scaledHeight*(texture2D(heightMap, tc+vec2(dUV.x,0)).a-texture2D(heightMap, tc-vec2(dUV.x,0)).a)/dUV2.x;
-    float vdiff = 3.0*scaledHeight*(texture2D(heightMap, tc+vec2(0,dUV.y)).a-texture2D(heightMap, tc-vec2(0,dUV.y)).a)/dUV2.y;
+
+    float udiff = 3.0*scaledHeight*(texture2D(heightMap, tc+vec2(bumpmapTextureStep,0.0)).a-texture2D(heightMap, tc-vec2(bumpmapTextureStep,0.0)).a)/2.0;
+    float vdiff = 3.0*scaledHeight*(texture2D(heightMap, tc+vec2(0.0,bumpmapTextureStep)).a-texture2D(heightMap, tc-vec2(0.0,bumpmapTextureStep)).a)/2.0;
     return normalize(n - udiff * u_tangent - vdiff * v_tangent);
 }
 

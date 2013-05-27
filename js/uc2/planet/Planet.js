@@ -20,7 +20,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                 updateMaterial = function(){
                     if (material){
                         material.setUniform("mainColor", planetScapeConfig.color || [1.0, 0.0, 0.9, 1.0]);
-                        material.setUniform("maxHeight", new Float32Array([planetScapeConfig.maxHeight || 0.01]) );
+                        material.setUniform("maxHeight", new Float32Array([planetScapeConfig.maxHeight || 2.00]) );
                         planetMeshRenderer.material = showTexture ? showTextureMaterial : material;
                     }
                     rotationSpeed = planetScapeConfig.rotationSpeed || 1000.01;
@@ -42,7 +42,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
 
                     var texture = new kick.texture.Texture();
                     texture.internalFormat = kick.core.Constants.GL_ALPHA;
-                    texture.magFilter = kick.core.Constants.GL_NEAREST;
+                    texture.magFilter = kick.core.Constants.GL_LINEAR;
                     texture.setImageData ( textureDim, textureDim, 0, kick.core.Constants.GL_UNSIGNED_BYTE,  data);
                     return texture;
                 };
@@ -177,8 +177,8 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                 material = new kick.material.Material( {
                     shader: shader,
                     uniformData: {
-                        heightMap: planet_texture
-
+                        heightMap: planet_texture,
+                        bumpmapTextureStep: 1/1024
                     }
                 });
 

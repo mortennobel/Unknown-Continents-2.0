@@ -21,7 +21,7 @@ define(["kick"],
 
             this.planet = {
                 color: [1.0, 1.0, 1.0, 1.0],
-                maxHeight: 0.006,
+                maxHeight: 2.000,
                 showTexture: false
             };
 
