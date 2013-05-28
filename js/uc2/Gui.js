@@ -34,7 +34,6 @@ define([],
                                                         parseFloat(value[2]/255),
                                                         parseFloat(value[3])];
                         }
-
                     }
                 });
                 return o;
@@ -91,6 +90,11 @@ define([],
                 planet.add(planetScapeConfig.planet,'iterations').min(2).max(10).step(1)
                     .onChange(onChangeListener);
 
+                var moon = gui.addFolder('Moon');
+                moon.add(planetScapeConfig.moon,'numberOfMoons').min(0).max(7).step(1)
+                                    .onChange(onChangeListener);
+
+
                 // sun properties
                 var sun = gui.addFolder('Sun');
                 sun.addColor(createColorWrapper(planetScapeConfig.sun,'ambientColor',true),'ambientColor')
@@ -107,8 +111,22 @@ define([],
                 sun.add(planetScapeConfig.sun,'showLightDirection')
                     .onChange(onChangeListener);
 
+                gui.add(planetScapeConfig, 'createRandom').onChange(function(){
+                    var updateControllers = function(obj){
+                        // Recursively update all controllers
+                        for (var i in obj.__controllers) {
+                            obj.__controllers[i].updateDisplay();
+                        }
+                        for (var i in obj.__folders) {
+                            updateControllers(obj.__folders[i]);
+                        }
 
-
+                    };
+                    setTimeout(function(){ // update GUI next frame
+                        updateControllers(gui);
+                        onChangeListener();
+                    },10);
+                });
             }
         };
     });
