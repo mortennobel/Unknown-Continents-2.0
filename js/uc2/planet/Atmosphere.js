@@ -15,7 +15,6 @@ define(["kick", 'text!shaders/atmosphere_vs.glsl', 'text!shaders/atmosphere_fs.g
                 setMaterial = function() {
                     if (config && material){
                         material.setUniform("mainColor", config.color || [0,0,0,0.1]);
-                        console.log("Set main color to "+config.color );
                     }
                 },
                 setSize = function(s){

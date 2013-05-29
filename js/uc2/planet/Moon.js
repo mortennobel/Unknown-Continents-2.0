@@ -11,7 +11,15 @@ define(["kick", "./Planet", 'uc2/util/Random'],
                 movementSpeed = 0.0001,
                 distance = 2.4,
                 moonConfig,
-                planet;
+                transform,
+                planet,
+                updateConfig = function () {
+                    if (planet && moonConfig) {
+                        planet.config = moonConfig;
+                        thisObj.gameObject.transform.localScale = [moonConfig.size, moonConfig.size, moonConfig.size];
+                        //movementSpeed = moonConfig.rotationSpeed;
+                    }
+                };
 
             this.rotationOffset = 0;
 
@@ -43,16 +51,7 @@ define(["kick", "./Planet", 'uc2/util/Random'],
             Object.defineProperty(this, "config", {
                 set:function(newValue){
                     moonConfig = newValue;
-                    if (planet){
-                        planet.config = {
-                            numberOfMoons: newValue.numberOfMoons,
-                            rotationSpeed: 0.05,
-                            color: [1.0, 1.0, 1.0, 1.0],
-                            maxHeight: 2.000,
-                            showTexture: false,
-                            iterations: 10
-                        };
-                    }
+                    updateConfig();
                 },
                 get:function(){
                     return moonConfig;
@@ -65,10 +64,10 @@ define(["kick", "./Planet", 'uc2/util/Random'],
                     planet.config = moonConfig;
                 }
                 thisObj.gameObject.addComponent(planet);
-                thisObj.gameObject.transform.localScale = [0.1, 0.1, 0.1];
+                transform = thisObj.gameObject.transform;
                 var engine = kick.core.Engine.instance;
                 time = engine.time;
-
+                updateConfig();
             };
 
             this.update = function(){

@@ -1,5 +1,5 @@
-define(["kick", 'uc2/planet/Sun', 'uc2/planet/Planet','uc2/planet/Moon', 'uc2/planet/Atmosphere'],
-    function (kick, Sun, Planet, Moon, Atmosphere) {
+define(["kick", 'uc2/planet/Sun', 'uc2/planet/Planet','uc2/planet/Moons', 'uc2/planet/Atmosphere'],
+    function (kick, Sun, Planet, Moons, Atmosphere) {
         "use strict";
 
         /**
@@ -9,7 +9,7 @@ define(["kick", 'uc2/planet/Sun', 'uc2/planet/Planet','uc2/planet/Moon', 'uc2/pl
         return function (scene, planetScapeConfig) {
             var sun,
                 planet,
-                moon,
+                moons,
                 atmosphere;
 
             planetScapeConfig = planetScapeConfig || {};
@@ -19,13 +19,10 @@ define(["kick", 'uc2/planet/Sun', 'uc2/planet/Planet','uc2/planet/Moon', 'uc2/pl
             planet.config = planetScapeConfig.planet;
             planetGameObject.addComponent(planet);
 
-            for (var i=0;i<planetScapeConfig.numberOfMoons;i++){
-                var moonGameObject = scene.createGameObject();
-                moon = new Moon();
-                moon.config = planetScapeConfig.moon;
-                moon.rotationOffset = 2*Math.PI*i/planetScapeConfig.numberOfMoons;
-                moonGameObject.addComponent(moon);
-            }
+            var moonsGameObject = scene.createGameObject();
+            moons = new Moons();
+            moons.config = planetScapeConfig.moons;
+            moonsGameObject.addComponent(moons);
 
             var sunGameObject = scene.createGameObject();
             sun = new Sun();
@@ -48,6 +45,7 @@ define(["kick", 'uc2/planet/Sun', 'uc2/planet/Planet','uc2/planet/Moon', 'uc2/pl
                         planetScapeConfig = newValue;
                         sun.config = newValue.sun;
                         planet.config = newValue.planet;
+                        moons.config = planetScapeConfig.moons;
                         atmosphere.config = planetScapeConfig.atmosphere ;
                     }
                 }

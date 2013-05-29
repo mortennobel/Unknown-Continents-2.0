@@ -73,7 +73,7 @@ define([],
                 var atmosphere = gui.addFolder('Atmosphere');
                 atmosphere.addColor(createColorWrapper(planetScapeConfig.atmosphere,'color'),'color')
                     .onChange(onChangeListener);
-                atmosphere.add(planetScapeConfig.atmosphere,'size', 0.00,0.2)
+                atmosphere.add(planetScapeConfig.atmosphere,'size', 0.00,0.3)
                                     .onChange(onChangeListener);
 
 
@@ -90,8 +90,8 @@ define([],
                 planet.add(planetScapeConfig.planet,'iterations').min(2).max(10).step(1)
                     .onChange(onChangeListener);
 
-                var moon = gui.addFolder('Moon');
-                moon.add(planetScapeConfig.moon,'numberOfMoons').min(0).max(7).step(1)
+                var moon = gui.addFolder('Moons');
+                moon.add(planetScapeConfig.moons,'numberOfMoons').min(0).max(7).step(1)
                                     .onChange(onChangeListener);
 
 
