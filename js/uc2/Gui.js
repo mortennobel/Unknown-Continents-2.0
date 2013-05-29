@@ -73,8 +73,8 @@ define([],
                 var atmosphere = gui.addFolder('Atmosphere');
                 atmosphere.addColor(createColorWrapper(planetScapeConfig.atmosphere,'color'),'color')
                     .onChange(onChangeListener);
-//                atmosphere.add(planetScapeConfig.atmosphere,'size', 0.00,1.01)
-//                                    .onChange(onChangeListener);
+                atmosphere.add(planetScapeConfig.atmosphere,'size', 0.00,0.2)
+                                    .onChange(onChangeListener);
 
 
                 // planet color

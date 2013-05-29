@@ -2,8 +2,6 @@ define(["kick", 'uc2/util/Random'],
     function (kick, Random) {
         "use strict";
 
-
-
         /**
          * Configuration class for a planet scape
          */
@@ -27,8 +25,8 @@ define(["kick", 'uc2/util/Random'],
             };
 
             this.atmosphere = {
-                color: [0.0, 0.0, 1.0, 0.5],
-                size: 0.01
+                color: [0.0, 0.0, 1.0, 1.0],
+                size: 0.2
             };
 
             this.moon = {
@@ -52,7 +50,7 @@ define(["kick", 'uc2/util/Random'],
                 // atmosphere
                 // makes blue more likely
                 thisObj.atmosphere.color = [randomFloat(0,1,2), randomFloat(0,1,2), randomFloat(0,1,0.5), randomFloat(0.0,0.5,0.5)];
-                thisObj.atmosphere.size = randomFloat(0.005,0.02);
+                thisObj.atmosphere.size = randomFloat(0.005,0.2);
 
                 // moon
                 thisObj.moon.numberOfMoons = randomInt(0, 100,2);
