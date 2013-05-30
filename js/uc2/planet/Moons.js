@@ -8,21 +8,25 @@ define(["kick", "./Planet", 'uc2/util/Random','./Moon'],
                 thisObj = this,
                 moons = [],
                 createMoonConfig = function (){
-                    return {
+                    var res = {
                         size: Random.randomFloat(config.sizeFrom, config.sizeTo),
                         rotationSpeed: config.rotationSpeed,
-                        color: [1.0, 1.0, 1.0, 1.0],
+                        color: Random.randomVec4(config.colorFrom, config.colorTo, 1, 1),
                         maxHeight: Random.randomFloat(config.heightFrom, config.heightTo),
                         showTexture: false,
-                        iterations: 10
+                        distance: Random.randomFloat(config.distanceFrom, config.distanceTo),
+                        iterations: Random.randomInt(config.iterationsFrom, config.iterationsTo),
+                        ellipse: Random.randomFloat(config.ellipseFrom, config.ellipseTo)
                     };
+                    return res;
                 },
                 updateConfig = function () {
                     var i,
                         newGameObject,
                         moonComponent,
                         createMoons,
-                        deleteMoons;
+                        deleteMoons,
+                        moonsCreated = 0;
                     if (gameObject && config) {
                         createMoons = config.numberOfMoons > moons.length;
                         deleteMoons = config.numberOfMoons < moons.length;
@@ -33,6 +37,7 @@ define(["kick", "./Planet", 'uc2/util/Random','./Moon'],
                                 moonComponent.config = createMoonConfig();
                                 newGameObject.addComponent(moonComponent);
                                 moons.push(moonComponent);
+                                moonsCreated++;
                             }
                         } else if (deleteMoons) {
                             while (moons.length > config.numberOfMoons) {
@@ -43,6 +48,9 @@ define(["kick", "./Planet", 'uc2/util/Random','./Moon'],
                         }
                         for (i = 0; i < moons.length; i++) {
                             moons[i].rotationOffset = i*Math.PI*2/moons.length;
+                            if (i< moons.length - moonsCreated){
+                                moons[i].config = createMoonConfig();
+                            }
                         }
                     }
                 };

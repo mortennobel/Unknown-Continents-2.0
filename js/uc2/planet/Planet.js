@@ -18,18 +18,18 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                 showTexture,
                 thisObj = this,
                 planetMeshRenderer,
-                planetScapeConfig = {},
+                config = {},
                 iterations,
                 texture,
                 rotation = [0,0,0,1],
                 rotationSpeed = 1000.01,
                 updateMaterial = function(){
                     if (material){
-                        material.setUniform("mainColor", planetScapeConfig.color || [1.0, 0.0, 0.9, 1.0]);
-                        material.setUniform("maxHeight", new Float32Array([planetScapeConfig.maxHeight || 2.00]) );
+                        material.setUniform("mainColor", config.color || [1.0, 0.0, 0.9, 1.0]);
+                        material.setUniform("maxHeight", new Float32Array([config.maxHeight || 2.00]) );
                         planetMeshRenderer.material = showTexture ? showTextureMaterial : material;
                     }
-                    rotationSpeed = planetScapeConfig.rotationSpeed/1000 || 0.0001;
+                    rotationSpeed = config.rotationSpeed/1000 || 0.0001;
                 };
 
             this.makePlanetTexture = function () {
@@ -42,9 +42,9 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                         data[2+i*4] = i*255/textureDim/textureDim;
                         data[3+i*4] = 255;
                     }*/
-                    var textureDim = Math.pow(2,planetScapeConfig.iterations);
+                    var textureDim = Math.pow(2,config.iterations);
 
-                    var data = buildMap(planetScapeConfig.iterations);
+                    var data = buildMap(config.iterations);
                     if (!texture){
                         texture = new kick.texture.Texture();
                     }
@@ -151,7 +151,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
             Object.defineProperties(this, {
                 config: {
                     set: function (newValue) {
-                        planetScapeConfig = newValue;
+                        config = newValue;
                         showTexture = newValue.showTexture;
                         rotationSpeed = newValue.rotationSpeed / 1000;
                         updateMaterial();
@@ -159,7 +159,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                             iterations = newValue.iterations;
                             thisObj.makePlanetTexture();
                             if (material){
-                                material.setUniform("bumpmapTextureStep",new Float32Array([1/Math.pow(2,planetScapeConfig.iterations)]) );
+                                material.setUniform("bumpmapTextureStep",new Float32Array([1/Math.pow(2,config.iterations)]) );
                             }
                         }
                     }
@@ -194,7 +194,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                     shader: shader,
                     uniformData: {
                         heightMap: planet_texture,
-                        bumpmapTextureStep: 1/Math.pow(2,planetScapeConfig.iterations)
+                        bumpmapTextureStep: 1/Math.pow(2,config.iterations)
                     }
                 });
 

@@ -10,14 +10,17 @@ define(["kick", "./Planet", 'uc2/util/Random'],
                 time,
                 movementSpeed = 0.0001,
                 distance = 2.4,
+                ellipse = 1.0,
                 moonConfig,
                 transform,
                 planet,
+                randomRotation,
                 updateConfig = function () {
                     if (planet && moonConfig) {
                         planet.config = moonConfig;
                         thisObj.gameObject.transform.localScale = [moonConfig.size, moonConfig.size, moonConfig.size];
-                        //movementSpeed = moonConfig.rotationSpeed;
+                        distance = moonConfig.distance;
+                        ellipse = moonConfig.ellipse;
                     }
                 };
 
@@ -59,6 +62,7 @@ define(["kick", "./Planet", 'uc2/util/Random'],
             });
 
             this.activated = function(){
+                randomRotation = Random.randomQuatRotation(-Math.PI/2,Math.PI/2);
                 planet = new Planet();
                 if (moonConfig){
                     planet.config = moonConfig;
@@ -71,7 +75,8 @@ define(["kick", "./Planet", 'uc2/util/Random'],
             };
 
             this.update = function(){
-                var pos = [distance*Math.sin(thisObj.rotationOffset + time.time * movementSpeed), 0, distance * Math.cos(thisObj.rotationOffset + time.time * movementSpeed)];
+                var pos = [ellipse*distance*Math.sin(thisObj.rotationOffset + time.time * movementSpeed), 0, distance * Math.cos(thisObj.rotationOffset + time.time * movementSpeed)];
+                pos = kick.math.Vec3.transformQuat(pos, pos, randomRotation);
                 thisObj.gameObject.transform.localPosition = pos;
             };
         }
