@@ -29,6 +29,8 @@ void main(void)
     float distanceToSurface = scaledDistToOrigin - 1.0;
     float fractionDistanceToSurface = 1.0 - (distanceToSurface / (atmosphereScale - 1.0));
     vec4 color = vec4(diffuseDirectionalLight,fractionDistanceToSurface)*mainColor;
+    // add white closer to surface
+    color.xyz += vec3(fractionDistanceToSurface,fractionDistanceToSurface,fractionDistanceToSurface)*0.4;
     gl_FragColor = color;
 
 }
