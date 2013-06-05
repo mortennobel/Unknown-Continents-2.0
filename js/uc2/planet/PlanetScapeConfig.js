@@ -17,13 +17,21 @@ define(["kick", 'uc2/util/Random'],
             };
 
             this.planet = {
-                strategy: "DiamondSquare",
+                strategy: "diamondSquare",
                 atmosphereColor: [0.0, 0.0, 1.0, 1.0],
                 rotationSpeed: 0.05,
                 color: [1.0, 1.0, 1.0, 1.0],
                 maxHeight: 2.000,
                 showTexture: false,
-                iterations: 10
+                diamondSquare: {
+                    iterations: 10
+                },
+                simplex: {
+                    scale: 20
+                },
+                worley: {
+                    scale: 20
+                }
             };
 
             this.atmosphere = {
@@ -54,13 +62,13 @@ define(["kick", 'uc2/util/Random'],
                 thisObj.atmosphere.size = randomFloat(0.005, 0.3);
 
                 // planet
-                thisObj.planet.strategy = "DiamondSquare";
+                thisObj.planet.strategy = "diamondSquare";
                 thisObj.planet.atmosphereColor = thisObj.atmosphere.color;
                 thisObj.planet.rotationSpeed = randomFloat(-0.05, 0.05);
                 thisObj.planet.color = [randomFloat(0, 1, 0.2), randomFloat(0, 1, 0.2), randomFloat(0, 1, 0.2), 1];
                 thisObj.planet.color = [randomFloat(0, 1, 0.2), randomFloat(0, 1, 0.2), randomFloat(0, 1, 0.2), 1];
                 thisObj.planet.maxHeight = randomFloat(0, 5);
-                thisObj.planet.iterations = randomInt(5, 10);
+                thisObj.planet.diamondSquare.iterations = randomInt(5, 10);
 
                 // moon
 //                thisObj.moons.numberOfMoons = randomInt(0, 16, 2);

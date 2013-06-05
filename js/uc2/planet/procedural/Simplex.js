@@ -8,17 +8,21 @@ define(["kick",'text!shaders/simplex_noise_vs.glsl', 'text!shaders/simplex_noise
             renderMaterial,
             thisTexture;
 
-        return function(texture){
+        return function(texture, config){
 
 
-            if (!texture ||texture !== thisTexture ||!thisTexture){
-                thisTexture = texture = new kick.texture.Texture();
-                texture.internalFormat = kick.core.Constants.GL_RGB;
-                texture.magFilter = kick.core.Constants.GL_LINEAR;
+            if (!texture || texture !== thisTexture ||!thisTexture){
+                if (!thisTexture){
+                    thisTexture = new kick.texture.Texture();
+                    thisTexture.internalFormat = kick.core.Constants.GL_RGB;
+                    thisTexture.magFilter = kick.core.Constants.GL_LINEAR;
+                    thisTexture.setImageData(textureDim, textureDim, 0, kick.core.Constants.GL_UNSIGNED_BYTE, null, "");
+                }
+                texture = thisTexture;
             }
 
 
-            texture.setImageData(textureDim, textureDim, 0, kick.core.Constants.GL_UNSIGNED_BYTE, null, "");
+
             if (!renderTexture){
                 var engine = kick.core.Engine.instance;
                 renderTexture = new kick.texture.RenderTexture({dimension:[textureDim,textureDim], colorTexture: texture});
@@ -29,12 +33,10 @@ define(["kick",'text!shaders/simplex_noise_vs.glsl', 'text!shaders/simplex_noise
                     fragmentShaderSrc: worley_noise_fs
                 });
                 renderMaterial = new kick.material.Material( {
-                    shader:shader,
-                    uniformData: {
-
-                    }
+                    shader:shader
                 });
             }
+            renderMaterial.setUniform("scale", new Float32Array([config.scale]));
             kick.core.Graphics.renderToTexture(renderTexture, renderMaterial);
 
             return texture;

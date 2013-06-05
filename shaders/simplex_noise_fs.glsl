@@ -3,6 +3,8 @@ precision highp float;
 #endif
 varying vec2 uv;
 
+uniform float scale;
+
 #pragma include "noise3D.glsl"
 
 vec3 unproject(vec2 uv){
@@ -19,6 +21,6 @@ void main(void)
 {
     vec3 pos = unproject(uv);
 
-    float n = snoise(pos.xyz*20.0);
+    float n = snoise(pos.xyz*scale);
 	gl_FragColor = vec4(vec3(n),1.0);
 }

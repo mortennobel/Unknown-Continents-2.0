@@ -15,7 +15,10 @@ define(["kick", "./Planet", 'uc2/util/Random','./Moon'],
                         maxHeight: Random.randomFloat(config.heightFrom, config.heightTo),
                         showTexture: false,
                         distance: Random.randomFloat(config.distanceFrom, config.distanceTo),
-                        iterations: Random.randomInt(config.iterationsFrom, config.iterationsTo),
+                        strategy: "DiamondSquare",
+                        diamondsquare:{
+                            iterations: Random.randomInt(config.iterationsFrom, config.iterationsTo),
+                        },
                         ellipse: Random.randomFloat(config.ellipseFrom, config.ellipseTo)
                     };
                     return res;

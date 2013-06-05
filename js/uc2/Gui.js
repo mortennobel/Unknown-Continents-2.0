@@ -79,7 +79,7 @@ define([],
 
                 // planet color
                 var planet = gui.addFolder('Planet');
-                planet.add(planetScapeConfig.planet,'strategy', ["DiamondSquare","Worley","Simplex"]).onChange(onChangeListener);
+                planet.add(planetScapeConfig.planet,'strategy', ["diamondSquare","worley","simplex"]).onChange(onChangeListener);
                 planet.addColor(createColorWrapper(planetScapeConfig.planet,'color'),'color')
                     .onChange(onChangeListener);
                 planet.add(planetScapeConfig.planet,'showTexture')
@@ -88,8 +88,15 @@ define([],
                     .onChange(onChangeListener);
                 planet.add(planetScapeConfig.planet,'rotationSpeed', -1,1)
                     .onChange(onChangeListener);
-                planet.add(planetScapeConfig.planet,'iterations').min(2).max(10).step(1)
+                var diamondSqr =  planet.addFolder('DiamondSquare');
+                diamondSqr.add(planetScapeConfig.planet.diamondSquare,'iterations').min(2).max(10).step(1)
                     .onChange(onChangeListener);
+                var simplex =  planet.addFolder('Simplex');
+                simplex.add(planetScapeConfig.planet.simplex,'scale', 1,40)
+                                    .onChange(onChangeListener);
+                var worley =  planet.addFolder('Worley');
+                worley.add(planetScapeConfig.planet.worley,'scale', 1,40)
+                                                    .onChange(onChangeListener);
 
                 var moon = gui.addFolder('Moons');
                 moon.add(planetScapeConfig.moons,'numberOfMoons').min(0).max(16).step(1)

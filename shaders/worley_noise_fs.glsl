@@ -3,6 +3,8 @@ precision highp float;
 #endif
 varying vec2 uv;
 
+uniform float scale;
+
 #pragma include "cellular3D.glsl"
 
 vec3 unproject(vec2 uv){
@@ -18,7 +20,7 @@ vec3 unproject(vec2 uv){
 void main(void)
 {
     vec3 pos = unproject(uv);
-    vec2 F = cellular(pos.xyz*20.0);
+    vec2 F = cellular(pos.xyz*scale);
     float n = F.y-F.x;
 	gl_FragColor = vec4(vec3(F.x),1.0);
 }

@@ -17,8 +17,8 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                 thisObj = this,
                 planetMeshRenderer,
                 config = {},
-                iterations,
                 texture,
+                currentConfigKey = "",
                 rotation = [0,0,0,1],
                 rotationSpeed = 1000.01,
                 strategy = "DiamondSquare",
@@ -33,12 +33,13 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                 };
 
             this.makePlanetTexture = function () {
-                if (strategy === "Simplex"){
-                    texture = Simplex(texture, config.iterations);
-                }else if (strategy === "Worley"){
-                    texture = Worley(texture, config.iterations);
+                console.log("this.makePlanetTexture");
+                if (strategy === "simplex"){
+                    texture = Simplex(texture, config.simplex || {});
+                }else if (strategy === "worley"){
+                    texture = Worley(texture, config.worley || {});
                 } else { // strategy === "DiamondSquare"
-                    texture = DiamondSquare(texture, config.iterations);
+                    texture = DiamondSquare(texture, config.diamondsquare || {});
                 }
 
                 if (material){
@@ -59,18 +60,14 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                         rotationSpeed = newValue.rotationSpeed / 1000;
                         updateMaterial();
 
-                        var updateTexture = false;
-                        if (newValue.strategy && strategy !== newValue.strategy){
-                            strategy = newValue.strategy;
-                            updateTexture = true;
-                        }
-                        if (iterations !== newValue.iterations ){
-                            iterations = newValue.iterations;
-                            updateTexture = true;
-                        }
-                        if (updateTexture){
+                        strategy = newValue.strategy;
+
+                        var configKey = strategy + JSON.stringify(newValue[strategy]);
+                        if (configKey !== currentConfigKey){
+                            currentConfigKey = configKey;
                             thisObj.makePlanetTexture();
                         }
+
                     }
                 }
             });
@@ -84,6 +81,16 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                 var planetGameObject = thisObj.gameObject;
                 planetMeshRenderer = new kick.scene.MeshRenderer();
                 var planet_radius = 1;
+                var shader = new kick.material.Shader({
+                    vertexShaderSrc: planet_vs,
+                    fragmentShaderSrc: planet_fs
+                });
+
+                material = new kick.material.Material( {
+                    shader: shader,
+                    uniformData: {
+                    }
+                });
                 var planet_texture = thisObj.makePlanetTexture();
                 var mesh = new kick.mesh.Mesh(
                     {
@@ -94,18 +101,7 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                 meshData.recalculateTangents();
                 mesh.meshData = meshData;
                 planetMeshRenderer.mesh = mesh;
-                var shader = new kick.material.Shader({
-                    vertexShaderSrc: planet_vs,
-                    fragmentShaderSrc: planet_fs
-                });
 
-                material = new kick.material.Material( {
-                    shader: shader,
-                    uniformData: {
-                        heightMap: planet_texture,
-                        bumpmapTextureStep: 1/Math.pow(2,config.iterations)
-                    }
-                });
 
                 var unlitShader = new kick.material.Shader({
                     vertexShaderSrc: unlit_planet_vs,
