@@ -1,5 +1,5 @@
 /*!
- * KickJS 0.5.2 - New BSD License
+ * KickJS 0.5.4 - New BSD License
  * http://www.kickjs.org/
  * License: https://raw.github.com/mortennobel/KickJS/master/license.txt
  *
@@ -2299,14 +2299,6 @@ define('kick/core/Constants',[],function () {
         */
         GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE: { value: 36051, enumerable: true},
         /**
-        * Value 36064
-        * @property GL_COLOR_ATTACHMENT0
-        * @type Number
-        * @static
-        * @final
-        */
-        GL_COLOR_ATTACHMENT0: { value: 36064, enumerable: true},
-        /**
         * Value 36096
         * @property GL_DEPTH_ATTACHMENT
         * @type Number
@@ -2497,7 +2489,279 @@ define('kick/core/Constants',[],function () {
         * @static
         * @final
         */
-        GL_HALF_FLOAT_OES: { value: 36193, enumerable: true}
+        GL_HALF_FLOAT_OES: { value: 36193, enumerable: true},
+        /**
+        * Value 36064
+        * @property GL_COLOR_ATTACHMENT0
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_COLOR_ATTACHMENT0: { value: 36064, enumerable: true},
+        /**
+        * Value 36065
+        * @property GL_COLOR_ATTACHMENT1
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_COLOR_ATTACHMENT1: { value: 36065, enumerable: true},
+        /**
+        * Value 36066
+        * @property GL_COLOR_ATTACHMENT2
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_COLOR_ATTACHMENT2: { value: 36066, enumerable: true},
+        /**
+        * Value 36067
+        * @property GL_COLOR_ATTACHMENT3
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_COLOR_ATTACHMENT3: { value: 36067, enumerable: true},
+        /**
+        * Value 36068
+        * @property GL_COLOR_ATTACHMENT4
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_COLOR_ATTACHMENT4: { value: 36068, enumerable: true},
+        /**
+        * Value 36069
+        * @property GL_COLOR_ATTACHMENT5
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_COLOR_ATTACHMENT5: { value: 36069, enumerable: true},
+        /**
+        * Value 36070
+        * @property GL_COLOR_ATTACHMENT6
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_COLOR_ATTACHMENT6: { value: 36070, enumerable: true},
+        /**
+        * Value 36071
+        * @property GL_COLOR_ATTACHMENT7
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_COLOR_ATTACHMENT7: { value: 36071, enumerable: true},
+        /**
+        * Value 36072
+        * @property GL_COLOR_ATTACHMENT8
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_COLOR_ATTACHMENT8: { value: 36072, enumerable: true},
+        /**
+        * Value 36073
+        * @property GL_COLOR_ATTACHMENT9
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_COLOR_ATTACHMENT9: { value: 36073, enumerable: true},
+        /**
+        * Value 36074
+        * @property GL_COLOR_ATTACHMENT10
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_COLOR_ATTACHMENT10: { value: 36074, enumerable: true},
+        /**
+        * Value 36075
+        * @property GL_COLOR_ATTACHMENT11
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_COLOR_ATTACHMENT11: { value: 36075, enumerable: true},
+        /**
+        * Value 36076
+        * @property GL_COLOR_ATTACHMENT12
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_COLOR_ATTACHMENT12: { value: 36076, enumerable: true},
+        /**
+        * Value 36077
+        * @property GL_COLOR_ATTACHMENT13
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_COLOR_ATTACHMENT13: { value: 36077, enumerable: true},
+        /**
+        * Value 36078
+        * @property GL_COLOR_ATTACHMENT14
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_COLOR_ATTACHMENT14: { value: 36078, enumerable: true},
+        /**
+        * Value 36079
+        * @property GL_COLOR_ATTACHMENT15
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_COLOR_ATTACHMENT15: { value: 36079, enumerable: true},
+        /**
+        * Value 34853
+        * @property GL_DRAW_BUFFER0
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_DRAW_BUFFER0: { value: 34853, enumerable: true},
+        /**
+        * Value 34854
+        * @property GL_DRAW_BUFFER1
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_DRAW_BUFFER1: { value: 34854, enumerable: true},
+        /**
+        * Value 34855
+        * @property GL_DRAW_BUFFER2
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_DRAW_BUFFER2: { value: 34855, enumerable: true},
+        /**
+        * Value 34856
+        * @property GL_DRAW_BUFFER3
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_DRAW_BUFFER3: { value: 34856, enumerable: true},
+        /**
+        * Value 34857
+        * @property GL_DRAW_BUFFER4
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_DRAW_BUFFER4: { value: 34857, enumerable: true},
+        /**
+        * Value 34858
+        * @property GL_DRAW_BUFFER5
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_DRAW_BUFFER5: { value: 34858, enumerable: true},
+        /**
+        * Value 34859
+        * @property GL_DRAW_BUFFER6
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_DRAW_BUFFER6: { value: 34859, enumerable: true},
+        /**
+        * Value 34860
+        * @property GL_DRAW_BUFFER7
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_DRAW_BUFFER7: { value: 34860, enumerable: true},
+        /**
+        * Value 34861
+        * @property GL_DRAW_BUFFER8
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_DRAW_BUFFER8: { value: 34861, enumerable: true},
+        /**
+        * Value 34862
+        * @property GL_DRAW_BUFFER9
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_DRAW_BUFFER9: { value: 34862, enumerable: true},
+        /**
+        * Value 34863
+        * @property GL_DRAW_BUFFER10
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_DRAW_BUFFER10: { value: 34863, enumerable: true},
+        /**
+        * Value 34864
+        * @property GL_DRAW_BUFFER11
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_DRAW_BUFFER11: { value: 34864, enumerable: true},
+        /**
+        * Value 34865
+        * @property GL_DRAW_BUFFER12
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_DRAW_BUFFER12: { value: 34865, enumerable: true},
+        /**
+        * Value 34866
+        * @property GL_DRAW_BUFFER13
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_DRAW_BUFFER13: { value: 34866, enumerable: true},
+        /**
+        * Value 34867
+        * @property GL_DRAW_BUFFER14
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_DRAW_BUFFER14: { value: 34867, enumerable: true},
+        /**
+        * Value 34868
+        * @property GL_DRAW_BUFFER15
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_DRAW_BUFFER15: { value: 34868, enumerable: true},
+        /**
+        * Value 36063
+        * @property GL_MAX_COLOR_ATTACHMENTS
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_MAX_COLOR_ATTACHMENTS: { value: 36063, enumerable: true},
+        /**
+        * Value 34852
+        * @property GL_MAX_DRAW_BUFFERS
+        * @type Number
+        * @static
+        * @final
+        */
+        GL_MAX_DRAW_BUFFERS: { value: 34852, enumerable: true}
     });
 
     return constants;
@@ -2523,8 +2787,8 @@ define('kick/core/EngineSingleton',["./Constants"], function (Constants) {
      * @default null
      * @static
      */
-    Object.defineProperty(EngineSingleton, "engine",
-        {
+    Object.defineProperties(EngineSingleton, {
+        engine: {
             set: function (newEngine) {
                 if (currentEngine !== null && true) {
                     console.log("Engine is created twice in same context.");
@@ -2532,13 +2796,14 @@ define('kick/core/EngineSingleton',["./Constants"], function (Constants) {
                 currentEngine = newEngine;
             },
             get: function(){
-                if (currentEngine==null && true){
+                if (currentEngine === null && true){
                     console.log("Engine is not initialized yet.");
                 }
                 return currentEngine;
             }
 
-        });
+        }
+    });
     Object.freeze(EngineSingleton);
 
     return EngineSingleton;
@@ -3179,11 +3444,14 @@ define('kick/core/Util',["require", "./Constants", "./EngineSingleton"], functio
          * @return {Array|null} triangleIndices or null if not possible to convert
          */
         convertToTriangleIndices: function (indices, primitiveType, removeDegenerate) {
+            var i,
+                even = 1,
+                trianleIndices = [indices[0], indices[1], indices[2]];
             if (primitiveType === 4){
                 return indices;
             } else if (primitiveType === 6){
                 var res = [indices[0],indices[1],indices[2]];
-                for (var i=3;i<indices.length;i++){
+                for (i = 3; i  <indices.length; i++) {
                     res.push(indices[0]);
                     res.push(indices[i-1]);
                     res.push(indices[i]);
@@ -3192,15 +3460,12 @@ define('kick/core/Util',["require", "./Constants", "./EngineSingleton"], functio
             } else if (primitiveType !== 5){
                 return null;
             }
-            var i,
-                even = 1,
-                trianleIndices = [indices[0], indices[1], indices[2]];
 
-            for (i=3;i<indices.length;i++){
+            for (i = 3; i < indices.length; i++) {
                 if (removeDegenerate){
                     if (indices[i-1] === indices[i] ||
                         indices[i-2] === indices[i] ||
-                        indices[i-1] === indices[i-2]){
+                        indices[i-1] === indices[i-2]) {
                         continue;
                     }
                 }
@@ -3464,6 +3729,7 @@ define('kick/core/ChunkData',["./Util", "./Constants"], function (Util, constant
 
         /**
          * @method setString
+         * @param {Number} chunkId
          * @param {String} str
          */
         this.setString = function (chunkId, str) {
@@ -3474,6 +3740,7 @@ define('kick/core/ChunkData',["./Util", "./Constants"], function (Util, constant
         /**
          * Uses a Float32Array for storing the number. Note that potentially precision can get lost.
          * @method setNumber
+         * @param {Number} chunkId
          * @param {Number} num
          */
         this.setNumber = function (chunkId, num) {
@@ -3483,7 +3750,8 @@ define('kick/core/ChunkData',["./Util", "./Constants"], function (Util, constant
 
         /**
          * @method setArrayBuffer
-         * @param ArrayBuffer arrayBuffer
+         * @param {Number} chunkId
+         * @param {ArrayBuffer} arrayBuffer
          */
         this.setArrayBuffer = function (chunkId, arrayBuffer) {
             thisObj.set(chunkId, new Uint8Array(arrayBuffer));
@@ -3493,7 +3761,7 @@ define('kick/core/ChunkData',["./Util", "./Constants"], function (Util, constant
          * Note that this method saves a reference to the array (it does not copy data)
          * @method set
          * @param {Number} chunkId
-         * @param {TypedArrayView[Number]} array
+         * @param {TypedArrayView} array
          */
         this.set = function (chunkId, array) {
             thisObj.remove(chunkId);
@@ -7031,7 +7299,7 @@ define('kick/mesh/MeshData',["kick/core/Constants", "kick/core/Util", "kick/core
                     addAttributes("int4", 4, 5124);
 
                     // copy data into array
-                    if (_interleavedArray && _interleavedArray.length == length * vertexLen * SIZE_OF_FLOAT_OR_INT){
+                    if (_interleavedArray && _interleavedArray.length === length * vertexLen * SIZE_OF_FLOAT_OR_INT){
                         dataArrayBuffer = _interleavedArray;
                     } else {
                         dataArrayBuffer = new ArrayBuffer(length * vertexLen * SIZE_OF_FLOAT_OR_INT);
@@ -7228,13 +7496,15 @@ define('kick/mesh/MeshData',["kick/core/Constants", "kick/core/Util", "kick/core
                                 object;
                             if (newValue !== null) {
                                 for (n in newValue) {
-                                    object = newValue[n];
-                                    if (typeof (object) === "object") {
-                                        if (typeof (object.pointer) !== "number" ||
-                                                typeof (object.size) !== "number" ||
-                                                typeof (object.normalized) !== "boolean" ||
-                                                typeof (object.type) !== "number") {
-                                            Util.fail("Invalid object signature - expected {pointer:,size:,normalized:,type:}");
+                                    if (newValue.hasOwnProperty(n)){
+                                        object = newValue[n];
+                                        if (typeof object === "object") {
+                                            if (typeof (object.pointer) !== "number" ||
+                                                    typeof (object.size) !== "number" ||
+                                                    typeof (object.normalized) !== "boolean" ||
+                                                    typeof (object.type) !== "number") {
+                                                Util.fail("Invalid object signature - expected {pointer:,size:,normalized:,type:}");
+                                            }
                                         }
                                     }
                                 }
@@ -7847,18 +8117,19 @@ define('kick/mesh/MeshDataFactory',["./MeshData", "kick/math/Vec2", "kick/math/V
             if (!slices){
                 slices = 20;
             }
-            var vertices = [0,0,0];
-            var uvs = [0.5,0.5];
-            var normals = [0,0,1];
-            var indices = [0];
+            var vertices = [0,0,0],
+                uvs = [0.5,0.5],
+                normals = [0,0,1],
+                indices = [0],
+                i;
 
-            for (var i=0;i<=slices;i++){
-                var fraction = 2*Math.PI*i/slices;
+            for (i = 0; i <= slices; i++) {
+                var fraction = 2 * Math.PI * i / slices;
                 vertices.push(Math.sin(fraction));
                 vertices.push(-Math.cos(fraction));
                 vertices.push(0);
-                uvs.push(Math.sin(fraction)*0.5 + 0.5);
-                uvs.push(-Math.cos(fraction)*0.5 + 0.5);
+                uvs.push(Math.sin(fraction) * 0.5 + 0.5);
+                uvs.push(-Math.cos(fraction) * 0.5 + 0.5);
                 normals.push(0);
                 normals.push(0);
                 normals.push(1);
@@ -8221,6 +8492,16 @@ define('kick/material/GLSLConstants',[], function () {
 */
 /**
 * GLSL file content
+* @property particles_fs.glsl
+* @type String
+*/
+/**
+* GLSL file content
+* @property particles_vs.glsl
+* @type String
+*/
+/**
+* GLSL file content
 * @property shadowmap.glsl
 * @type String
 */
@@ -8304,7 +8585,7 @@ define('kick/material/GLSLConstants',[], function () {
 * @property unlit_vs.glsl
 * @type String
 */
-return {"__error_fs.glsl":"#ifdef GL_ES\nprecision highp float;\n#endif\nvoid main(void)\n{\ngl_FragColor = vec4(1.0,0.5, 0.9, 1.0);\n}","__error_vs.glsl":"attribute vec3 vertex;\nuniform mat4 _mvProj;\nvoid main(void) {\ngl_Position = _mvProj * vec4(vertex, 1.0);\n} ","__pick_fs.glsl":"#ifdef GL_ES\nprecision mediump float;\n#endif\nvarying vec4 gameObjectUID;\nvoid main(void)\n{\ngl_FragColor = gameObjectUID;\n}","__pick_normal_fs.glsl":"#ifdef GL_ES\nprecision mediump float;\n#endif\nvarying vec3 vNormal;\nvoid main(void)\n{\ngl_FragColor = vec4(vNormal,0);\n}","__pick_normal_vs.glsl":"attribute vec3 vertex;\nattribute vec3 normal;\nuniform mat4 _mvProj;\nuniform mat3 _norm;\nvarying vec3 vNormal;\nvoid main(void) {\n// compute position\ngl_Position = _mvProj * vec4(vertex, 1.0);\nvNormal = (_norm * normal) / 2.0 + vec3(0.5, 0.5, 0.5);\n}","__pick_uv_fs.glsl":"#ifdef GL_ES\nprecision mediump float;\n#endif\nvarying vec2 vUV;\nvoid main(void)\n{\ngl_FragColor = vec4(vUV, 0, 0);\n}","__pick_uv_vs.glsl":"attribute vec3 vertex;\nattribute vec2 uv1;\nuniform mat4 _mvProj;\nuniform mat3 _norm;\nvarying vec2 vUV;\nvoid main(void) {\n// compute position\ngl_Position = _mvProj * vec4(vertex, 1.0);\nvUV = uv1;\n}","__pick_vs.glsl":"attribute vec3 vertex;\nuniform mat4 _mvProj;\nuniform vec4 _gameObjectUID;\nvarying vec4 gameObjectUID;\nvoid main(void) {\n// compute position\ngl_Position = _mvProj * vec4(vertex, 1.0);\ngameObjectUID = _gameObjectUID;\n}","__shadowmap_fs.glsl":"#ifdef GL_ES\nprecision highp float;\n#endif\n#pragma include \"shadowmap.glsl\"\nvoid main() {\ngl_FragColor = packDepth( gl_FragCoord.z );\n}\n","__shadowmap_vs.glsl":"attribute vec3 vertex;\nuniform mat4 _mvProj;\nvoid main(void) {\ngl_Position = _mvProj * vec4(vertex, 1.0);\n} ","bumped_specular_fs.glsl":"precision mediump float;\nvarying vec2 v_uv;\nvarying vec3 viewVec;\nvarying vec3 lightVec;\nvarying vec3 pointLight[LIGHTS];\nvarying vec4 vShadowMapCoord;\n#pragma include \"light.glsl\"\n#pragma include \"shadowmap.glsl\"\nuniform float specularExponent;\nuniform vec4 specularColor;\nuniform vec4 mainColor;\nuniform sampler2D mainTexture;\nuniform sampler2D normalMap;\nvoid getDirectionalLight(vec3 normal, vec3 ecLightDir, vec3 reflection, vec3 colorIntensity, float specularExponent, out vec3 diffuse, out float specular){\nfloat diffuseContribution = max(dot(normal, ecLightDir), 0.0);\nif ( diffuseContribution > 0.0){\nfloat specularContribution = max(dot(normal, reflection), 0.0);\nspecular = pow(specularContribution, specularExponent);\n} else {\nspecular = 0.0;\n}\ndiffuse = (colorIntensity * diffuseContribution);\n}\nvoid getPointLight(vec3 normal, vec3 ecPosition, vec3 ecLightPos2[LIGHTS], mat3 pLights[LIGHTS],float specularExponent, out vec3 diffuse, out float specular){\ndiffuse = vec3(0.0, 0.0, 0.0);\nspecular = 0.0;\nvec3 eye = vec3(0.0,0.0,1.0);\nfor (int i=0;i<LIGHTS;i++){\nvec3 ecLightPos = ecLightPos2[i];\nvec3 colorIntensity = pLights[i][1];\nvec3 attenuationVector = pLights[i][2];\n// direction from surface to light position\nvec3 VP = ecLightPos - ecPosition;\n// compute distance between surface and light position\nfloat d = length(VP);\n// normalize the vector from surface to light position\nVP = normalize(VP);\n// compute attenuation\nfloat attenuation = 1.0 / dot(vec3(1.0,d,d*d),attenuationVector); // short for constA + liniearA * d + quadraticA * d^2\nvec3 halfVector = normalize(VP + eye);\nfloat nDotVP = max(0.0, dot(normal, VP));\nfloat nDotHV = max(0.0, dot(normal, halfVector));\nfloat pf;\nif (nDotVP <= 0.0){\npf = 0.0;\n} else {\npf = pow(nDotHV, specularExponent);\n}\nbool isLightEnabled = (attenuationVector[0]+attenuationVector[1]+attenuationVector[2])>0.0;\nif (isLightEnabled){\ndiffuse += colorIntensity * nDotVP * attenuation;\nspecular += pf * attenuation;\n}\n}\n}\nvoid main()\n{\nvec4 base = texture2D(mainTexture, v_uv);\nvec3 bump = normalize(texture2D(normalMap, v_uv).xyz * 2.0 - vec3(1.0,1.0,1.0));\nvec3 vVec = normalize(viewVec);\nvec3 reflection = reflect(-vVec, bump);\nvec3 lVec = normalize(lightVec);\nvec3 diffuse;\nfloat specular;\nvec3 colorIntensity = _dLight[1];\ngetDirectionalLight(lVec, bump ,reflection, colorIntensity, specularExponent, diffuse, specular);\nvec3 diffusePoint;\nfloat specularPoint;\ngetPointLight(bump,viewVec,pointLight, _pLights,specularExponent,diffusePoint,specularPoint);\nfloat visibility;\nif (SHADOWS){\nvisibility = computeLightVisibility(vShadowMapCoord);\n} else {\nvisibility = 1.0;\n}\nvec3 color = max((diffuse +diffusePoint)*visibility,_ambient.xyz)*mainColor.xyz;\ngl_FragColor = vec4(base.xyz*color.xyz, 1.0) + vec4((specular +specularPoint)*specularColor.xyz,1.0);\t\n}\n","bumped_specular_vs.glsl":"// Based on\n// http://www.geeks3d.com/20091019/shader-library-bump-mapping-shader-with-multiple-lights-glsl/\nattribute vec4 vertex;\nattribute vec2 uv1;\nattribute vec3 normal;\nattribute vec4 tangent;\nuniform mat3 _norm;\nuniform mat4 _mvProj;\nuniform mat4 _mv;\nuniform mat4 _world2object;\nuniform vec4 _worldCamPos;\nuniform mat4 _lightMat;\nvarying vec2 v_uv;\nvarying vec3 viewVec;\nvarying vec3 lightVec;\nvarying vec4 vShadowMapCoord;\n#pragma include \"light.glsl\"\nvarying vec3 pointLight[LIGHTS];\nvoid main()\n{\nvec3 lightVecDir = _dLight[0]; // light direction in eye coordinates\ngl_Position = _mvProj * vertex;\nv_uv = uv1;\n\tvec3 n = normalize(_norm * normal);\nvec3 t = normalize(_norm * tangent.xyz);\nvec3 b = cross(n, t);\nmat3 tbn = mat3(t,b,n);\nvec3 v;\nvec3 vVertex = vec3(_mv * vertex);\nvec3 lVec = lightVecDir;\nlightVec = lVec * tbn;\nvec3 vVec = -vVertex;\nviewVec = vVec * tbn;\nfor (int i=0;i<LIGHTS;i++){\npointLight[i] = _pLights[i][0] * tbn;\n}\nvShadowMapCoord = _lightMat * v;\n} ","diffuse_fs.glsl":"precision mediump float;\nvarying vec2 vUv;\nvarying vec3 vNormal;\nvarying vec3 vEcPosition;\nvarying vec4 vShadowMapCoord;\nuniform vec4 mainColor;\nuniform sampler2D mainTexture;\n#pragma include \"light.glsl\"\n#pragma include \"shadowmap.glsl\"\nvoid main(void)\n{\nvec3 normal = normalize(vNormal);\nvec3 directionalLight = getDirectionalLightDiffuse(normal,_dLight);\nvec3 pointLight = getPointLightDiffuse(normal,vEcPosition, _pLights);\nfloat visibility;\nif (SHADOWS){\nvisibility = computeLightVisibility(vShadowMapCoord);\n} else {\nvisibility = 1.0;\n}\nvec3 color = max((directionalLight+pointLight)*visibility,_ambient.xyz)*mainColor.xyz;\ngl_FragColor = vec4(texture2D(mainTexture,vUv).xyz*color, 1.0);\n}\n","diffuse_vs.glsl":"attribute vec3 vertex;\nattribute vec3 normal;\nattribute vec2 uv1;\nuniform mat4 _mvProj;\nuniform mat4 _mv;\nuniform mat4 _lightMat;\nuniform mat3 _norm;\nvarying vec2 vUv;\nvarying vec3 vNormal;\nvarying vec4 vShadowMapCoord;\nvarying vec3 vEcPosition;\nvoid main(void) {\nvec4 v = vec4(vertex, 1.0);\ngl_Position = _mvProj * v;\nvEcPosition = (_mv * v).xyz;\nvUv = uv1;\nvNormal = normalize(_norm * normal);\nvShadowMapCoord = _lightMat * v;\n} ","light.glsl":"vec3 getPointLightDiffuse(vec3 normal, vec3 ecPosition, mat3 pLights[LIGHTS]){\nvec3 diffuse = vec3(0.0);\nfor (int i=0;i<LIGHTS;i++){\nvec3 ecLightPos = pLights[i][0]; // light position in eye coordinates\nvec3 colorIntensity = pLights[i][1];\nvec3 attenuationVector = pLights[i][2];\n// direction from surface to light position\nvec3 VP = ecLightPos - ecPosition;\n// compute distance between surface and light position\nfloat d = length(VP);\n// normalize the vector from surface to light position\nVP = normalize(VP);\n// compute attenuation\nfloat attenuation = 1.0 / dot(vec3(1.0,d,d*d),attenuationVector); // short for constA + liniearA * d + quadraticA * d^2\nfloat nDotVP = max(0.0, dot(normal, VP));\ndiffuse += colorIntensity*nDotVP * attenuation;\n}\nreturn diffuse;\n}\nvoid getPointLight(vec3 normal, vec3 ecPosition, mat3 pLights[LIGHTS],float specularExponent, out vec3 diffuse, out float specular){\ndiffuse = vec3(0.0, 0.0, 0.0);\nspecular = 0.0;\nvec3 eye = vec3(0.0,0.0,1.0);\nfor (int i=0;i<LIGHTS;i++){\nvec3 ecLightPos = pLights[i][0]; // light position in eye coordinates\nvec3 colorIntensity = pLights[i][1];\nvec3 attenuationVector = pLights[i][2];\n// direction from surface to light position\nvec3 VP = ecLightPos - ecPosition;\n// compute distance between surface and light position\nfloat d = length(VP);\n// normalize the vector from surface to light position\nVP = normalize(VP);\n// compute attenuation\nfloat attenuation = 1.0 / dot(vec3(1.0,d,d*d),attenuationVector); // short for constA + liniearA * d + quadraticA * d^2\nvec3 halfVector = normalize(VP + eye);\nfloat nDotVP = max(0.0, dot(normal, VP));\nfloat nDotHV = max(0.0, dot(normal, halfVector));\nfloat pf;\nif (nDotVP <= 0.0){\npf = 0.0;\n} else {\npf = pow(nDotHV, specularExponent);\n}\nbool isLightEnabled = (attenuationVector[0]+attenuationVector[1]+attenuationVector[2])>0.0;\nif (isLightEnabled){\ndiffuse += colorIntensity * nDotVP * attenuation;\nspecular += pf * attenuation;\n}\n}\n}\nvec3 getDirectionalLightDiffuse(vec3 normal, mat3 dLight){\nvec3 ecLightDir = dLight[0]; // light direction in eye coordinates\nvec3 colorIntensity = dLight[1];\nfloat diffuseContribution = max(dot(normal, ecLightDir), 0.0);\nreturn (colorIntensity * diffuseContribution);\n}\n// assumes that normal is normalized\nvoid getDirectionalLight(vec3 normal, mat3 dLight, float specularExponent, out vec3 diffuse, out float specular){\nvec3 ecLightDir = dLight[0]; // light direction in eye coordinates\nvec3 colorIntensity = dLight[1];\nvec3 halfVector = dLight[2];\nfloat diffuseContribution = max(dot(normal, ecLightDir), 0.0);\nfloat specularContribution = max(dot(normal, halfVector), 0.0);\nspecular = pow(specularContribution, specularExponent);\ndiffuse = (colorIntensity * diffuseContribution);\n}\nuniform mat3 _dLight;\nuniform vec3 _ambient;\nuniform mat3 _pLights[LIGHTS];\n","shadowmap.glsl":"uniform sampler2D _shadowMapTexture;\nconst float shadowBias = 0.005;\nvec4 packDepth( const in float depth ) {\nconst vec4 bitShift = vec4( 16777216.0, 65536.0, 256.0, 1.0 );\nconst vec4 bitMask = vec4( 0.0, 1.0 / 256.0, 1.0 / 256.0, 1.0 / 256.0 );\nvec4 res = fract( depth * bitShift );\nres -= res.xxyz * bitMask;\nreturn res;\n}\nfloat unpackDepth(const in vec4 rgba_depth)\n{\nconst vec4 bit_shift = vec4(1.0/(256.0*256.0*256.0), 1.0/(256.0*256.0), 1.0/256.0, 1.0);\nfloat depth = dot(rgba_depth, bit_shift);\nreturn depth;\n}\nfloat computeLightVisibility(vec4 vShadowMapCoord){\nvec3 shadowCoord = vShadowMapCoord.xyz / vShadowMapCoord.w;\nif (shadowCoord.x >= 0.0 && shadowCoord.x <= 1.0 && shadowCoord.y >= 0.0 && shadowCoord.y <= 1.0){\nvec4 packedShadowDepth = texture2D(_shadowMapTexture,shadowCoord.xy);\nbool isMaxDepth = dot(packedShadowDepth, vec4(1.0,1.0,1.0,1.0))==4.0;\nif (!isMaxDepth){\nfloat shadowDepth = unpackDepth(packedShadowDepth);\nif (shadowDepth > shadowCoord.z - shadowBias){\nreturn 1.0;\n}\nreturn 0.0;\n}\n}\nreturn 1.0; // if outside shadow map, then not occcluded\n}","skybox_fs.glsl":"#ifdef GL_ES\nprecision mediump float;\n#endif\nuniform vec4 mainColor;\nuniform samplerCube mainTexture;\nvarying vec3 vPos;\nvoid main(void)\n{\ngl_FragColor = textureCube(mainTexture,vPos)*mainColor;\n}","skybox_vs.glsl":"attribute vec4 vertex;\nuniform mat4 _mvProj;\nuniform mat4 _v;\nvarying vec3 vPos;\nvoid main(void) {\ngl_Position = _mvProj * vertex;\nvPos = (vertex * _v).xyz; // inverse view direction * pos\n}","specular_fs.glsl":"precision mediump float;\nvarying vec2 vUv;\nvarying vec3 vNormal;\nvarying vec3 vEcPosition;\nvarying vec4 vShadowMapCoord;\nuniform vec4 mainColor;\nuniform float specularExponent;\nuniform vec4 specularColor;\nuniform sampler2D mainTexture;\n#pragma include \"light.glsl\"\n#pragma include \"shadowmap.glsl\"\nvoid main(void)\n{\nvec3 normal = normalize(vNormal);\nvec3 diffuse;\nfloat specular;\ngetDirectionalLight(normal, _dLight, specularExponent, diffuse, specular);\nvec3 diffusePoint;\nfloat specularPoint;\ngetPointLight(normal,vEcPosition, _pLights,specularExponent,diffusePoint,specularPoint);\nfloat visibility;\nif (SHADOWS){\nvisibility = computeLightVisibility(vShadowMapCoord);\n} else {\nvisibility = 1.0;\n}\nvec3 color = max((diffuse+diffusePoint)*visibility,_ambient.xyz)*mainColor.xyz;\ngl_FragColor = vec4(texture2D(mainTexture,vUv).xyz*color.xyz, 1.0)+vec4((specular+specularPoint)*specularColor.xyz,0.0);\n}\n","specular_vs.glsl":"attribute vec3 vertex;\nattribute vec3 normal;\nattribute vec2 uv1;\nuniform mat4 _mvProj;\nuniform mat4 _mv;\nuniform mat4 _lightMat;\nuniform mat3 _norm;\nvarying vec2 vUv;\nvarying vec3 vNormal;\nvarying vec3 vEcPosition;\nvarying vec4 vShadowMapCoord;\nvoid main(void) {\nvec4 v = vec4(vertex, 1.0);\ngl_Position = _mvProj * v;\nvUv = uv1;\nvEcPosition = (_mv * v).xyz;\nvNormal= normalize(_norm * normal);\nvShadowMapCoord = _lightMat * v;\n} ","transparent_diffuse_fs.glsl":"precision mediump float;\nvarying vec2 vUv;\nvarying vec3 vNormal;\nvarying vec3 vEcPosition;\nuniform vec4 mainColor;\nuniform float specularExponent;\nuniform vec4 specularColor;\nuniform sampler2D mainTexture;\n#pragma include \"light.glsl\"\nvoid main(void)\n{\nvec3 normal = normalize(vNormal);\nvec3 diffuseDirectionalLight = getDirectionalLightDiffuse(normal,_dLight);\nvec3 diffusePointLight = getPointLightDiffuse(normal,vEcPosition, _pLights);\nvec4 color = vec4(max(diffuseDirectionalLight+diffusePointLight,_ambient.xyz),1.0)*mainColor;\ngl_FragColor = texture2D(mainTexture,vUv)*color;\n}\n","transparent_diffuse_vs.glsl":"attribute vec3 vertex;\nattribute vec3 normal;\nattribute vec2 uv1;\nuniform mat4 _mvProj;\nuniform mat3 _norm;\nuniform mat4 _mv;\nvarying vec2 vUv;\nvarying vec3 vNormal;\nvarying vec3 vEcPosition;\nvoid main(void) {\nvec4 v = vec4(vertex, 1.0);\n// compute position\ngl_Position = _mvProj * v;\nvEcPosition = (_mv * v).xyz;\nvUv = uv1;\n// compute light info\nvNormal= normalize(_norm * normal);\n} ","transparent_point_sprite_fs.glsl":"#ifdef GL_ES\nprecision mediump float;\n#endif\nuniform sampler2D mainTexture;\nuniform vec4 mainColor;\nvoid main(void)\n{\n\tvec2 UVflippedY = gl_PointCoord;\n\tUVflippedY.y = 1.0 - UVflippedY.y;\ngl_FragColor = texture2D(mainTexture, UVflippedY) * mainColor;\n}\n\t","transparent_point_sprite_vs.glsl":"attribute vec3 vertex;\nuniform mat4 _mvProj;\nuniform float pointSize;\nvoid main(void) {\n\tgl_Position = _mvProj * vec4(vertex, 1.0);\ngl_PointSize = pointSize / gl_Position.w;\n} ","transparent_specular_fs.glsl":"precision mediump float;\nvarying vec2 vUv;\nvarying vec3 vNormal;\nvarying vec3 vEcPosition;\nuniform vec4 mainColor;\nuniform float specularExponent;\nuniform vec4 specularColor;\nuniform sampler2D mainTexture;\n#pragma include \"light.glsl\"\nvoid main(void)\n{\nvec3 normal = normalize(vNormal);\nvec3 diffuse;\nfloat specular;\ngetDirectionalLight(normal, _dLight, specularExponent, diffuse, specular);\nvec3 diffusePoint;\nfloat specularPoint;\ngetPointLight(normal,vEcPosition, _pLights,specularExponent,diffusePoint,specularPoint);\nvec4 color = vec4(max(diffuse+diffusePoint,_ambient.xyz),1.0)*mainColor;\ngl_FragColor = texture2D(mainTexture,vUv)*color+vec4((specular+specularPoint)*specularColor.xyz,0.0);\n}\n","transparent_specular_vs.glsl":"attribute vec3 vertex;\nattribute vec3 normal;\nattribute vec2 uv1;\nuniform mat4 _mvProj;\nuniform mat4 _mv;\nuniform mat3 _norm;\nvarying vec2 vUv;\nvarying vec3 vNormal;\nvarying vec3 vEcPosition;\nvoid main(void) {\nvec4 v = vec4(vertex, 1.0);\n// compute position\ngl_Position = _mvProj * v;\nvEcPosition = (_mv * v).xyz;\nvUv = uv1;\n// compute light info\nvNormal= normalize(_norm * normal);\n} ","transparent_unlit_fs.glsl":"precision mediump float;\nvarying vec2 vUv;\nuniform vec4 mainColor;\nuniform sampler2D mainTexture;\nvoid main(void)\n{\ngl_FragColor = texture2D(mainTexture,vUv)*mainColor;\n}\n","transparent_unlit_vs.glsl":"attribute vec3 vertex;\nattribute vec2 uv1;\nuniform mat4 _mvProj;\nvarying vec2 vUv;\nvoid main(void) {\ngl_Position = _mvProj * vec4(vertex, 1.0);\nvUv = uv1;\n}","unlit_fs.glsl":"#ifdef GL_ES\nprecision highp float;\n#endif\nvarying vec2 vUv;\nuniform vec4 mainColor;\nuniform sampler2D mainTexture;\nvoid main(void)\n{\ngl_FragColor = vec4(texture2D(mainTexture,vUv).xyz*mainColor.xyz,1.0);\n}\n","unlit_vertex_color_fs.glsl":"precision mediump float;\nvarying vec2 vUv;\nvarying vec4 vColor;\nuniform vec4 mainColor;\nuniform sampler2D mainTexture;\nvoid main(void)\n{\ngl_FragColor = vec4(texture2D(mainTexture,vUv).xyz*mainColor.xyz*vColor.xyz,1.0);\n}\n","unlit_vertex_color_vs.glsl":"attribute vec3 vertex;\nattribute vec2 uv1;\nattribute vec4 color;\nuniform mat4 _mvProj;\nvarying vec2 vUv;\nvarying vec4 vColor;\nvoid main(void) {\ngl_Position = _mvProj * vec4(vertex, 1.0);\nvUv = uv1;\nvColor = color;\n}","unlit_vs.glsl":"attribute vec3 vertex;\nattribute vec2 uv1;\nuniform mat4 _mvProj;\nvarying vec2 vUv;\nvoid main(void) {\ngl_Position = _mvProj * vec4(vertex, 1.0);\nvUv = uv1;\n}"};
+return {"__error_fs.glsl":"#ifdef GL_ES\nprecision highp float;\n#endif\nvoid main(void)\n{\ngl_FragColor = vec4(1.0,0.5, 0.9, 1.0);\n}","__error_vs.glsl":"attribute vec3 vertex;\nuniform mat4 _mvProj;\nvoid main(void) {\ngl_Position = _mvProj * vec4(vertex, 1.0);\n} ","__pick_fs.glsl":"#ifdef GL_ES\nprecision mediump float;\n#endif\nvarying vec4 gameObjectUID;\nvoid main(void)\n{\ngl_FragColor = gameObjectUID;\n}","__pick_normal_fs.glsl":"#ifdef GL_ES\nprecision mediump float;\n#endif\nvarying vec3 vNormal;\nvoid main(void)\n{\ngl_FragColor = vec4(vNormal,0);\n}","__pick_normal_vs.glsl":"attribute vec3 vertex;\nattribute vec3 normal;\nuniform mat4 _mvProj;\nuniform mat3 _norm;\nvarying vec3 vNormal;\nvoid main(void) {\n// compute position\ngl_Position = _mvProj * vec4(vertex, 1.0);\nvNormal = (_norm * normal) / 2.0 + vec3(0.5, 0.5, 0.5);\n}","__pick_uv_fs.glsl":"#ifdef GL_ES\nprecision mediump float;\n#endif\nvarying vec2 vUV;\nvoid main(void)\n{\ngl_FragColor = vec4(vUV, 0, 0);\n}","__pick_uv_vs.glsl":"attribute vec3 vertex;\nattribute vec2 uv1;\nuniform mat4 _mvProj;\nuniform mat3 _norm;\nvarying vec2 vUV;\nvoid main(void) {\n// compute position\ngl_Position = _mvProj * vec4(vertex, 1.0);\nvUV = uv1;\n}","__pick_vs.glsl":"attribute vec3 vertex;\nuniform mat4 _mvProj;\nuniform vec4 _gameObjectUID;\nvarying vec4 gameObjectUID;\nvoid main(void) {\n// compute position\ngl_Position = _mvProj * vec4(vertex, 1.0);\ngameObjectUID = _gameObjectUID;\n}","__shadowmap_fs.glsl":"#ifdef GL_ES\nprecision highp float;\n#endif\n#pragma include \"shadowmap.glsl\"\nvoid main() {\ngl_FragColor = packDepth( gl_FragCoord.z );\n}\n","__shadowmap_vs.glsl":"attribute vec3 vertex;\nuniform mat4 _mvProj;\nvoid main(void) {\ngl_Position = _mvProj * vec4(vertex, 1.0);\n} ","bumped_specular_fs.glsl":"precision mediump float;\nvarying vec2 v_uv;\nvarying vec3 viewVec;\nvarying vec3 lightVec;\nvarying vec3 pointLight[LIGHTS];\nvarying vec4 vShadowMapCoord;\n#pragma include \"light.glsl\"\n#pragma include \"shadowmap.glsl\"\nuniform float specularExponent;\nuniform vec4 specularColor;\nuniform vec4 mainColor;\nuniform sampler2D mainTexture;\nuniform sampler2D normalMap;\nvoid getDirectionalLight(vec3 normal, vec3 ecLightDir, vec3 reflection, vec3 colorIntensity, float specularExponent, out vec3 diffuse, out float specular){\nfloat diffuseContribution = max(dot(normal, ecLightDir), 0.0);\nif ( diffuseContribution > 0.0){\nfloat specularContribution = max(dot(normal, reflection), 0.0);\nspecular = pow(specularContribution, specularExponent);\n} else {\nspecular = 0.0;\n}\ndiffuse = (colorIntensity * diffuseContribution);\n}\nvoid getPointLight(vec3 normal, vec3 ecPosition, vec3 ecLightPos2[LIGHTS], mat3 pLights[LIGHTS],float specularExponent, out vec3 diffuse, out float specular){\ndiffuse = vec3(0.0, 0.0, 0.0);\nspecular = 0.0;\nvec3 eye = vec3(0.0,0.0,1.0);\nfor (int i=0;i<LIGHTS;i++){\nvec3 ecLightPos = ecLightPos2[i];\nvec3 colorIntensity = pLights[i][1];\nvec3 attenuationVector = pLights[i][2];\n// direction from surface to light position\nvec3 VP = ecLightPos - ecPosition;\n// compute distance between surface and light position\nfloat d = length(VP);\n// normalize the vector from surface to light position\nVP = normalize(VP);\n// compute attenuation\nfloat attenuation = 1.0 / dot(vec3(1.0,d,d*d),attenuationVector); // short for constA + liniearA * d + quadraticA * d^2\nvec3 halfVector = normalize(VP + eye);\nfloat nDotVP = max(0.0, dot(normal, VP));\nfloat nDotHV = max(0.0, dot(normal, halfVector));\nfloat pf;\nif (nDotVP <= 0.0){\npf = 0.0;\n} else {\npf = pow(nDotHV, specularExponent);\n}\nbool isLightEnabled = (attenuationVector[0]+attenuationVector[1]+attenuationVector[2])>0.0;\nif (isLightEnabled){\ndiffuse += colorIntensity * nDotVP * attenuation;\nspecular += pf * attenuation;\n}\n}\n}\nvoid main()\n{\nvec4 base = texture2D(mainTexture, v_uv);\nvec3 bump = normalize(texture2D(normalMap, v_uv).xyz * 2.0 - vec3(1.0,1.0,1.0));\nvec3 vVec = normalize(viewVec);\nvec3 reflection = reflect(-vVec, bump);\nvec3 lVec = normalize(lightVec);\nvec3 diffuse;\nfloat specular;\nvec3 colorIntensity = _dLight[1];\ngetDirectionalLight(lVec, bump ,reflection, colorIntensity, specularExponent, diffuse, specular);\nvec3 diffusePoint;\nfloat specularPoint;\ngetPointLight(bump,viewVec,pointLight, _pLights,specularExponent,diffusePoint,specularPoint);\nfloat visibility;\nif (SHADOWS){\nvisibility = computeLightVisibility(vShadowMapCoord);\n} else {\nvisibility = 1.0;\n}\nvec3 color = max((diffuse +diffusePoint)*visibility,_ambient.xyz)*mainColor.xyz;\ngl_FragColor = vec4(base.xyz*color.xyz, 1.0) + vec4((specular +specularPoint)*specularColor.xyz,1.0);\t\n}\n","bumped_specular_vs.glsl":"// Based on\n// http://www.geeks3d.com/20091019/shader-library-bump-mapping-shader-with-multiple-lights-glsl/\nattribute vec4 vertex;\nattribute vec2 uv1;\nattribute vec3 normal;\nattribute vec4 tangent;\nuniform mat3 _norm;\nuniform mat4 _mvProj;\nuniform mat4 _mv;\nuniform mat4 _world2object;\nuniform vec4 _worldCamPos;\nuniform mat4 _lightMat;\nvarying vec2 v_uv;\nvarying vec3 viewVec;\nvarying vec3 lightVec;\nvarying vec4 vShadowMapCoord;\n#pragma include \"light.glsl\"\nvarying vec3 pointLight[LIGHTS];\nvoid main()\n{\nvec3 lightVecDir = _dLight[0]; // light direction in eye coordinates\ngl_Position = _mvProj * vertex;\nv_uv = uv1;\n\tvec3 n = normalize(_norm * normal);\nvec3 t = normalize(_norm * tangent.xyz);\nvec3 b = cross(n, t);\nmat3 tbn = mat3(t,b,n);\nvec3 v;\nvec3 vVertex = vec3(_mv * vertex);\nvec3 lVec = lightVecDir;\nlightVec = lVec * tbn;\nvec3 vVec = -vVertex;\nviewVec = vVec * tbn;\nfor (int i=0;i<LIGHTS;i++){\npointLight[i] = _pLights[i][0] * tbn;\n}\nvShadowMapCoord = _lightMat * v;\n} ","diffuse_fs.glsl":"precision mediump float;\nvarying vec2 vUv;\nvarying vec3 vNormal;\nvarying vec3 vEcPosition;\nvarying vec4 vShadowMapCoord;\nuniform vec4 mainColor;\nuniform sampler2D mainTexture;\n#pragma include \"light.glsl\"\n#pragma include \"shadowmap.glsl\"\nvoid main(void)\n{\nvec3 normal = normalize(vNormal);\nvec3 directionalLight = getDirectionalLightDiffuse(normal,_dLight);\nvec3 pointLight = getPointLightDiffuse(normal,vEcPosition, _pLights);\nfloat visibility;\nif (SHADOWS){\nvisibility = computeLightVisibility(vShadowMapCoord);\n} else {\nvisibility = 1.0;\n}\nvec3 color = max((directionalLight+pointLight)*visibility,_ambient.xyz)*mainColor.xyz;\ngl_FragColor = vec4(texture2D(mainTexture,vUv).xyz*color, 1.0);\n}\n","diffuse_vs.glsl":"attribute vec3 vertex;\nattribute vec3 normal;\nattribute vec2 uv1;\nuniform mat4 _mvProj;\nuniform mat4 _mv;\nuniform mat4 _lightMat;\nuniform mat3 _norm;\nvarying vec2 vUv;\nvarying vec3 vNormal;\nvarying vec4 vShadowMapCoord;\nvarying vec3 vEcPosition;\nvoid main(void) {\nvec4 v = vec4(vertex, 1.0);\ngl_Position = _mvProj * v;\nvEcPosition = (_mv * v).xyz;\nvUv = uv1;\nvNormal = normalize(_norm * normal);\nvShadowMapCoord = _lightMat * v;\n} ","light.glsl":"vec3 getPointLightDiffuse(vec3 normal, vec3 ecPosition, mat3 pLights[LIGHTS]){\nvec3 diffuse = vec3(0.0);\nfor (int i=0;i<LIGHTS;i++){\nvec3 ecLightPos = pLights[i][0]; // light position in eye coordinates\nvec3 colorIntensity = pLights[i][1];\nvec3 attenuationVector = pLights[i][2];\n// direction from surface to light position\nvec3 VP = ecLightPos - ecPosition;\n// compute distance between surface and light position\nfloat d = length(VP);\n// normalize the vector from surface to light position\nVP = normalize(VP);\n// compute attenuation\nfloat attenuation = 1.0 / dot(vec3(1.0,d,d*d),attenuationVector); // short for constA + liniearA * d + quadraticA * d^2\nfloat nDotVP = max(0.0, dot(normal, VP));\ndiffuse += colorIntensity*nDotVP * attenuation;\n}\nreturn diffuse;\n}\nvoid getPointLight(vec3 normal, vec3 ecPosition, mat3 pLights[LIGHTS],float specularExponent, out vec3 diffuse, out float specular){\ndiffuse = vec3(0.0, 0.0, 0.0);\nspecular = 0.0;\nvec3 eye = vec3(0.0,0.0,1.0);\nfor (int i=0;i<LIGHTS;i++){\nvec3 ecLightPos = pLights[i][0]; // light position in eye coordinates\nvec3 colorIntensity = pLights[i][1];\nvec3 attenuationVector = pLights[i][2];\n// direction from surface to light position\nvec3 VP = ecLightPos - ecPosition;\n// compute distance between surface and light position\nfloat d = length(VP);\n// normalize the vector from surface to light position\nVP = normalize(VP);\n// compute attenuation\nfloat attenuation = 1.0 / dot(vec3(1.0,d,d*d),attenuationVector); // short for constA + liniearA * d + quadraticA * d^2\nvec3 halfVector = normalize(VP + eye);\nfloat nDotVP = max(0.0, dot(normal, VP));\nfloat nDotHV = max(0.0, dot(normal, halfVector));\nfloat pf;\nif (nDotVP <= 0.0){\npf = 0.0;\n} else {\npf = pow(nDotHV, specularExponent);\n}\nbool isLightEnabled = (attenuationVector[0]+attenuationVector[1]+attenuationVector[2])>0.0;\nif (isLightEnabled){\ndiffuse += colorIntensity * nDotVP * attenuation;\nspecular += pf * attenuation;\n}\n}\n}\nvec3 getDirectionalLightDiffuse(vec3 normal, mat3 dLight){\nvec3 ecLightDir = dLight[0]; // light direction in eye coordinates\nvec3 colorIntensity = dLight[1];\nfloat diffuseContribution = max(dot(normal, ecLightDir), 0.0);\nreturn (colorIntensity * diffuseContribution);\n}\n// assumes that normal is normalized\nvoid getDirectionalLight(vec3 normal, mat3 dLight, float specularExponent, out vec3 diffuse, out float specular){\nvec3 ecLightDir = dLight[0]; // light direction in eye coordinates\nvec3 colorIntensity = dLight[1];\nvec3 halfVector = dLight[2];\nfloat diffuseContribution = max(dot(normal, ecLightDir), 0.0);\nfloat specularContribution = max(dot(normal, halfVector), 0.0);\nspecular = pow(specularContribution, specularExponent);\ndiffuse = (colorIntensity * diffuseContribution);\n}\nuniform mat3 _dLight;\nuniform vec3 _ambient;\nuniform mat3 _pLights[LIGHTS];\n","particles_fs.glsl":"precision mediump float;\nvoid main(void)\n{\nfloat alpha = 1.0 - length((gl_PointCoord - 0.5) * 2.0);\ngl_FragColor = vec4(1.0, 1.0, 1.0, alpha);\n}","particles_vs.glsl":"attribute vec4 position_birthtime; // position (vec3), timeofbirth(float)\nattribute vec4 velocity_random; // velocity(vec3), random(float)\nuniform float currentTime;\nuniform float pointSize;\nuniform mat4 _mvProj;\nvoid main(void) {\nvec3 position = position_birthtime.xyz;\nfloat timeOfBirth = position_birthtime.w;\nvec3 velocity = velocity_random.xyz;\nfloat random = velocity_random.w;\nbool isAlive = timeOfBirth == 0.0;\nfloat particleAge = currentTime - timeOfBirth;\nif (isAlive){\ngl_Position = vec4(999.0,0.0,0.0,1.0); // move outside view frustum\n} else {\ngl_Position = _mvProj * vec4(position + velocity * particleAge,1.0);\n}\ngl_PointSize = pointSize / gl_Position.w;\n}\n","shadowmap.glsl":"uniform sampler2D _shadowMapTexture;\nconst float shadowBias = 0.005;\nvec4 packDepth( const in float depth ) {\nconst vec4 bitShift = vec4( 16777216.0, 65536.0, 256.0, 1.0 );\nconst vec4 bitMask = vec4( 0.0, 1.0 / 256.0, 1.0 / 256.0, 1.0 / 256.0 );\nvec4 res = fract( depth * bitShift );\nres -= res.xxyz * bitMask;\nreturn res;\n}\nfloat unpackDepth(const in vec4 rgba_depth)\n{\nconst vec4 bit_shift = vec4(1.0/(256.0*256.0*256.0), 1.0/(256.0*256.0), 1.0/256.0, 1.0);\nfloat depth = dot(rgba_depth, bit_shift);\nreturn depth;\n}\nfloat computeLightVisibility(vec4 vShadowMapCoord){\nvec3 shadowCoord = vShadowMapCoord.xyz / vShadowMapCoord.w;\nif (shadowCoord.x >= 0.0 && shadowCoord.x <= 1.0 && shadowCoord.y >= 0.0 && shadowCoord.y <= 1.0){\nvec4 packedShadowDepth = texture2D(_shadowMapTexture,shadowCoord.xy);\nbool isMaxDepth = dot(packedShadowDepth, vec4(1.0,1.0,1.0,1.0))==4.0;\nif (!isMaxDepth){\nfloat shadowDepth = unpackDepth(packedShadowDepth);\nif (shadowDepth > shadowCoord.z - shadowBias){\nreturn 1.0;\n}\nreturn 0.0;\n}\n}\nreturn 1.0; // if outside shadow map, then not occcluded\n}","skybox_fs.glsl":"#ifdef GL_ES\nprecision mediump float;\n#endif\nuniform vec4 mainColor;\nuniform samplerCube mainTexture;\nvarying vec3 vPos;\nvoid main(void)\n{\ngl_FragColor = textureCube(mainTexture,vPos)*mainColor;\n}","skybox_vs.glsl":"attribute vec4 vertex;\nuniform mat4 _mvProj;\nuniform mat4 _v;\nvarying vec3 vPos;\nvoid main(void) {\ngl_Position = _mvProj * vertex;\nvPos = (vertex * _v).xyz; // inverse view direction * pos\n}","specular_fs.glsl":"precision mediump float;\nvarying vec2 vUv;\nvarying vec3 vNormal;\nvarying vec3 vEcPosition;\nvarying vec4 vShadowMapCoord;\nuniform vec4 mainColor;\nuniform float specularExponent;\nuniform vec4 specularColor;\nuniform sampler2D mainTexture;\n#pragma include \"light.glsl\"\n#pragma include \"shadowmap.glsl\"\nvoid main(void)\n{\nvec3 normal = normalize(vNormal);\nvec3 diffuse;\nfloat specular;\ngetDirectionalLight(normal, _dLight, specularExponent, diffuse, specular);\nvec3 diffusePoint;\nfloat specularPoint;\ngetPointLight(normal,vEcPosition, _pLights,specularExponent,diffusePoint,specularPoint);\nfloat visibility;\nif (SHADOWS){\nvisibility = computeLightVisibility(vShadowMapCoord);\n} else {\nvisibility = 1.0;\n}\nvec3 color = max((diffuse+diffusePoint)*visibility,_ambient.xyz)*mainColor.xyz;\ngl_FragColor = vec4(texture2D(mainTexture,vUv).xyz*color.xyz, 1.0)+vec4((specular+specularPoint)*specularColor.xyz,0.0);\n}\n","specular_vs.glsl":"attribute vec3 vertex;\nattribute vec3 normal;\nattribute vec2 uv1;\nuniform mat4 _mvProj;\nuniform mat4 _mv;\nuniform mat4 _lightMat;\nuniform mat3 _norm;\nvarying vec2 vUv;\nvarying vec3 vNormal;\nvarying vec3 vEcPosition;\nvarying vec4 vShadowMapCoord;\nvoid main(void) {\nvec4 v = vec4(vertex, 1.0);\ngl_Position = _mvProj * v;\nvUv = uv1;\nvEcPosition = (_mv * v).xyz;\nvNormal= normalize(_norm * normal);\nvShadowMapCoord = _lightMat * v;\n} ","transparent_diffuse_fs.glsl":"precision mediump float;\nvarying vec2 vUv;\nvarying vec3 vNormal;\nvarying vec3 vEcPosition;\nuniform vec4 mainColor;\nuniform float specularExponent;\nuniform vec4 specularColor;\nuniform sampler2D mainTexture;\n#pragma include \"light.glsl\"\nvoid main(void)\n{\nvec3 normal = normalize(vNormal);\nvec3 diffuseDirectionalLight = getDirectionalLightDiffuse(normal,_dLight);\nvec3 diffusePointLight = getPointLightDiffuse(normal,vEcPosition, _pLights);\nvec4 color = vec4(max(diffuseDirectionalLight+diffusePointLight,_ambient.xyz),1.0)*mainColor;\ngl_FragColor = texture2D(mainTexture,vUv)*color;\n}\n","transparent_diffuse_vs.glsl":"attribute vec3 vertex;\nattribute vec3 normal;\nattribute vec2 uv1;\nuniform mat4 _mvProj;\nuniform mat3 _norm;\nuniform mat4 _mv;\nvarying vec2 vUv;\nvarying vec3 vNormal;\nvarying vec3 vEcPosition;\nvoid main(void) {\nvec4 v = vec4(vertex, 1.0);\n// compute position\ngl_Position = _mvProj * v;\nvEcPosition = (_mv * v).xyz;\nvUv = uv1;\n// compute light info\nvNormal= normalize(_norm * normal);\n} ","transparent_point_sprite_fs.glsl":"#ifdef GL_ES\nprecision mediump float;\n#endif\nuniform sampler2D mainTexture;\nuniform vec4 mainColor;\nvoid main(void)\n{\n\tvec2 UVflippedY = gl_PointCoord;\n\tUVflippedY.y = 1.0 - UVflippedY.y;\ngl_FragColor = texture2D(mainTexture, UVflippedY) * mainColor;\n}\n\t","transparent_point_sprite_vs.glsl":"attribute vec3 vertex;\nuniform mat4 _mvProj;\nuniform float pointSize;\nvoid main(void) {\n\tgl_Position = _mvProj * vec4(vertex, 1.0);\ngl_PointSize = pointSize / gl_Position.w;\n} ","transparent_specular_fs.glsl":"precision mediump float;\nvarying vec2 vUv;\nvarying vec3 vNormal;\nvarying vec3 vEcPosition;\nuniform vec4 mainColor;\nuniform float specularExponent;\nuniform vec4 specularColor;\nuniform sampler2D mainTexture;\n#pragma include \"light.glsl\"\nvoid main(void)\n{\nvec3 normal = normalize(vNormal);\nvec3 diffuse;\nfloat specular;\ngetDirectionalLight(normal, _dLight, specularExponent, diffuse, specular);\nvec3 diffusePoint;\nfloat specularPoint;\ngetPointLight(normal,vEcPosition, _pLights,specularExponent,diffusePoint,specularPoint);\nvec4 color = vec4(max(diffuse+diffusePoint,_ambient.xyz),1.0)*mainColor;\ngl_FragColor = texture2D(mainTexture,vUv)*color+vec4((specular+specularPoint)*specularColor.xyz,0.0);\n}\n","transparent_specular_vs.glsl":"attribute vec3 vertex;\nattribute vec3 normal;\nattribute vec2 uv1;\nuniform mat4 _mvProj;\nuniform mat4 _mv;\nuniform mat3 _norm;\nvarying vec2 vUv;\nvarying vec3 vNormal;\nvarying vec3 vEcPosition;\nvoid main(void) {\nvec4 v = vec4(vertex, 1.0);\n// compute position\ngl_Position = _mvProj * v;\nvEcPosition = (_mv * v).xyz;\nvUv = uv1;\n// compute light info\nvNormal= normalize(_norm * normal);\n} ","transparent_unlit_fs.glsl":"precision mediump float;\nvarying vec2 vUv;\nuniform vec4 mainColor;\nuniform sampler2D mainTexture;\nvoid main(void)\n{\ngl_FragColor = texture2D(mainTexture,vUv)*mainColor;\n}\n","transparent_unlit_vs.glsl":"attribute vec3 vertex;\nattribute vec2 uv1;\nuniform mat4 _mvProj;\nvarying vec2 vUv;\nvoid main(void) {\ngl_Position = _mvProj * vec4(vertex, 1.0);\nvUv = uv1;\n}","unlit_fs.glsl":"#ifdef GL_ES\nprecision highp float;\n#endif\nvarying vec2 vUv;\nuniform vec4 mainColor;\nuniform sampler2D mainTexture;\nvoid main(void)\n{\ngl_FragColor = vec4(texture2D(mainTexture,vUv).xyz*mainColor.xyz,1.0);\n}\n","unlit_vertex_color_fs.glsl":"precision mediump float;\nvarying vec2 vUv;\nvarying vec4 vColor;\nuniform vec4 mainColor;\nuniform sampler2D mainTexture;\nvoid main(void)\n{\ngl_FragColor = vec4(texture2D(mainTexture,vUv).xyz*mainColor.xyz*vColor.xyz,1.0);\n}\n","unlit_vertex_color_vs.glsl":"attribute vec3 vertex;\nattribute vec2 uv1;\nattribute vec4 color;\nuniform mat4 _mvProj;\nvarying vec2 vUv;\nvarying vec4 vColor;\nvoid main(void) {\ngl_Position = _mvProj * vec4(vertex, 1.0);\nvUv = uv1;\nvColor = color;\n}","unlit_vs.glsl":"attribute vec3 vertex;\nattribute vec2 uv1;\nuniform mat4 _mvProj;\nvarying vec2 vUv;\nvoid main(void) {\ngl_Position = _mvProj * vec4(vertex, 1.0);\nvUv = uv1;\n}"};
 });
 
 define('kick/core/BuiltInResourceProvider',["./Util", "kick/mesh/MeshDataFactory", "kick/material/GLSLConstants", "./Constants"], function (Util, MeshDataFactory, GLSLConstants, Constants) {
@@ -8405,6 +8686,7 @@ define('kick/core/BuiltInResourceProvider',["./Util", "kick/mesh/MeshDataFactory
          *  <li><b>Transparent Point Unlit</b> Url: kickjs://shader/point\_transparent\_unlit/</li>
          *  <li><b>Transparent Specular</b> Url: kickjs://shader/transparent\_specular/</li>
          *  <li><b>Transparent Unlit</b> Url: kickjs://shader/transparent\_unlit/</li>
+         *  <li><b>Particles</b> Url: kickjs://shader/particles/</li>
          *  <li><b>Skybox</b> Url: kickjs://shader/skybox/</li>
          *  <li><b>Shadowmap</b> Url: kickjs://shader/\_\_shadowmap/</li>
          *  <li><b>Pick</b> Url: kickjs://shader/\_\_pick/</li>
@@ -8473,6 +8755,14 @@ define('kick/core/BuiltInResourceProvider',["./Util", "kick/mesh/MeshDataFactory
                                 mainTexture: engine.project.load(engine.project.ENGINE_TEXTURE_WHITE),
                                 pointSize: [50]
                             };
+                        }
+                        else if (shaderName === "particles"){
+                            defaultUniforms = {
+                                pointSize: [50]
+                            };
+                            blend = true;
+                            depthMask = false;
+                            renderOrder = 2000;
                         } else if (shaderName === "skybox"){
                             defaultUniforms = {
                                 mainColor: [1, 1, 1, 1],
@@ -8501,7 +8791,9 @@ define('kick/core/BuiltInResourceProvider',["./Util", "kick/mesh/MeshDataFactory
                     "bumped_specular",
                     "transparent_point_sprite",
                     "transparent_unlit",
-                    "skybox"];
+                    "particles",
+                    "skybox"
+                ];
             if (url === "kickjs://shader/default/") {
                 url = "kickjs://shader/diffuse/";
             }
@@ -8550,12 +8842,12 @@ define('kick/core/BuiltInResourceProvider',["./Util", "kick/mesh/MeshDataFactory
          */
         this.getImageData = function (uri, textureDestination, resourceTracker) {
             if (resourceTracker && resourceTracker.resourceLoadingStarted){
-                resourceTracker.resourceLoadingStarted(url, textureDestination);
+                resourceTracker.resourceLoadingStarted(uri, textureDestination);
             }
             var data,
                 resourceLoadingFailed = function(){
                     if (resourceTracker && resourceTracker.resourceLoadingFailed){
-                        resourceTracker.resourceLoadingFailed(url, textureDestination);
+                        resourceTracker.resourceLoadingFailed(uri, textureDestination);
                     }
                 },
                 img,
@@ -8596,7 +8888,7 @@ define('kick/core/BuiltInResourceProvider',["./Util", "kick/mesh/MeshDataFactory
                     textureDestination.minFilter = 9987;
                     textureDestination.setImage(img, uri);
                     if (resourceTracker && resourceTracker.resourceLoadingStarted){
-                        resourceTracker.resourceLoadingFinished(url, textureDestination);
+                        resourceTracker.resourceLoadingFinished(uri, textureDestination);
                     }
                 };
                 img.onerror = function () {
@@ -8611,7 +8903,7 @@ define('kick/core/BuiltInResourceProvider',["./Util", "kick/mesh/MeshDataFactory
             }
             textureDestination.setImageData(2, 2, 0, 5121, data, uri);
             if (resourceTracker && resourceTracker.resourceLoadingStarted){
-                resourceTracker.resourceLoadingFinished(url, textureDestination);
+                resourceTracker.resourceLoadingFinished(uri, textureDestination);
             }
         };
     };
@@ -8806,18 +9098,22 @@ define('kick/core/Config',["./Util", "./Constants"], function (Util, Constants) 
         }());
 
         if (true) {
-            for (var name in config) {
-                if (! this.hasOwnProperty(name)) {
-                    var supportedProperties = "Supported properties for kick.core.Config are: ";
-                    for (var n2 in this){
-                        if (this.hasOwnProperty(n2) && typeof this[n2] !== "function") {
-                            supportedProperties += "\n - "+n2;
+            (function (t) {
+                var name,
+                    supportedProperties,
+                    n2;
+                for (name in config) {
+                    if (config.hasOwnProperty(name) && !t.hasOwnProperty(name)) {
+                        supportedProperties = "Supported properties for kick.core.Config are: ";
+                        for (n2 in t){
+                            if (t.hasOwnProperty(n2) && typeof t[n2] !== "function") {
+                                supportedProperties += "\n - "+n2;
+                            }
                         }
+                        Util.warn("kick.core.Config does not have any property "+name+"\n"+supportedProperties);
                     }
-                    core.Util.warn("kick.core.Config does not have any property "+name+"\n"+supportedProperties);
-
                 }
-            }
+            }(this));
         }
     };
 
@@ -8845,13 +9141,15 @@ define('kick/core/GLState',["kick/core/Constants"], function (constants) {
             textureFloatHalfExt = null,
             depthTextureExt = null,
             textureFilterAnisotropicExt = null,
+            drawBuffersExt = null,
             reloadExtensions = function(){
                 vertexArrayObjectExt = engine.getGLExtension("OES_vertex_array_object");
                 standardDerivativesExt = engine.getGLExtension("OES_standard_derivatives");
                 textureFloatExt = engine.getGLExtension("OES_texture_float");
                 textureFloatHalfExt = engine.getGLExtension("OES_texture_half_float");
                 depthTextureExt = engine.getGLExtension("WEBGL_depth_texture");
-                textureFilterAnisotropicExt = engine.getGLExtension("EXT_texture_filter_anisotropic");
+                textureFilterAnisotropicExt = engine.getGLExtension("EXT_texture_filter_anisotropic") || engine.getGLExtension("WEBGL_texture_filter_anisotropic");
+                drawBuffersExt = engine.getGLExtension("EXT_draw_buffers") || engine.getGLExtension("WEBGL_draw_buffers");
             },
             clearExtensions = function(){
                 vertexArrayObjectExt = null;
@@ -8860,6 +9158,7 @@ define('kick/core/GLState',["kick/core/Constants"], function (constants) {
                 textureFloatHalfExt = null;
                 depthTextureExt = null;
                 textureFilterAnisotropicExt = null;
+                drawBuffersExt = null;
             };
         /**
          * The current clear color
@@ -9020,6 +9319,19 @@ define('kick/core/GLState',["kick/core/Constants"], function (constants) {
                     return textureFilterAnisotropicExt;
                 },
                 enumerable:true
+            },
+            /**
+             * The EXT\_draw\_buffers / WEBGL\_draw\_buffers extension (if available). Also known as multiple render targets.
+             * See http://www.khronos.org/registry/webgl/extensions/WEBGL_draw_buffers/
+             * @property textureFilterAnisotropicExtension
+             * @type Object
+             * @final
+             */
+            drawBuffersExtension:{
+                get: function(){
+                    return drawBuffersExt;
+                },
+                enumerable:true
             }
         });
 
@@ -9142,7 +9454,7 @@ define('kick/core/ResourceDescriptor',["require","./Util", "./Constants", "./Eng
          */
         this.instantiate = function (onSuccess, onError) {
             if (ASSERT) {
-                if (typeof(onSuccess) !== "function"){
+                if (typeof onSuccess !== "function"){
                     console.log("ResourceDescriptor.onSuccess is not a function");
                 }
                 if (engine === onSuccess){
@@ -9855,7 +10167,7 @@ define('kick/core/Observable',["kick/core/Util", "kick/core/Constants"], functio
                             }
                         }
                     });
-                })(eventNames[i], this);
+                }(eventNames[i], this));
             }
         }
         /**
@@ -10247,7 +10559,7 @@ define('kick/material/Shader',["kick/core/ProjectAsset", "kick/core/Constants", 
                         Util.warn("Shader.removeListener: listenerFn not function");
                     }
                 }
-                thisObj.removeEventListener("shaderUpdated", listenerFn)
+                thisObj.removeEventListener("shaderUpdated", listenerFn);
             };
 
             /**
@@ -11009,6 +11321,7 @@ define('kick/material/Shader',["kick/core/ProjectAsset", "kick/core/Constants", 
                 source,
                 version = "#version 100",
                 lineOffset = 1,
+                regExpSearch,
                 indexOfNewline;
             if (true) {
                 if (sourcecode === engine){
@@ -11035,15 +11348,23 @@ define('kick/material/Shader',["kick/core/ProjectAsset", "kick/core/Constants", 
                     }
                 }());
             }
+            function escapeRegExp(str) {
+                return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+            }
             for (name in GLSLConstants) {
                 if (GLSLConstants.hasOwnProperty(name)) {
-                    if (typeof (name) === "string") {
+                    if (typeof name === "string") {
                         source = GLSLConstants[name];
-                        sourcecode = sourcecode.replace("#pragma include \"" + name + "\"", source);
-                        sourcecode = sourcecode.replace("#pragma include \'" + name + "\'", source);
+                        regExpSearch = "^\\s*#\\s*pragma\\s+include\\s*"+escapeRegExp("\"" + name + "\"")+".*$";
+                        sourcecode = sourcecode.replace(new RegExp(regExpSearch, "gm"), source);
                     }
                 }
             }
+
+            // remove commented out usages of #pragma include
+            regExpSearch = "//\\s*pragma\\s+include.*$";
+            sourcecode = sourcecode.replace(new RegExp(regExpSearch, "gm"), "");
+
             // if shader already contain version tag, then reuse this version information
             if (sourcecode.indexOf("#version ") === 0) {
                 indexOfNewline = sourcecode.indexOf('\n');
@@ -11123,7 +11444,7 @@ define('kick/material/Shader',["kick/core/ProjectAsset", "kick/core/Constants", 
          * @param {kick.material.Material} material
          * @param {Object} engineUniforms
          * @param {kick.scene.Transform) transform
-            */
+         */
         Shader.prototype.bindUniform = function (material, engineUniforms, transform) {
             var lookupUniform = this.lookupUniform,
                 gl = this.gl,
@@ -11886,8 +12207,11 @@ define('kick/mesh/Mesh',["kick/core/ProjectAsset", "kick/core/Constants", "kick/
             meshType,
             meshElements = [],
             deleteVertexArrayObjects = function () {
-                for (var name in vertexArrayObject){
-                    vertexArrayObjectExtension.deleteVertexArrayOES(vertexArrayObject[name]);
+                var name;
+                for (name in vertexArrayObject){
+                    if (vertexArrayObject.hasOwnProperty(name)) {
+                        vertexArrayObjectExtension.deleteVertexArrayOES(vertexArrayObject[name]);
+                    }
                 }
                 vertexArrayObject = {};
             },
@@ -11926,7 +12250,7 @@ define('kick/mesh/Mesh',["kick/core/ProjectAsset", "kick/core/Constants", "kick/
              * @param {Boolean} updateIndices
              * @param {Boolean} updateVertexStructure
              */
-            updateData = function(){
+            updateData = (function(){
                 var meshVertexAttBufferLength = -1,
                     meshVertexIndexBufferLength = -1,
                     indicesSize = 0;
@@ -11954,7 +12278,7 @@ define('kick/mesh/Mesh',["kick/core/ProjectAsset", "kick/core/Constants", "kick/
                             meshVertexBufferOffsetBytes.push(indicesSize * SIZE_OF_SHORT);
                             indexLen = subMeshes[i].length;
                             meshElements[i] = indexLen;
-                            indicesSize += indexLen
+                            indicesSize += indexLen;
                         }
                     }
 
@@ -11986,7 +12310,7 @@ define('kick/mesh/Mesh',["kick/core/ProjectAsset", "kick/core/Constants", "kick/
                         meshVertexIndexBufferLength = meshVertexIndexBufferConcat.length;
                     }
                     glState.meshBuffer = null;
-                }}(),
+                }}()),
             contextLost = function () {
                 meshVertexIndexBuffer = 0;
                 meshVertexAttBuffer = null;
@@ -12636,7 +12960,7 @@ define('kick/material/Material',["kick/core/ProjectAsset", "kick/core/Util", "ki
                 }
                 if (ASSERT) {
                     if (_shader) {
-                        if (typeof (value) === "undefined") {
+                        if (value === undefined) {
                             Util.fail("Type of value is undefined");
                         }
                     }
@@ -12785,7 +13109,7 @@ define('kick/core/Project',["./Constants", "./ResourceDescriptor", "kick/materia
                             canvas,
                             shader,
                             ctx;
-                        if (uid <= Project.ENGINE_SHADER_DEFAULT && uid >= Project.ENGINE_SHADER_SKYBOX) {
+                        if (uid <= Project.ENGINE_SHADER_DEFAULT && uid >= Project.ENGINE_SHADER_PARTICLES) {
                             switch (uid) {
                             case Project.ENGINE_SHADER_DEFAULT:
                                 url = "kickjs://shader/default/";
@@ -12834,6 +13158,9 @@ define('kick/core/Project',["./Constants", "./ResourceDescriptor", "kick/materia
                                 break;
                             case Project.ENGINE_SHADER_SKYBOX:
                                 url = "kickjs://shader/skybox/";
+                                break;
+                            case Project.ENGINE_SHADER_PARTICLES:
+                                url = "kickjs://shader/particles/";
                                 break;
                             default:
                                 if (ASSERT) {
@@ -13300,7 +13627,7 @@ define('kick/core/Project',["./Constants", "./ResourceDescriptor", "kick/materia
 
                 /**
                  * @method getResourceDescriptorsByName
-                 * @param {String} type
+                 * @param {String} name
                  * @return {Array_kick.core.ResourceDescriptor}
                  */
                 this.getResourceDescriptorsByName = function (name) {
@@ -13479,11 +13806,18 @@ define('kick/core/Project',["./Constants", "./ResourceDescriptor", "kick/materia
          */
         Project.ENGINE_SHADER_BUMPED_SPECULAR = -114;
         /**
-         * @property ENGINE_SHADER_BUMPED_SPECULAR
+         * @property ENGINE_SHADER_SKYBOX
          * @type Number
          * @static
          */
         Project.ENGINE_SHADER_SKYBOX = -115;
+        /**
+         * @property ENGINE_SHADER_PARTICLES
+         * @type Number
+         * @static
+         */
+        Project.ENGINE_SHADER_PARTICLES = -116;
+
         /**
          * @property ENGINE_TEXTURE_BLACK
          * @type Number
@@ -15644,7 +15978,16 @@ define('kick/scene/MeshRenderer',["kick/core/Constants", "kick/material/Material
                         _mesh = newValue;
                     },
                     enumerable: true
-                }
+                },
+                /**
+                 * Name of the component type = "meshRenderer".
+                 * @example
+                 *      var meshRenderer = gameObject.meshRenderer;
+                 * @property componentType
+                 * @type String
+                 * @final
+                 */
+                componentType: {value:"meshRenderer"}
             });
 
             /**
@@ -15930,6 +16273,7 @@ define('kick/scene/CameraPicking',["kick/math/Vec4", "kick/material/Material", "
             /**
              * @method handlePickRequests
              * @param {kick.scene.SceneLights} sceneLightObj
+             * @param {kick.scene.EngineUniforms} engineUniforms
              */
             this.handlePickRequests = function (sceneLightObj, engineUniforms) {
                 if (pickingQueue.length > 0) {
@@ -16256,7 +16600,7 @@ define('kick/scene/Camera',["kick/core/Constants", "kick/core/Util", "kick/math/
                             Util.fail("Should be array");
                         }
                     }
-                    if (typeof (component.render) === "function" && (component.gameObject.layer & _layerMask)) {
+                    if (typeof component.render === "function" && (component.gameObject.layer & _layerMask)) {
                         renderOrder = component.renderOrder || 1000;
                         if (renderOrder < 2000) {
                             array = renderableComponentsBackGroundAndGeometry;
@@ -16818,7 +17162,16 @@ define('kick/scene/Camera',["kick/core/Constants", "kick/core/Util", "kick/math/
                         res[3] /= canvasDimension[1];
                         Vec4.copy(_normalizedViewportRect, res);
                     }
-                }
+                },
+                /**
+                 * Name of the component componentType = "camera".
+                 * @example
+                 *      var camera = gameObject.camera;
+                 * @property componentType
+                 * @type String
+                 * @final
+                 */
+                componentType: {value:"camera"}
             });
 
             /**
@@ -17156,7 +17509,16 @@ define('kick/scene/Light',["kick/core/Constants", "kick/core/Util", "kick/math/V
                         scriptPriority = value;
                     },
                     enumerable: true
-                }
+                },
+                /**
+                 * Name of the component componentType = "meshRenderer".
+                 * @example
+                 *      var light = gameObject.light;
+                 * @property componentType
+                 * @type String
+                 * @final
+                 */
+                componentType: {value:"light"}
             });
 
             this.activated = function () {
@@ -17220,7 +17582,7 @@ define('kick/scene/Transform',["kick/math/Mat4", "kick/math/Vec3", "kick/math/Qu
      * @class Transform
      * @extends kick.scene.Component
      */
-    Transform = function (gameObject) {
+    Transform = function () {
         var localMatrix = Mat4.create(),
             globalMatrix = Mat4.create(),
             localMatrixInverse = Mat4.create(),
@@ -17258,10 +17620,6 @@ define('kick/scene/Transform',["kick/math/Mat4", "kick/math/Vec3", "kick/math/Qu
             };
 
         Object.defineProperties(this, {
-            // inherit description from GameObject
-            gameObject: {
-                value: gameObject
-            },
             /**
              * Global position.
              * @property position
@@ -17433,7 +17791,7 @@ define('kick/scene/Transform',["kick/math/Mat4", "kick/math/Vec3", "kick/math/Qu
                         Util.fail('Cannot assign parent to self');
                     }
                     if (ASSERT) {
-                        if (typeof newParent === 'undefined') {
+                        if (newParent === undefined) {
                             Util.fail("Cannot set newParent to undefined - should be null");
                         }
                     }
@@ -17448,7 +17806,16 @@ define('kick/scene/Transform',["kick/math/Mat4", "kick/math/Vec3", "kick/math/Qu
                         markGlobalDirty();
                     }
                 }
-            }
+            },
+            /**
+             * Name of the component type = "transform".
+             * @example
+             *      var transform = gameObject.transform;
+             * @property componentType
+             * @type String
+             * @final
+             */
+            componentType: {value:"transform"}
         });
 
         /**
@@ -17561,6 +17928,8 @@ define('kick/scene/Transform',["kick/math/Mat4", "kick/math/Vec3", "kick/math/Qu
             };
         };
 
+
+
         /**
          * @method str
          * @return {String} stringify JSON
@@ -17588,8 +17957,7 @@ define('kick/scene/GameObject',["./Transform", "kick/core/Util", "kick/core/Cons
      * @param {Object} config configuration for gameObject (components will not be initialized)
      */
     return function (scene, config) {
-        var _transform = new Transform(this),
-            _components = [_transform],
+        var _components = [],
             _layer = 1,
             _name,
             _uid = scene.engine.createUID(),
@@ -17623,9 +17991,7 @@ define('kick/scene/GameObject',["./Transform", "kick/core/Util", "kick/core/Cons
                  * @property transform
                  * @type kick.scene.Transform
                  */
-                transform: {
-                    value: _transform
-                },
+                // automatically bound
                 /**
                  * Layer bit flag. The default value is 1.
                  * The layer should have a value of 2^n
@@ -17721,12 +18087,6 @@ define('kick/scene/GameObject',["./Transform", "kick/core/Util", "kick/core/Cons
          * @param {kick.scene.Component} component
          */
         this.addComponent = function (component) {
-            if (component instanceof Transform) {
-                if (ASSERT) {
-                    Util.fail("Cannot add another Transform to a GameObject");
-                }
-                return;
-            }
             if (component.gameObject) {
                 throw {
                     name: "Error",
@@ -17735,6 +18095,9 @@ define('kick/scene/GameObject',["./Transform", "kick/core/Util", "kick/core/Cons
             }
             if (!component.scriptPriority) {
                 component.scriptPriority = 0;
+            }
+            if (typeof component.componentType === "string" && thisObj[component.componentType] === undefined){
+                thisObj[component.componentType] = component;
             }
             component.gameObject = this;
             _components.push(component);
@@ -17751,6 +18114,10 @@ define('kick/scene/GameObject',["./Transform", "kick/core/Util", "kick/core/Cons
                 delete component.gameObject;
             } catch (e) {
                 // ignore if gameObject cannot be deleted
+            }
+            // delete component reference
+            if (typeof component.componentType === "string" && thisObj[component.componentType] === component){
+                delete thisObj[component.componentType];
             }
             if (Util.removeElementFromArray(_components, component)){
                 thisObj.fireEvent("componentRemoved", component);
@@ -17905,6 +18272,7 @@ define('kick/scene/GameObject',["./Transform", "kick/core/Util", "kick/core/Cons
         };
 
         (function init() {
+            thisObj.addComponent(new Transform(thisObj));
             Util.applyConfig(thisObj, config, ["uid"]);
         }());
     };
@@ -18356,6 +18724,9 @@ define('kick/scene/Scene',["require", "kick/core/ProjectAsset", "./SceneLights",
              */
             this.init = function(config){
                 var gameObject,
+                    mappingUidToObject,
+                    newGameObjects,
+                    configs,
                     hasProperty = Util.hasProperty,
                     applyConfig = Util.applyConfig,
                     i,
@@ -18374,16 +18745,17 @@ define('kick/scene/Scene',["require", "kick/core/ProjectAsset", "./SceneLights",
                     };
                 if (config) {
                     _name = config.name || "Scene";
-                    var gameObjects = config.gameObjects || [],
-                        mappingUidToObject = {},
-                        newGameObjects = [],
-                        configs = {};
+                    gameObjects = [];
+                    mappingUidToObject = {};
+                    configs = {};
                     // create game objects
                     (function createGameObjects() {
-                        for (i = 0; i < gameObjects.length; i++) {
-                            gameObject = config.gameObjects[i];
-                            newGameObjects[i] = createGameObjectPrivate(gameObject);
-                            mappingUidToObject[gameObject.uid] = newGameObjects[i];
+                        if (config && config.gameObjects){
+                            for (i = 0; i < config.gameObjects.length; i++) {
+                                gameObject = config.gameObjects[i];
+                                gameObjects[i] = createGameObjectPrivate(gameObject);
+                                mappingUidToObject[gameObject.uid] = gameObjects[i];
+                            }
                         }
                     }());
 
@@ -18392,7 +18764,6 @@ define('kick/scene/Scene',["require", "kick/core/ProjectAsset", "./SceneLights",
                             componentObj,
                             Type,
                             gameObjectConfig,
-                            gameObjects = config.gameObjects || [],
                             j,
                             i,
                             uid,
@@ -18402,7 +18773,7 @@ define('kick/scene/Scene',["require", "kick/core/ProjectAsset", "./SceneLights",
 
                         for (j = 0; j < gameObjects.length; j++) {
                             gameObjectConfig = config.gameObjects[j];
-                            gameObject = newGameObjects[j];
+                            gameObject = gameObjects[j];
                             // build components
                             for (i = 0; gameObjectConfig.components && i < gameObjectConfig.components.length; i++) {
                                 component = gameObjectConfig.components[i];
@@ -18944,6 +19315,7 @@ define('kick/math/Mat2d',[], function () {
 
 define('kick/math',["./math/Vec2", "./math/Vec3", "./math/Vec4", "./math/Mat2","./math/Mat2d", "./math/Mat3", "./math/Mat4", "./math/Quat", "./math/Frustum", "./math/Aabb"],
     function (vec2, vec3, vec4, mat2, mat2d, mat3, mat4, quat, frustum, aabb) {
+        
         return {
             Vec2: vec2,
             Vec3: vec3,
@@ -19927,7 +20299,8 @@ define('kick/core/Engine',["require", "./GLState", "./Project", "./Constants", "
         
 
         var ASSERT = true,
-            engineInstance = null;
+            engineInstance = null,
+            engine;
 
         /**
          * @module kick.core
@@ -19957,7 +20330,7 @@ define('kick/core/Engine',["require", "./GLState", "./Project", "./Constants", "
          * @param {String|canvas} idOrElement elementid of canvas tag or the canvas element
          * @param {kick.core.Config} config={} Configuration object
          */
-        var engine = function (idOrElement, config) {
+        engine = function (idOrElement, config) {
             var glState,
                 gl = null,
                 canvas = typeof idOrElement === 'string' ? document.getElementById(idOrElement) : idOrElement,
@@ -20005,7 +20378,7 @@ define('kick/core/Engine',["require", "./GLState", "./Project", "./Constants", "
                  * @event postUpdateListener
                  */
                 "postUpdateListener"
-                ]
+            ]
             );
 
             Object.defineProperties(this, {
@@ -20077,7 +20450,7 @@ define('kick/core/Engine',["require", "./GLState", "./Project", "./Constants", "
                         return activeScene;
                     },
                     set: function (value) {
-                        if (value === null || typeof value === "undefined") {
+                        if (value === null || value === undefined) {
                             activeScene = activeSceneNull;
                         } else {
                             activeScene = value;
@@ -20277,7 +20650,6 @@ define('kick/core/Engine',["require", "./GLState", "./Project", "./Constants", "
             /**
              * @method removeFrameListener
              * @param {Object} frameListener
-             * @return {boolean} element removed
              * @deprecated
              */
             this.removeFrameListener = function (frameListener) {
@@ -20520,8 +20892,70 @@ define('kick/core/ResourceProvider',[], function () {
     return {};
 });
 
-define('kick/core',["./core/BuiltInResourceProvider", "./core/ChunkData", "./core/Config", "./core/Constants", "./core/Engine", "./core/EventQueue", "./core/GLState", "./core/KeyInput", "./core/MouseInput", "./core/Project", "./core/ProjectAsset", "./core/ResourceDescriptor", "./core/ResourceLoader", "./core/ResourceProvider", "./core/Time", "./core/URLResourceProvider", "./core/Util", "./core/EngineSingleton", "./core/Observable"],
-    function (BuiltInResourceProvider, ChunkData, Config, Constants, Engine, EventQueue, GLState, KeyInput, MouseInput, Project, ProjectAsset, ResourceDescriptor, ResourceLoader, ResourceProvider, Time, URLResourceProvider, Util, EngineSingleton, Observable) {
+define('kick/core/Graphics',["kick/core/Constants", "kick/scene/Camera", "kick/scene/Transform", "kick/scene/EngineUniforms","kick/scene/MeshRenderer", "kick/math/Mat4", "kick/core/EngineSingleton"],
+    function (constants, Camera, Transform, EngineUniforms, MeshRenderer, Mat4, EngineSingleton) {
+    
+    var ASSERT = true;
+    return {
+        /**
+         * @method renderToTexture
+         * @param {kick.texture.RenderTexture} renderTexture
+         * @param {kick.material.Material} material
+         */
+        renderToTexture: (function(){
+            var camera,
+                engine,
+                engineUniforms,
+                meshRenderer;
+            return function(renderTexture, material){
+                if (!camera){
+                    engine = EngineSingleton.engine;
+                    camera = new Camera({
+                        perspective: false,
+                        left:-1,
+                        right:1,
+                        top:1,
+                        bottom:-1,
+                        near:-1,
+                        far:1
+                    });
+                    camera.gameObject = {
+                        transform: new Transform(),
+                        scene: {
+                            addEventListener: function(){},
+                            findComponentsWithMethod: function(){return [];}
+                        }
+                    };
+                    camera.activated();
+
+                    engineUniforms = new EngineUniforms({
+                        viewMatrix:  Mat4.identity(Mat4.create()),
+                        projectionMatrix: Mat4.identity(Mat4.create()),
+                        viewProjectionMatrix: Mat4.identity(Mat4.create()),
+                        lightMatrix: Mat4.identity(Mat4.create()),
+                        currentCamera: camera,
+                        currentCameraTransform: camera.gameObject.transform
+                    });
+                    engineUniforms.sceneLights = {};
+                    meshRenderer = new MeshRenderer({
+                        mesh: engine.project.load(engine.project.ENGINE_MESH_PLANE),
+                        material: material
+                    });
+                    meshRenderer.gameObject = {
+                        transform: new Transform()
+                    };
+                    meshRenderer.activated();
+                }
+                camera.renderTarget = renderTexture;
+                camera.setupCamera();
+                meshRenderer.material = material;
+                meshRenderer.render(engineUniforms);
+            }}())
+    }
+    });
+
+define('kick/core',["./core/BuiltInResourceProvider", "./core/ChunkData", "./core/Config", "./core/Constants", "./core/Engine", "./core/EventQueue", "./core/GLState", "./core/KeyInput", "./core/MouseInput", "./core/Project", "./core/ProjectAsset", "./core/ResourceDescriptor", "./core/ResourceLoader", "./core/ResourceProvider", "./core/Time", "./core/URLResourceProvider", "./core/Util", "./core/EngineSingleton", "./core/Observable", "./core/Graphics"],
+    function (BuiltInResourceProvider, ChunkData, Config, Constants, Engine, EventQueue, GLState, KeyInput, MouseInput, Project, ProjectAsset, ResourceDescriptor, ResourceLoader, ResourceProvider, Time, URLResourceProvider, Util, EngineSingleton, Observable, Graphics) {
         
 
         return {
@@ -20533,6 +20967,7 @@ define('kick/core',["./core/BuiltInResourceProvider", "./core/ChunkData", "./cor
             EngineSingleton: EngineSingleton,
             EventQueue: EventQueue,
             GLState: GLState,
+            Graphics: Graphics,
             KeyInput: KeyInput,
             MouseInput: MouseInput,
             Observable: Observable,
@@ -21346,6 +21781,19 @@ define('kick/scene/Component',[], function () {
      */
 
     /**
+     * Optional name of the component type.
+     * If specified, the component can be accessed directly from the gameObject.
+     * If multiple components with same component type is added to the same gameObject, the access through gameObject is undefined
+     * @example
+     *      // kick.scene.Transform has the type 'transform'
+     *      var transform = gameObject.transform;
+     * @property componentType
+     * @type String
+     * @final
+     */
+
+
+    /**
      * Abstract method called every update. May be undefined.
      * @method update
      */
@@ -21436,7 +21884,16 @@ define('kick/scene/Skybox',["require", "kick/core/ProjectAsset", "./SceneLights"
                         }
                     },
                     enumerable: true
-                }
+                },
+                /**
+                 * Name of the component type = "skybox".
+                 * @example
+                 *      var skybox = gameObject.skybox;
+                 * @property componentType
+                 * @type String
+                 * @final
+                 */
+                componentType: {value:"skybox"}
             });
 
             this.activated = function () {
@@ -21450,6 +21907,7 @@ define('kick/scene/Skybox',["require", "kick/core/ProjectAsset", "./SceneLights"
             };
 
             this.deactivated = function(){
+                var engine = EngineSingleton.engine;
                 engine.removeEventListener("contextRestored", contextRestoredListener);
             };
 
@@ -21805,7 +22263,7 @@ define('kick/texture',["./texture/MovieTexture", "./texture/RenderTexture", "./t
     });
 
 define('kick/components/FullWindow',["kick/core"], function (core) {
-    
+        
 
         var Util = core.Util;
 
@@ -21828,7 +22286,7 @@ define('kick/components/FullWindow',["kick/core"], function (core) {
                     canvas.height = window.innerHeight - canvas.offsetTop;
                     engine.canvasResized();
                 },
-                // https://developer.mozilla.org/en-US/docs/DOM/Mozilla_event_reference/resize
+            // https://developer.mozilla.org/en-US/docs/DOM/Mozilla_event_reference/resize
                 resizeThrottler = function () {
                     // ignore resize events as long as an actualResizeHandler execution is in the queue
                     if ( !resizeTimeout ) {
@@ -21857,6 +22315,18 @@ define('kick/components/FullWindow',["kick/core"], function (core) {
                 window.removeEventListener("resize", resizeThrottler);
             };
 
+            Object.defineProperties(this, {
+                /**
+                 * Name of the component componentType = "fullWindow".
+                 * @example
+                 *      var fullWindow = gameObject.fullWindow;
+                 * @property componentType
+                 * @type String
+                 * @final
+                 */
+                componentType: {value:"fullWindow"}
+            });
+
             /**
              * @method toJSON
              * @return {JSON}
@@ -21870,7 +22340,7 @@ define('kick/components/FullWindow',["kick/core"], function (core) {
 );
 
 define('kick/components/FPSWalker',["kick/core", "kick/math", "kick/scene"], function (core, math, scene) {
-    
+        
         var DEGREE_TO_RADIAN = 0.01745329251994,
             Util = core.Util;
         /**
@@ -21929,7 +22399,10 @@ define('kick/components/FPSWalker',["kick/core", "kick/math", "kick/scene"], fun
             this.moveObject = function(){
                 var moveDistance = thisObj.movementSpeed * time.deltaTime,
                     deltaZ = 0,
-                    deltaX = 0;
+                    deltaX = 0,
+                    rotateYRadian,
+                    cosY,
+                    sinY;
                 if (keyInput.isKey(forward)){
                     deltaZ = -moveDistance;
                 } else if (keyInput.isKey(backward)){
@@ -21944,9 +22417,9 @@ define('kick/components/FPSWalker',["kick/core", "kick/math", "kick/scene"], fun
 
                 // move in XZ plane
                 if (deltaX !== 0 || deltaZ !== 0){
-                    var rotateYRadian = -rotateY*DEGREE_TO_RADIAN,
-                        cosY = Math.cos(rotateYRadian),
-                        sinY = Math.sin(rotateYRadian);
+                    rotateYRadian = -rotateY*DEGREE_TO_RADIAN;
+                    cosY = Math.cos(rotateYRadian);
+                    sinY = Math.sin(rotateYRadian);
                     // rotate around y
                     position[0] += deltaX * cosY - deltaZ * sinY;
                     position[2] += deltaX * sinY + deltaZ * cosY;
@@ -21991,6 +22464,18 @@ define('kick/components/FPSWalker',["kick/core", "kick/math", "kick/scene"], fun
              * @default 1.0
              */
             this.rotateSpeedY = 1.00;
+
+            Object.defineProperties(this, {
+                /**
+                 * Name of the component componentType = "fpsWalker".
+                 * @example
+                 *      var fpsWalker = gameObject.fpsWalker;
+                 * @property componentType
+                 * @type String
+                 * @final
+                 */
+                componentType: {value:"fpsWalker"}
+            });
 
             /**
              * Registers the object on activation
@@ -22059,8 +22544,229 @@ define('kick/components',["./components/FullWindow", "./components/FPSWalker"], 
     };
 });
 
-define('kick',["kick/core", "kick/importer", "kick/material", "kick/math", "kick/mesh", "kick/scene", "kick/texture", "kick/components"],
-    function (core, importer, material, math, mesh, scene, texture, components) {
+define('kick/particlesystem/ParticleSystem',["kick/core/Constants", "kick/core/Util", "kick/core/EngineSingleton", "kick/core/Observable", "kick/material/Material", "kick/core/Project"],
+    function (Constants, Util, EngineSingleton, Observable, Material, Project) {
+        
+
+        var DEBUG = true,
+            ASSERT = true;
+
+        /**
+         * @class ParticleSystem
+         * @extends kick.scene.Component
+         * @namespace kick.scene
+         * @constructor
+         * @param {Object} config
+         */
+        return function (config) {
+
+            var PAUSED = 0,
+                RUNNING = 1,
+                state = RUNNING,
+                SIZE_OF_FLOAT = 4,
+                thisObj = this,
+                material,
+                gl,
+                renderOrder,
+                time,
+                pointSize = new Float32Array([50]),
+                numberOfParticles = 1024,
+                transform,
+                particleSize = 4 + 4,// number of float elements (position (vec3), timeofbirth(float), velocity(vec3), random(float)
+                offsetTimeOfBirth = 3,
+                offsetVelocity = 4,
+                offsetRandom = 7,
+                particleTime = 1,
+                particleData = new Float32Array(0),
+                particleBuffer,
+                currentParticle = 0,
+                contextRestoredListener = function(restoredGL){
+                    gl = restoredGL;
+                },
+                updateParticleData = function(){
+                    var newParticleData,
+                        i;
+                    if (particleData.length === particleSize * numberOfParticles){
+                        return;
+                    } else if (particleData.length > particleSize * numberOfParticles) {
+                        newParticleData = particleData.subarray(0,particleSize * numberOfParticles);
+                    } else {
+                        newParticleData = new Float32Array(numberOfParticles * particleSize);
+                        newParticleData.set(particleData);
+                        // fill random field
+                        for (i = particleData.length + offsetRandom;i < newParticleData.length ; i += particleSize){
+                            newParticleData[i] = Math.random();
+                        }
+                    }
+                    particleData = newParticleData;
+                    currentParticle = (newParticleData.length/particleSize) % numberOfParticles;
+                },
+                createBuffer = function(){
+                    particleBuffer = gl.createBuffer();
+                    gl.bindBuffer(34962, particleBuffer);
+                    gl.bufferData(34962, particleData, 35048);
+                };
+
+            Object.defineProperties(this, {
+                /**
+                 * The renderOrder for materials[0]
+                 * @property renderOrder
+                 * @type {Number}
+                 */
+                renderOrder: {
+                    get: function () {
+                        return renderOrder;
+                    }
+                },
+                material:{
+                    get:function(){
+                        return material;
+                    },
+                    set:function(newValue){
+                        if (ASSERT){
+                            if (!(newValue instanceof Material)) {
+                                Util.fail("ParticleSystem.material must be a kick.material.Material");
+                            }
+                        }
+                        material = newValue;
+                        if (material){
+                            renderOrder = material.renderOrder;
+                            material.setUniform("pointSize", pointSize);
+                        }
+                    },
+                    enumerable: true
+                },
+                pointSize:{
+                    get: function() {
+                        return pointSize[0];
+                    },
+                    set: function(newValue) {
+                        pointSize[0] = newValue;
+                        if (material){
+                            material.setUniform("pointSize", pointSize);
+                        }
+                    }
+                },
+                /**
+                 * Name of the component type = "skybox".
+                 * @example
+                 *      var skybox = gameObject.skybox;
+                 * @property componentType
+                 * @type String
+                 * @final
+                 */
+                componentType: {value:"particlesystem"}
+            });
+
+            this.activated = function () {
+                var engine = EngineSingleton.engine;
+                transform = thisObj.gameObject.transform;
+                gl = engine.gl;
+                time = engine.time;
+                updateParticleData();
+                createBuffer();
+
+                if (!material){
+                    thisObj.material = new Material({
+                        shader: engine.project.load(Project.ENGINE_SHADER_PARTICLES)
+                    });
+                }
+            };
+
+            this.deactivated = function(){
+
+            };
+
+            /**
+             * @method emit
+             * @param {kick.math.Vec3} position
+             * @param {kick.math.Vec3} velocity
+             */
+            this.emit = function (position, velocity) {
+                var index = particleSize*currentParticle;
+                particleData[index] = position[0];
+                particleData[index+1] = position[1];
+                particleData[index+2] = position[2];
+                particleData[index+offsetTimeOfBirth] = particleTime / 1000;
+                particleData[index+offsetVelocity] = velocity[0];
+                particleData[index+offsetVelocity+1] = velocity[1];
+                particleData[index+offsetVelocity+2] = velocity[2];
+
+                gl.bindBuffer(gl.ARRAY_BUFFER, particleBuffer);
+                gl.bufferSubData(gl.ARRAY_BUFFER, index*SIZE_OF_FLOAT, particleData.subarray(index,index+particleSize));
+                currentParticle = (currentParticle+1) % numberOfParticles;
+            };
+
+            /**
+             * Render skybox
+             * @method render
+             * @param {kick.scene.EngineUniforms} engineUniforms
+             * @param {kick.material.Material} [overwriteMaterial]
+             */
+            this.render = function(engineUniforms, overwriteMaterial){
+                if (overwriteMaterial){
+                    return; // not supporting overwriteMaterial (usually only used for shadows etc)
+                }
+                var i,
+                    shader = material.shader,
+                    interleavedDataDescriptor,
+                    name,
+                    shaderAttribute,
+                    currentTimeUniform = shader.lookupUniform.currentTime,
+                    vertexAttrLength = particleSize * SIZE_OF_FLOAT,
+                    interleavedArrayFormatArray = [
+                        {name: "position_birthtime", size:4, type:5126, pointer: 0},
+                        {name: "velocity_random", size:4, type:5126, pointer: 4*SIZE_OF_FLOAT}
+                    ];
+
+                shader.bind();
+                shader.bindUniform(material, engineUniforms, transform);
+                for (i = 0; i < interleavedArrayFormatArray.length; i++) {
+                    interleavedDataDescriptor = interleavedArrayFormatArray[i];
+                    name = interleavedDataDescriptor.name;
+                    shaderAttribute = shader.lookupAttribute[name];
+                    if (shaderAttribute !== undefined) {
+                        gl.enableVertexAttribArray(shaderAttribute);
+                        gl.vertexAttribPointer(shaderAttribute, interleavedDataDescriptor.size,
+                            interleavedDataDescriptor.type, false, vertexAttrLength, interleavedDataDescriptor.pointer);
+                    }
+                }
+                if (currentTimeUniform){
+                    gl.uniform1f(currentTimeUniform.location, particleTime/1000);
+                }
+                gl.drawArrays(gl.POINTS, 0, numberOfParticles);
+            };
+
+            this.update = function(){
+                particleTime += time.deltaTime;
+                if (state === RUNNING){
+                    thisObj.emit([0,0,0], [Math.random()*2-1,Math.random()*2-1,Math.random()*2-1]);
+                }
+            };
+
+            /**
+             * @method toJSON
+             * @return {JSON}
+             */
+            this.toJSON = function () {
+                return Util.componentToJSON(this, "kick.particlesystem.ParticleSystem");
+            };
+
+            Util.applyConfig(this, config);
+        };
+    });
+
+define('kick/particlesystem',["./particlesystem/ParticleSystem"],
+    function (ParticleSystem) {
+        
+
+        return {
+            ParticleSystem: ParticleSystem
+        };
+    });
+
+define('kick',["kick/core", "kick/importer", "kick/material", "kick/math", "kick/mesh", "kick/scene", "kick/texture", "kick/components", "kick/particlesystem"],
+    function (core, importer, material, math, mesh, scene, texture, components, particlesystem) {
         
         return {
             core: core,
@@ -22070,6 +22776,7 @@ define('kick',["kick/core", "kick/importer", "kick/material", "kick/math", "kick
             math: math,
             mesh: mesh,
             scene: scene,
-            texture: texture
+            texture: texture,
+            particlesystem: particlesystem
         };
     });

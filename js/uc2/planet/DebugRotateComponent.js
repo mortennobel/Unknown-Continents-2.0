@@ -38,7 +38,7 @@ define(["kick"],
                     sphericalCoordinates[2] = Math.min(Math.PI * 0.499, sphericalCoordinates[2]);
                 } else {
                     sphericalCoordinates[1] += time.deltaTime * rotationSpeed;
-                    sphericalCoordinates[2] = Math.sin(time.time * upDownSpeed) * Math.PI * 0.25;
+                    // sphericalCoordinates[2] = Math.sin(time.time * upDownSpeed) * Math.PI * 0.25;
                 }
                 wheelY = mouseInput.deltaWheel[1];
                 if (wheelY) {

@@ -16,13 +16,13 @@ uniform sampler2D mainTexture;
 uniform float maxHeight;
 uniform float bumpmapTextureStep;
 
-// pragma include "noise2D.glsl for snoise(vec2 v)
-// pragma include "noise3D.glsl"] for snoise(vec3 v)
-// pragma include "noise4D.glsl"] for snoise(vec4 v)
-// pragma include "cellular2D.glsl"] for cellular(vec2 P)
-// pragma include "cellular2x2.glsl"] for cellular2x2(vec2 P)
-// pragma include "cellular2x2x2.glsl"] for cellular2x2x2(vec3 P)
-// pragma include "cellular3D.glsl"] cellular(vec3 P)
+//#pragma include "noise2D.glsl for snoise(vec2 v)
+//#pragma include "noise3D.glsl"] for snoise(vec3 v)
+//#pragma include "noise4D.glsl"] for snoise(vec4 v)
+//#pragma include "cellular2D.glsl"] for cellular(vec2 P)
+//#pragma include "cellular2x2.glsl"] for cellular2x2(vec2 P)
+//#pragma include "cellular2x2x2.glsl"] for cellular2x2x2(vec3 P)
+//#pragma include "cellular3D.glsl"] cellular(vec3 P)
 
 vec3 normal(vec2 tc)
 {

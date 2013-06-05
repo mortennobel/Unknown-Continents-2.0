@@ -96,12 +96,15 @@ define(["kick"],
             );
         }
 
+        var thisTexture;
+
         return function(texture, iterations){
             var textureDim = Math.pow(2,iterations);
 
             var data = buildMap(iterations);
-            if (!texture){
-                texture = new kick.texture.Texture();
+
+            if (!texture ||texture !== thisTexture ||!thisTexture){
+                thisTexture = texture = new kick.texture.Texture();
                 texture.internalFormat = kick.core.Constants.GL_ALPHA;
                 texture.magFilter = kick.core.Constants.GL_LINEAR;
             }

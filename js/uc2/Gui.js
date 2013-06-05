@@ -79,6 +79,7 @@ define([],
 
                 // planet color
                 var planet = gui.addFolder('Planet');
+                planet.add(planetScapeConfig.planet,'strategy', ["DiamondSquare","Worley","Simplex"]).onChange(onChangeListener);
                 planet.addColor(createColorWrapper(planetScapeConfig.planet,'color'),'color')
                     .onChange(onChangeListener);
                 planet.add(planetScapeConfig.planet,'showTexture')

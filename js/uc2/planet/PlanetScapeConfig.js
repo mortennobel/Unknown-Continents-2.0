@@ -17,6 +17,7 @@ define(["kick", 'uc2/util/Random'],
             };
 
             this.planet = {
+                strategy: "DiamondSquare",
                 atmosphereColor: [0.0, 0.0, 1.0, 1.0],
                 rotationSpeed: 0.05,
                 color: [1.0, 1.0, 1.0, 1.0],
@@ -53,6 +54,7 @@ define(["kick", 'uc2/util/Random'],
                 thisObj.atmosphere.size = randomFloat(0.005, 0.3);
 
                 // planet
+                thisObj.planet.strategy = "DiamondSquare";
                 thisObj.planet.atmosphereColor = thisObj.atmosphere.color;
                 thisObj.planet.rotationSpeed = randomFloat(-0.05, 0.05);
                 thisObj.planet.color = [randomFloat(0, 1, 0.2), randomFloat(0, 1, 0.2), randomFloat(0, 1, 0.2), 1];
@@ -61,7 +63,8 @@ define(["kick", 'uc2/util/Random'],
                 thisObj.planet.iterations = randomInt(5, 10);
 
                 // moon
-                thisObj.moons.numberOfMoons = randomInt(0, 16, 2);
+//                thisObj.moons.numberOfMoons = randomInt(0, 16, 2);
+                thisObj.moons.numberOfMoons = randomInt(0, 0, 2);
                 thisObj.moons.colorFrom = [randomFloat(0, 0.1), randomFloat(0, 0.1), randomFloat(0, 0.1), 1];
                 thisObj.moons.colorTo = [thisObj.moons.colorFrom[0] + randomFloat(0, 0.1),
                     thisObj.moons.colorFrom[0] + randomFloat(0, 0.1),

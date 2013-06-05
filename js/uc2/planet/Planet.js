@@ -1,7 +1,7 @@
-define(["kick", "./procedural/DiamondSquare", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_composition_fs.glsl',
+define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedural/Simplex", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_composition_fs.glsl',
     'text!shaders/unlit_alpha_vs.glsl', 'text!shaders/unlit_alpha_fs.glsl'],
 //define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
-    function (kick, DiamondSquare, planet_vs, planet_fs, unlit_planet_vs, unlit_planet_fs) {
+    function (kick, DiamondSquare, Worley, Simplex, planet_vs, planet_fs, unlit_planet_vs, unlit_planet_fs) {
         "use strict";
 
         /**
@@ -21,6 +21,7 @@ define(["kick", "./procedural/DiamondSquare", 'text!shaders/planet_composition_v
                 texture,
                 rotation = [0,0,0,1],
                 rotationSpeed = 1000.01,
+                strategy = "DiamondSquare",
                 updateMaterial = function(){
                     if (material){
                         material.setUniform("atmosphereColor", config.atmosphereColor || [0.0, 0.0, 0.9, 1.0]);
@@ -32,7 +33,19 @@ define(["kick", "./procedural/DiamondSquare", 'text!shaders/planet_composition_v
                 };
 
             this.makePlanetTexture = function () {
-                texture = DiamondSquare(texture, config.iterations);
+                if (strategy === "Simplex"){
+                    texture = Simplex(texture, config.iterations);
+                }else if (strategy === "Worley"){
+                    texture = Worley(texture, config.iterations);
+                } else { // strategy === "DiamondSquare"
+                    texture = DiamondSquare(texture, config.iterations);
+                }
+
+                if (material){
+                    material.setUniform("heightMap", texture);
+                    material.setUniform("mainTexture", texture);
+                    material.setUniform("bumpmapTextureStep",new Float32Array([1/texture.dimension[0]]) );
+                }
                 return texture;
             };
 
@@ -45,12 +58,18 @@ define(["kick", "./procedural/DiamondSquare", 'text!shaders/planet_composition_v
                         showTexture = newValue.showTexture;
                         rotationSpeed = newValue.rotationSpeed / 1000;
                         updateMaterial();
+
+                        var updateTexture = false;
+                        if (newValue.strategy && strategy !== newValue.strategy){
+                            strategy = newValue.strategy;
+                            updateTexture = true;
+                        }
                         if (iterations !== newValue.iterations ){
                             iterations = newValue.iterations;
+                            updateTexture = true;
+                        }
+                        if (updateTexture){
                             thisObj.makePlanetTexture();
-                            if (material){
-                                material.setUniform("bumpmapTextureStep",new Float32Array([1/Math.pow(2,config.iterations)]) );
-                            }
                         }
                     }
                 }
