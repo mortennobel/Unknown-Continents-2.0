@@ -10,8 +10,6 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
         return function () {
 
             // texture width / height must be power of 2 and square
-
-
             var time,
                 material,
                 showTextureMaterial,
@@ -25,6 +23,7 @@ define(["kick", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_
                 rotationSpeed = 1000.01,
                 updateMaterial = function(){
                     if (material){
+                        material.setUniform("atmosphereColor", config.atmosphereColor || [0.0, 0.0, 0.9, 1.0]);
                         material.setUniform("mainColor", config.color || [1.0, 0.0, 0.9, 1.0]);
                         material.setUniform("maxHeight", new Float32Array([config.maxHeight || 2.00]) );
                         planetMeshRenderer.material = showTexture ? showTextureMaterial : material;

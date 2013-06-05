@@ -17,6 +17,7 @@ define(["kick", 'uc2/util/Random'],
             };
 
             this.planet = {
+                atmosphereColor: [0.0, 0.0, 1.0, 1.0],
                 rotationSpeed: 0.05,
                 color: [1.0, 1.0, 1.0, 1.0],
                 maxHeight: 2.000,
@@ -46,20 +47,21 @@ define(["kick", 'uc2/util/Random'],
             };
 
             this.createRandom = function () {
+                // atmosphere
+                // makes blue more likely
+                thisObj.atmosphere.color = [randomFloat(0, 1, 2), randomFloat(0, 1, 2), randomFloat(0, 1, 0.5), randomFloat(0.0, 1.0, 0.5)];
+                thisObj.atmosphere.size = randomFloat(0.005, 0.3);
+
                 // planet
+                thisObj.planet.atmosphereColor = thisObj.atmosphere.color;
                 thisObj.planet.rotationSpeed = randomFloat(-0.05, 0.05);
                 thisObj.planet.color = [randomFloat(0, 1, 0.2), randomFloat(0, 1, 0.2), randomFloat(0, 1, 0.2), 1];
                 thisObj.planet.color = [randomFloat(0, 1, 0.2), randomFloat(0, 1, 0.2), randomFloat(0, 1, 0.2), 1];
                 thisObj.planet.maxHeight = randomFloat(0, 5);
                 thisObj.planet.iterations = randomInt(5, 10);
 
-                // atmosphere
-                // makes blue more likely
-                thisObj.atmosphere.color = [randomFloat(0, 1, 2), randomFloat(0, 1, 2), randomFloat(0, 1, 0.5), randomFloat(0.0, 1.0, 0.5)];
-                thisObj.atmosphere.size = randomFloat(0.005, 0.3);
-
                 // moon
-                thisObj.moons.numberOfMoons = randomInt(0, 100, 2);
+                thisObj.moons.numberOfMoons = randomInt(0, 16, 2);
                 thisObj.moons.colorFrom = [randomFloat(0, 0.1), randomFloat(0, 0.1), randomFloat(0, 0.1), 1];
                 thisObj.moons.colorTo = [thisObj.moons.colorFrom[0] + randomFloat(0, 0.1),
                     thisObj.moons.colorFrom[0] + randomFloat(0, 0.1),

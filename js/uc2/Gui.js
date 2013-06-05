@@ -91,7 +91,7 @@ define([],
                     .onChange(onChangeListener);
 
                 var moon = gui.addFolder('Moons');
-                moon.add(planetScapeConfig.moons,'numberOfMoons').min(0).max(7).step(1)
+                moon.add(planetScapeConfig.moons,'numberOfMoons').min(0).max(16).step(1)
                                     .onChange(onChangeListener);
 
 

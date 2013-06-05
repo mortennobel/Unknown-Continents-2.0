@@ -19,7 +19,6 @@ vec3 getAtmosphereLight(vec3 normal, mat3 dLight){
     return (colorIntensity * diffuseContribution);
 }
 
-
 void main(void)
 {
     vec3 normal = normalize(vNormal);
@@ -32,5 +31,4 @@ void main(void)
     // add white closer to surface
     color.xyz += vec3(fractionDistanceToSurface,fractionDistanceToSurface,fractionDistanceToSurface)*0.4;
     gl_FragColor = color;
-
 }

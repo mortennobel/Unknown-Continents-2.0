@@ -10,6 +10,7 @@ varying vec3 pos;
 #pragma include "light.glsl"
 
 uniform vec4 mainColor;
+uniform vec4 atmosphereColor;
 uniform sampler2D heightMap;
 uniform sampler2D mainTexture;
 uniform float maxHeight;
@@ -33,6 +34,16 @@ vec3 normal(vec2 tc)
     return normalize(n - udiff * u_tangent - vdiff * v_tangent);
 }
 
+// assumes that normal is normalized
+vec3 getAtmosphereLight(vec3 normal, mat3 dLight){
+    vec3 ecLightDir = dLight[0]; // light direction in eye coordinates
+    vec3 colorIntensity = dLight[1];
+    float horizonWrapAround = 0.5;
+    float diffuseContribution = max(dot(normal, ecLightDir)+horizonWrapAround, 0.0);
+    float weightAgainstEdge = 1.0-max(dot(normal, vec3(0.0,0.0,1.0)), 0.0);
+    return (colorIntensity * diffuseContribution)*weightAgainstEdge;
+}
+
 void main(void)
 {
     vec3 eyeSpaceLigthDirection = vec3(0.0,0.0,1.0);
@@ -45,6 +56,9 @@ void main(void)
     getDirectionalLight(nBumped, _dLight, specularExponent, diffuse, specular);
 
     float heightModifier = texture2D(heightMap,uv).a*0.5+0.5;
-	gl_FragColor = heightModifier*mainColor*vec4(texture2D(mainTexture,uv).xyz*max(diffuse, _ambient),1.0);
-    // gl_FragColor = vec4(texture2D(heightMap,uv).aaa, 1.0);
+    vec3 atmosphereColor = getAtmosphereLight(n, _dLight) * atmosphereColor.xyz*0.9;
+    vec3 light =max(diffuse, _ambient)*0.9;
+	gl_FragColor = vec4(atmosphereColor,0.0) +
+	    heightModifier*mainColor*vec4(texture2D(mainTexture,uv).xyz*light,1.0);
+	    //vec4(0.0,0.0,0.0,1.0);
 }
