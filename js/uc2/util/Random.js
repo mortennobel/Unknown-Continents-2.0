@@ -61,7 +61,7 @@ define(["kick"],
             },
             randomElement: function(array, power){
                 var rnd = Math.pow(Math.random(), power || 1);
-                var index = Math.min(Math.ceil(array.length*rnd),array.length-1);
+                var index = Math.min(Math.floor(array.length*rnd),array.length-1);
                 return array[index];
             }
         };
