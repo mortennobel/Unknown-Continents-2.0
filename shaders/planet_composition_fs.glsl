@@ -4,7 +4,7 @@ precision highp float;
 varying vec3 n;
 varying vec3 u_tangent;
 varying vec3 v_tangent;
-varying vec2 uv;
+varying vec3 localPos;
 varying vec3 pos;
 
 #pragma include "light.glsl"
@@ -44,8 +44,14 @@ vec3 getAtmosphereLight(vec3 normal, mat3 dLight){
     return (colorIntensity * diffuseContribution)*weightAgainstEdge;
 }
 
+vec2 project(vec3 pos){
+    const float PI = 3.14159265359;
+    return vec2(atan(pos.z, pos.x)/(2.0*PI)+0.5, pos.y*0.5+0.5);
+}
+
 void main(void)
 {
+    vec2 uv = project(localPos);
     vec3 eyeSpaceLigthDirection = vec3(0.0,0.0,1.0);
     vec3 nBumped = normal(uv);
 

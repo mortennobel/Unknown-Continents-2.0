@@ -8,19 +8,18 @@ uniform mat4 _mvProj; // model-view-projection matrix
 uniform mat3 _norm; // normal matrix
 uniform float _time; // time in seconds
 
-varying vec2 uv;
+varying vec3 localPos;
 varying vec3 n;
 varying vec3 u_tangent;
 varying vec3 v_tangent;
 varying vec3 pos;
-
 
 void main(void) {
 	// compute position
 	vec4 v = vec4(vertex, 1.0);
 	gl_Position = _mvProj * v;
     pos = (_mv * v).xyz;
-	uv = uv1;
+	localPos = vertex;
 	// compute light info
 	n = normalize(_norm * normal);
     u_tangent = normalize(_norm * tangent.xyz)*tangent.w; 
