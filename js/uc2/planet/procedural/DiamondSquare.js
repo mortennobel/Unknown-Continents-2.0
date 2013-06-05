@@ -96,21 +96,20 @@ define(["kick"],
             );
         }
 
-        var thisTexture;
-
         return function(texture, config){
             var iterations = config.iterations;
+            console.log("iterations: "+iterations);
             var textureDim = Math.pow(2,iterations);
 
             var data = buildMap(iterations);
 
-            if (!texture || texture !== thisTexture ||!thisTexture){
-                if (!thisTexture){
-                    thisTexture = new kick.texture.Texture();
-                    thisTexture.internalFormat = kick.core.Constants.GL_ALPHA;
-                    thisTexture.magFilter = kick.core.Constants.GL_LINEAR;
+            if (!texture || texture.internalFormat !== kick.core.Constants.GL_ALPHA || texture.dimension[0] !== textureDim){
+                if (texture){
+                    texture.destroy();
                 }
-                texture = thisTexture;
+                texture = new kick.texture.Texture();
+                texture.internalFormat = kick.core.Constants.GL_ALPHA;
+                texture.magFilter = kick.core.Constants.GL_LINEAR;
             }
 
             texture.setImageData ( textureDim, textureDim, 0, kick.core.Constants.GL_UNSIGNED_BYTE,  data);

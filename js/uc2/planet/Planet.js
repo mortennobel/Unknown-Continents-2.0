@@ -21,32 +21,31 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                 currentConfigKey = "",
                 rotation = [0,0,0,1],
                 rotationSpeed = 1000.01,
-                strategy = "DiamondSquare",
                 updateMaterial = function(){
                     if (material){
+                        material.setUniform("heightMap", texture);
+                        material.setUniform("mainTexture", texture);
+                        material.setUniform("bumpmapTextureStep",new Float32Array([1/texture.dimension[0]]) );
                         material.setUniform("atmosphereColor", config.atmosphereColor || [0.0, 0.0, 0.9, 1.0]);
                         material.setUniform("mainColor", config.color || [1.0, 0.0, 0.9, 1.0]);
                         material.setUniform("maxHeight", new Float32Array([config.maxHeight || 2.00]) );
                         planetMeshRenderer.material = showTexture ? showTextureMaterial : material;
+                    } else {
+                        console.log("no mat");
                     }
                     rotationSpeed = config.rotationSpeed/1000 || 0.0001;
                 };
 
             this.makePlanetTexture = function () {
-                console.log("this.makePlanetTexture");
-                if (strategy === "simplex"){
-                    texture = Simplex(texture, config.simplex || {});
-                }else if (strategy === "worley"){
-                    texture = Worley(texture, config.worley || {});
+                if (config.strategy === "simplex"){
+                    texture = Simplex(texture, config.simplexWorley || {});
+                } else if (config.strategy === "worley"){
+                    texture = Worley(texture, config.simplexWorley || {});
                 } else { // strategy === "DiamondSquare"
-                    texture = DiamondSquare(texture, config.diamondSquare || {});
+                    texture = DiamondSquare(texture, config.diamondSquare || {iterations:4});
                 }
 
-                if (material){
-                    material.setUniform("heightMap", texture);
-                    material.setUniform("mainTexture", texture);
-                    material.setUniform("bumpmapTextureStep",new Float32Array([1/texture.dimension[0]]) );
-                }
+                updateMaterial();
                 return texture;
             };
 
@@ -56,14 +55,11 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                 config: {
                     set: function (newValue) {
                         config = newValue;
-                        showTexture = newValue.showTexture;
-                        rotationSpeed = newValue.rotationSpeed / 1000;
-                        updateMaterial();
+                        showTexture = config.showTexture;
+                        rotationSpeed = (config.rotationSpeed || 0) / 1000;
 
-                        strategy = newValue.strategy;
-
-                        var configKey = strategy + JSON.stringify(newValue[strategy]);
-                        if (configKey !== currentConfigKey){
+                        var configKey = config.strategy + JSON.stringify(newValue[config.strategy]);
+                        if (configKey !== currentConfigKey && material){
                             currentConfigKey = configKey;
                             thisObj.makePlanetTexture();
                         }

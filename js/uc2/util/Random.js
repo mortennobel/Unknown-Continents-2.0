@@ -58,6 +58,11 @@ define(["kick"],
                 y /= length;
                 z /= length;
                 return kick.math.Quat.setAxisAngle(kick.math.Quat.create(),[x,y,z], angle);
+            },
+            randomElement: function(array, power){
+                var rnd = Math.pow(Math.random(), power || 1);
+                var index = Math.min(Math.ceil(array.length*rnd),array.length-1);
+                return array[index];
             }
         };
     });

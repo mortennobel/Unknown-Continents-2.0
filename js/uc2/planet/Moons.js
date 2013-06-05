@@ -60,6 +60,7 @@ define(["kick", "./Planet", 'uc2/util/Random','./Moon'],
 
             this.activated = function () {
                 gameObject = thisObj.gameObject;
+                gameObject.name = "Moons";
                 updateConfig();
             };
 

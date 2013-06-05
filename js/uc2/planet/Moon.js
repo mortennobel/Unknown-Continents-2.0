@@ -69,6 +69,7 @@ define(["kick", "./Planet", 'uc2/util/Random'],
                 }
                 thisObj.gameObject.addComponent(planet);
                 transform = thisObj.gameObject.transform;
+                thisObj.gameObject.name = "moon";
                 var engine = kick.core.Engine.instance;
                 time = engine.time;
                 updateConfig();

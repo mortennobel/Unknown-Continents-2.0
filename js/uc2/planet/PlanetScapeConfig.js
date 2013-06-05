@@ -8,7 +8,8 @@ define(["kick", 'uc2/util/Random'],
         return function () {
             var thisObj = this,
                 randomFloat = Random.randomFloat,
-                randomInt = Random.randomInt;
+                randomInt = Random.randomInt,
+                randomElement = Random.randomElement;
 
             this.sun = {
                 lightDirection: [1, 1, 1],
@@ -26,10 +27,7 @@ define(["kick", 'uc2/util/Random'],
                 diamondSquare: {
                     iterations: 10
                 },
-                simplex: {
-                    scale: 20
-                },
-                worley: {
+                simplexWorley: {
                     scale: 20
                 }
             };
@@ -62,13 +60,14 @@ define(["kick", 'uc2/util/Random'],
                 thisObj.atmosphere.size = randomFloat(0.005, 0.3);
 
                 // planet
-                thisObj.planet.strategy = "diamondSquare";
+                thisObj.planet.strategy = randomElement(["diamondSquare","simplex","worley"]);
                 thisObj.planet.atmosphereColor = thisObj.atmosphere.color;
                 thisObj.planet.rotationSpeed = randomFloat(-0.05, 0.05);
                 thisObj.planet.color = [randomFloat(0, 1, 0.2), randomFloat(0, 1, 0.2), randomFloat(0, 1, 0.2), 1];
                 thisObj.planet.color = [randomFloat(0, 1, 0.2), randomFloat(0, 1, 0.2), randomFloat(0, 1, 0.2), 1];
                 thisObj.planet.maxHeight = randomFloat(0, 5);
                 thisObj.planet.diamondSquare.iterations = randomInt(5, 10);
+                thisObj.planet.simplexWorley.scale = randomFloat(0.01, 50);
 
                 // moon
 //                thisObj.moons.numberOfMoons = randomInt(0, 16, 2);

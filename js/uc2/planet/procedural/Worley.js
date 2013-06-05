@@ -5,25 +5,24 @@ define(["kick",'text!shaders/worley_noise_vs.glsl', 'text!shaders/worley_noise_f
         var textureDim = 1024,
             renderTexture,
             shader,
-            renderMaterial,
-            thisTexture;
+            renderMaterial;
 
         return function(texture, config){
-            if (!texture || texture !== thisTexture ||!thisTexture){
-                if (!thisTexture){
-                    thisTexture = new kick.texture.Texture();
-                    thisTexture.internalFormat = kick.core.Constants.GL_RGB;
-                    thisTexture.magFilter = kick.core.Constants.GL_LINEAR;
-                    thisTexture.setImageData(textureDim, textureDim, 0, kick.core.Constants.GL_UNSIGNED_BYTE, null, "");
+            if (!texture || !renderTexture || renderTexture.colorTexture !== texture){
+                if (texture){
+                    texture.destroy();
                 }
-                texture = thisTexture;
+                texture = new kick.texture.Texture();
+                texture.internalFormat = kick.core.Constants.GL_RGB;
+                texture.magFilter = kick.core.Constants.GL_LINEAR;
+                texture.setImageData(textureDim, textureDim, 0, kick.core.Constants.GL_UNSIGNED_BYTE, null, "");
             }
 
-
-            if (!renderTexture){
-                var engine = kick.core.Engine.instance;
+            if (!renderTexture || renderTexture.colorTexture !== texture){
+                if (renderTexture){
+                    renderTexture.destroy();
+                }
                 renderTexture = new kick.texture.RenderTexture({dimension:[textureDim,textureDim], colorTexture: texture});
-//                shader = engine.project.load(engine.project.ENGINE_SHADER_UNLIT);
 
                 shader = new kick.material.Shader({
                     vertexShaderSrc: worley_noise_vs,

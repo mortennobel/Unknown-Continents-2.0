@@ -91,12 +91,9 @@ define([],
                 var diamondSqr =  planet.addFolder('DiamondSquare');
                 diamondSqr.add(planetScapeConfig.planet.diamondSquare,'iterations').min(2).max(10).step(1)
                     .onChange(onChangeListener);
-                var simplex =  planet.addFolder('Simplex');
-                simplex.add(planetScapeConfig.planet.simplex,'scale', 1,40)
+                var simplex =  planet.addFolder('Simplex/Worley');
+                simplex.add(planetScapeConfig.planet.simplexWorley,'scale', 1,40)
                                     .onChange(onChangeListener);
-                var worley =  planet.addFolder('Worley');
-                worley.add(planetScapeConfig.planet.worley,'scale', 1,40)
-                                                    .onChange(onChangeListener);
 
                 var moon = gui.addFolder('Moons');
                 moon.add(planetScapeConfig.moons,'numberOfMoons').min(0).max(16).step(1)

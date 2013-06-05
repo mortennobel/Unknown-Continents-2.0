@@ -17603,6 +17603,14 @@ define('kick/scene/Transform',["kick/math/Mat4", "kick/math/Vec3", "kick/math/Qu
             children = [],
             parentTransform = null,
             thisObj = this,
+            isNaNArray = function(array){
+                var i;
+                for (i=0;i<array.length;i++){
+                    if (isNaN(array[i])){
+                        Util.warn("NaN");
+                    }
+                }
+            },
             markGlobalDirty = function () {
                 var i;
                 dirty[GLOBAL] = 1;
@@ -17638,6 +17646,9 @@ define('kick/scene/Transform',["kick/math/Mat4", "kick/math/Vec3", "kick/math/Qu
                     return Vec3.clone(globalPosition);
                 },
                 set: function (newValue) {
+                    if (ASSERT){
+                        isNaNArray(newValue);
+                    }
                     var currentPosition;
                     if (parentTransform === null) {
                         thisObj.localPosition = newValue;
@@ -17663,6 +17674,9 @@ define('kick/scene/Transform',["kick/math/Mat4", "kick/math/Vec3", "kick/math/Qu
                     return Vec3.clone(localPosition);
                 },
                 set: function (newValue) {
+                    if (ASSERT){
+                        isNaNArray(newValue);
+                    }
                     Vec3.copy(localPosition, newValue);
                     markLocalDirty();
                 }
@@ -17679,6 +17693,9 @@ define('kick/scene/Transform',["kick/math/Mat4", "kick/math/Vec3", "kick/math/Qu
                     return vec;
                 },
                 set: function (newValue) {
+                    if (ASSERT){
+                        isNaNArray(newValue);
+                    }
                     Quat.setEuler(localRotationQuat, newValue);
                     markLocalDirty();
                 }
@@ -17695,6 +17712,9 @@ define('kick/scene/Transform',["kick/math/Mat4", "kick/math/Vec3", "kick/math/Qu
                     return vec;
                 },
                 set: function (newValue) {
+                    if (ASSERT){
+                        isNaNArray(newValue);
+                    }
                     var tmp = Quat.create();
                     Quat.setEuler(tmp, newValue);
                     this.rotation = tmp;
@@ -17724,6 +17744,9 @@ define('kick/scene/Transform',["kick/math/Mat4", "kick/math/Vec3", "kick/math/Qu
                     return globalRotationQuat;
                 },
                 set: function (newValue) {
+                    if (ASSERT){
+                        isNaNArray(newValue);
+                    }
                     if (parentTransform === null) {
                         this.localRotation = newValue;
                         return;
@@ -17743,6 +17766,9 @@ define('kick/scene/Transform',["kick/math/Mat4", "kick/math/Vec3", "kick/math/Qu
                     return localRotationQuat;
                 },
                 set: function (newValue) {
+                    if (ASSERT){
+                        isNaNArray(newValue);
+                    }
                     Quat.copy(localRotationQuat, newValue);
                     markLocalDirty();
                 }
@@ -17758,6 +17784,9 @@ define('kick/scene/Transform',["kick/math/Mat4", "kick/math/Vec3", "kick/math/Qu
                     return Vec3.clone(localScale);
                 },
                 set: function (newValue) {
+                    if (ASSERT){
+                        isNaNArray(newValue);
+                    }
                     var i;
                     Vec3.copy(localScale, newValue);
                     // replace 0 value with epsilon to prevent a singular matrix
@@ -20892,12 +20921,27 @@ define('kick/core/ResourceProvider',[], function () {
     return {};
 });
 
-define('kick/core/Graphics',["kick/core/Constants", "kick/scene/Camera", "kick/scene/Transform", "kick/scene/EngineUniforms","kick/scene/MeshRenderer", "kick/math/Mat4", "kick/core/EngineSingleton"],
-    function (constants, Camera, Transform, EngineUniforms, MeshRenderer, Mat4, EngineSingleton) {
+define('kick/core/Graphics',["kick/core/Constants", "kick/scene/Camera", "kick/scene/Transform", "kick/scene/EngineUniforms","kick/scene/MeshRenderer", "kick/math/Mat4", "kick/core/EngineSingleton", "kick/texture/RenderTexture", "kick/core/Util", "kick/material/Material"],
+    function (constants, Camera, Transform, EngineUniforms, MeshRenderer, Mat4, EngineSingleton, RenderTexture, Util, Material) {
     
-    var ASSERT = true;
+    var ASSERT = true,
+        fail = Util.fail;
     return {
         /**
+         *
+         * @example
+         *      // render a unlit shader (with color of red) into a texture
+         *      texture = new kick.texture.Texture();
+         *      texture.setImageData(512, 512, 0, 5121, null, "");
+         *      var renderTexture = new kick.texture.RenderTexture({dimension:[512,512], colorTexture: texture});
+         *      var shader = engine.project.load(engine.project.ENGINE_SHADER_UNLIT);
+         *      var renderMaterial = new kick.material.Material( {
+         *          shader:shader,
+         *          uniformData: {
+         *              mainColor: [1,0,0,1]
+         *          }
+         *      });
+         *      kick.core.Graphics.renderToTexture(renderTexture, renderMaterial);
          * @method renderToTexture
          * @param {kick.texture.RenderTexture} renderTexture
          * @param {kick.material.Material} material
@@ -20908,6 +20952,14 @@ define('kick/core/Graphics',["kick/core/Constants", "kick/scene/Camera", "kick/s
                 engineUniforms,
                 meshRenderer;
             return function(renderTexture, material){
+                if (ASSERT){
+                    if (!(renderTexture instanceof RenderTexture)){
+                        fail("Graphics.renderToTexture: renderTexture must be of type RenderTexture");
+                    }
+                    if (!(material instanceof Material)){
+                        fail("Graphics.renderToTexture: material must be of type Material");
+                    }
+                }
                 if (!camera){
                     engine = EngineSingleton.engine;
                     camera = new Camera({
@@ -20951,7 +21003,7 @@ define('kick/core/Graphics',["kick/core/Constants", "kick/scene/Camera", "kick/s
                 meshRenderer.material = material;
                 meshRenderer.render(engineUniforms);
             }}())
-    }
+        }
     });
 
 define('kick/core',["./core/BuiltInResourceProvider", "./core/ChunkData", "./core/Config", "./core/Constants", "./core/Engine", "./core/EventQueue", "./core/GLState", "./core/KeyInput", "./core/MouseInput", "./core/Project", "./core/ProjectAsset", "./core/ResourceDescriptor", "./core/ResourceLoader", "./core/ResourceProvider", "./core/Time", "./core/URLResourceProvider", "./core/Util", "./core/EngineSingleton", "./core/Observable", "./core/Graphics"],
