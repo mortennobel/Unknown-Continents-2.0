@@ -39,7 +39,7 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                 }else if (strategy === "worley"){
                     texture = Worley(texture, config.worley || {});
                 } else { // strategy === "DiamondSquare"
-                    texture = DiamondSquare(texture, config.diamondsquare || {});
+                    texture = DiamondSquare(texture, config.diamondSquare || {});
                 }
 
                 if (material){
