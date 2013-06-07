@@ -22,5 +22,5 @@ void main(void)
     vec3 pos = unproject(uv);
 
     float n = snoise(pos.xyz*scale);
-	gl_FragColor = vec4(vec3(n),1.0);
+	gl_FragColor = vec4(n);
 }

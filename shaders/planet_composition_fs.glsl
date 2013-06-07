@@ -9,7 +9,6 @@ varying vec3 pos;
 
 #pragma include "light.glsl"
 
-uniform vec4 mainColor;
 uniform vec4 atmosphereColor;
 uniform sampler2D heightMap;
 uniform sampler2D mainTexture;
@@ -54,17 +53,17 @@ void main(void)
     vec2 uv = project(localPos);
     vec3 eyeSpaceLigthDirection = vec3(0.0,0.0,1.0);
     vec3 nBumped = normal(uv);
-
+    vec4 diffuseSpecular = texture2D(mainTexture,uv);
     vec3 diffuse;
 
     float specular;
-    float specularExponent = 0.1;
+    float specularExponent = diffuseSpecular.a*120.0;
     getDirectionalLight(nBumped, _dLight, specularExponent, diffuse, specular);
 
     float heightModifier = texture2D(heightMap,uv).a*0.5+0.5;
     vec3 atmosphereColor = getAtmosphereLight(n, _dLight) * atmosphereColor.xyz*0.9;
     vec3 light =max(diffuse, _ambient)*0.9;
 	gl_FragColor = vec4(atmosphereColor,0.0) +
-	    heightModifier*mainColor*vec4(texture2D(mainTexture,uv).xyz*light,1.0);
+	    heightModifier*vec4(diffuseSpecular.xyz*light,1.0);
 	    //vec4(0.0,0.0,0.0,1.0);
 }

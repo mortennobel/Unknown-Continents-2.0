@@ -22,5 +22,5 @@ void main(void)
     vec3 pos = unproject(uv);
     vec2 F = cellular(pos.xyz*scale);
     float n = F.y-F.x;
-	gl_FragColor = vec4(vec3(F.x),1.0);
+	gl_FragColor = vec4(F.x);
 }

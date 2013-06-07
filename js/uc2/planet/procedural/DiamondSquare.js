@@ -96,23 +96,24 @@ define(["kick"],
             );
         }
 
-        return function(texture, config){
-            var iterations = config.iterations;
-            console.log("iterations: "+iterations);
-            var textureDim = Math.pow(2,iterations);
+        return function(){
+            this.bake = function(texture, config){
+                var iterations = config.iterations;
+                var textureDim = Math.pow(2,iterations);
 
-            var data = buildMap(iterations);
+                var data = buildMap(iterations);
 
-            if (!texture || texture.internalFormat !== kick.core.Constants.GL_ALPHA || texture.dimension[0] !== textureDim){
-                if (texture){
-                    texture.destroy();
+                if (!texture || texture.internalFormat !== kick.core.Constants.GL_ALPHA || texture.dimension[0] !== textureDim){
+                    if (texture){
+                        texture.destroy();
+                    }
+                    texture = new kick.texture.Texture();
+                    texture.internalFormat = kick.core.Constants.GL_ALPHA;
+                    texture.magFilter = kick.core.Constants.GL_LINEAR;
                 }
-                texture = new kick.texture.Texture();
-                texture.internalFormat = kick.core.Constants.GL_ALPHA;
-                texture.magFilter = kick.core.Constants.GL_LINEAR;
-            }
 
-            texture.setImageData ( textureDim, textureDim, 0, kick.core.Constants.GL_UNSIGNED_BYTE,  data);
-            return texture;
+                texture.setImageData ( textureDim, textureDim, 0, kick.core.Constants.GL_UNSIGNED_BYTE,  data);
+                return texture;
+            }
         }
     });

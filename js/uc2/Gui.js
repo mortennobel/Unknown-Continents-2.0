@@ -80,8 +80,6 @@ define([],
                 // planet color
                 var planet = gui.addFolder('Planet');
                 planet.add(planetScapeConfig.planet,'strategy', ["diamondSquare","worley","simplex"]).onChange(onChangeListener);
-                planet.addColor(createColorWrapper(planetScapeConfig.planet,'color'),'color')
-                    .onChange(onChangeListener);
                 planet.add(planetScapeConfig.planet,'showTexture')
                     .onChange(onChangeListener);
                 planet.add(planetScapeConfig.planet,'maxHeight', 0.000,5.01)

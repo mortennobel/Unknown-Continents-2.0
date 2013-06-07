@@ -1,7 +1,7 @@
-define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedural/Simplex", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_composition_fs.glsl',
+define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedural/Simplex", "./procedural/BakeColorAndSpecularity", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_composition_fs.glsl',
     'text!shaders/unlit_alpha_vs.glsl', 'text!shaders/unlit_alpha_fs.glsl'],
 //define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
-    function (kick, DiamondSquare, Worley, Simplex, planet_vs, planet_fs, unlit_planet_vs, unlit_planet_fs) {
+    function (kick, DiamondSquare, Worley, Simplex, BakeColorAndSpecularity, planet_vs, planet_fs, unlit_planet_vs, unlit_planet_fs) {
         "use strict";
 
         /**
@@ -9,7 +9,7 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
          */
         return function () {
 
-            // texture width / height must be power of 2 and square
+            // heighmapTexture width / height must be power of 2 and square
             var time,
                 material,
                 showTextureMaterial,
@@ -17,17 +17,22 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                 thisObj = this,
                 planetMeshRenderer,
                 config = {},
+                heighmapTexture,
                 texture,
                 currentConfigKey = "",
                 rotation = [0,0,0,1],
                 rotationSpeed = 1000.01,
+                simplex = new Simplex(),
+                worley = new Worley(),
+                diamondSquare = new DiamondSquare(),
+                bakeColorAndSpecularity = new BakeColorAndSpecularity(),
+
                 updateMaterial = function(){
                     if (material){
-                        material.setUniform("heightMap", texture);
+                        material.setUniform("heightMap", heighmapTexture);
                         material.setUniform("mainTexture", texture);
-                        material.setUniform("bumpmapTextureStep",new Float32Array([1/texture.dimension[0]]) );
+                        material.setUniform("bumpmapTextureStep",new Float32Array([1/heighmapTexture.dimension[0]]) );
                         material.setUniform("atmosphereColor", config.atmosphereColor || [0.0, 0.0, 0.9, 1.0]);
-                        material.setUniform("mainColor", config.color || [1.0, 0.0, 0.9, 1.0]);
                         material.setUniform("maxHeight", new Float32Array([config.maxHeight || 2.00]) );
                         planetMeshRenderer.material = showTexture ? showTextureMaterial : material;
                     } else {
@@ -38,15 +43,17 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
 
             this.makePlanetTexture = function () {
                 if (config.strategy === "simplex"){
-                    texture = Simplex(texture, config.simplexWorley || {});
+                    heighmapTexture = simplex.bake(heighmapTexture, config.simplexWorley || {});
                 } else if (config.strategy === "worley"){
-                    texture = Worley(texture, config.simplexWorley || {});
+                    heighmapTexture = worley.bake(heighmapTexture, config.simplexWorley || {});
                 } else { // strategy === "DiamondSquare"
-                    texture = DiamondSquare(texture, config.diamondSquare || {iterations:4});
+                    heighmapTexture = diamondSquare.bake(heighmapTexture, config.diamondSquare || {iterations:4});
                 }
 
+                texture = bakeColorAndSpecularity.bake(texture, config.colorSpecularity, heighmapTexture);
+
                 updateMaterial();
-                return texture;
+                return heighmapTexture;
             };
 
 

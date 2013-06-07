@@ -21,7 +21,6 @@ define(["kick", 'uc2/util/Random'],
                 strategy: "diamondSquare",
                 atmosphereColor: [0.0, 0.0, 1.0, 1.0],
                 rotationSpeed: 0.05,
-                color: [1.0, 1.0, 1.0, 1.0],
                 maxHeight: 2.000,
                 showTexture: false,
                 diamondSquare: {
