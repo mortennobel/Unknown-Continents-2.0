@@ -28,7 +28,7 @@ define(["kick", 'uc2/planet/PlanetScape','uc2/planet/DebugRotateComponent','uc2/
         function buildCamera(scene) {
             var cameraGO = scene.createGameObject({name: "Camera"});
             var camera = new kick.scene.Camera({
-                fieldOfView: 60
+                fieldOfView: 45
             });
             camera.clearColor = [0.1, 0.1, 0.1, 1];
             cameraGO.addComponent(camera);

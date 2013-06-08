@@ -22,6 +22,6 @@ void main(void) {
 	localPos = vertex;
 	// compute light info
 	n = normalize(_norm * normal);
-    u_tangent = normalize(_norm * tangent.xyz)*tangent.w; 
+    u_tangent = -normalize(_norm * tangent.xyz)*tangent.w;
     v_tangent = normalize(cross(n, u_tangent));
 }

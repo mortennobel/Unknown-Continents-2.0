@@ -21,6 +21,8 @@ uniform float colorStop2;
 uniform float colorStop3;
 uniform float colorStop4;
 
+const float waterLevel = 0.5;
+
 vec4 linearGradient(float height){
     if (height < colorStop0){
         return mix(color0, color1, height/colorStop0);
@@ -37,13 +39,18 @@ vec4 linearGradient(float height){
     }
 }
 
+// 1.0 small specular highlight
+// 0.0 no (very wide) specular highlight
 float specularity(float height, vec2 uv){
-    return sin(height*3.14*2.0);
+    if (height < waterLevel){
+        return 1.0;
+    } else {
+        return 0.0;
+    }
 }
-
 
 void main(void)
 {
     float height = texture2D(heightMap,uv).a;
-    gl_FragColor = vec4(linearGradient(height).xyz,specularity(height, uv));
+    gl_FragColor = vec4(linearGradient(height).xyz, specularity(height, uv));
 }

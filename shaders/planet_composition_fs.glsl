@@ -15,6 +15,8 @@ uniform sampler2D mainTexture;
 uniform float maxHeight;
 uniform float bumpmapTextureStep;
 
+const float waterLevel = 0.5;
+
 //#pragma include "noise2D.glsl for snoise(vec2 v)
 //#pragma include "noise3D.glsl"] for snoise(vec3 v)
 //#pragma include "noise4D.glsl"] for snoise(vec4 v)
@@ -51,19 +53,20 @@ vec2 project(vec3 pos){
 void main(void)
 {
     vec2 uv = project(localPos);
+    float height = texture2D(heightMap, uv).a;
     vec3 eyeSpaceLigthDirection = vec3(0.0,0.0,1.0);
-    vec3 nBumped = normal(uv);
+    vec3 nBumped = height < waterLevel ? n : normal(uv);
     vec4 diffuseSpecular = texture2D(mainTexture,uv);
     vec3 diffuse;
 
     float specular;
-    float specularExponent = diffuseSpecular.a*120.0;
+    float specularExponent = max(1.0, diffuseSpecular.a*50.0);
     getDirectionalLight(nBumped, _dLight, specularExponent, diffuse, specular);
 
-    float heightModifier = texture2D(heightMap,uv).a*0.5+0.5;
     vec3 atmosphereColor = getAtmosphereLight(n, _dLight) * atmosphereColor.xyz*0.9;
     vec3 light =max(diffuse, _ambient)*0.9;
 	gl_FragColor = vec4(atmosphereColor,0.0) +
-	    heightModifier*vec4(diffuseSpecular.xyz*light,1.0);
-	    //vec4(0.0,0.0,0.0,1.0);
+	    vec4(vec3(specular*diffuseSpecular.a),0.0) +
+	    vec4(diffuseSpecular.xyz*light,1.0);
+	    //vec4(diffuseSpecular.a,0.0,0.0,1.0);
 }

@@ -3,7 +3,7 @@ define(["kick",'text!shaders/simplex_noise_vs.glsl', 'text!shaders/simplex_noise
         "use strict";
 
         return function(){
-            var textureDim = 1024,
+            var textureDim = 1024*2,
                 renderTexture,
                 shader,
                 renderMaterial;

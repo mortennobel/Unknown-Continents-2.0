@@ -3,7 +3,7 @@ define(["kick",'text!shaders/bake_color_and_specularity_vs.glsl', 'text!shaders/
         "use strict";
 
         return function(){
-            var textureDim = 1024,
+            var textureDim = 1024*2,
                 renderTexture,
                 shader,
                 renderMaterial;
@@ -14,7 +14,7 @@ define(["kick",'text!shaders/bake_color_and_specularity_vs.glsl', 'text!shaders/
                         texture.destroy();
                     }
                     texture = new kick.texture.Texture();
-                    texture.internalFormat = kick.core.Constants.GL_RGB;
+                    texture.internalFormat = kick.core.Constants.GL_RGBA;
                     texture.magFilter = kick.core.Constants.GL_LINEAR;
                     texture.setImageData(textureDim, textureDim, 0, kick.core.Constants.GL_UNSIGNED_BYTE, null, "");
 
@@ -40,7 +40,7 @@ define(["kick",'text!shaders/bake_color_and_specularity_vs.glsl', 'text!shaders/
                 renderMaterial.setUniform("color2", new Float32Array([0, 1.0, 0, 0]));
                 renderMaterial.setUniform("color3", new Float32Array([1, 0, 0, 0]));
                 renderMaterial.setUniform("color4", new Float32Array([0, 1, 0, 0]));
-                renderMaterial.setUniform("color5", new Float32Array([0, 0, 1, 0]));
+                renderMaterial.setUniform("color5", new Float32Array([1, 0.3, 0, 0]));
                 renderMaterial.setUniform("color6", new Float32Array([1, 1, 1, 0]));
 
                 renderMaterial.setUniform("colorStop0", new Float32Array([0.2]));

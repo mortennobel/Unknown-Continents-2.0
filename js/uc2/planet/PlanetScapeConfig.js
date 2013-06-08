@@ -84,5 +84,6 @@ define(["kick", 'uc2/util/Random'],
                 thisObj.moons.ellipseFrom = randomFloat(1, 1.3);
                 thisObj.moons.ellipseTo = thisObj.moons.ellipseFrom + randomFloat(0, 1.0);
             };
+            this.createRandom();
         };
     });
