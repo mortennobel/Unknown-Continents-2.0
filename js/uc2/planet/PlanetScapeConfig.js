@@ -69,8 +69,7 @@ define(["kick", 'uc2/util/Random'],
                 thisObj.planet.simplexWorley.scale = randomFloat(0.01, 50);
 
                 // moon
-//                thisObj.moons.numberOfMoons = randomInt(0, 16, 2);
-                thisObj.moons.numberOfMoons = randomInt(0, 0, 2);
+                thisObj.moons.numberOfMoons = randomInt(0, 16, 2);
                 thisObj.moons.colorFrom = [randomFloat(0, 0.1), randomFloat(0, 0.1), randomFloat(0, 0.1), 1];
                 thisObj.moons.colorTo = [thisObj.moons.colorFrom[0] + randomFloat(0, 0.1),
                     thisObj.moons.colorFrom[0] + randomFloat(0, 0.1),
