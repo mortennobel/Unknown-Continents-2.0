@@ -32,7 +32,7 @@ vec3 normal(vec2 tc)
 
     float udiff = 3.0*scaledHeight*(texture2D(heightMap, tc+vec2(bumpmapTextureStep,0.0)).a-texture2D(heightMap, tc-vec2(bumpmapTextureStep,0.0)).a)/2.0;
     float vdiff = 3.0*scaledHeight*(texture2D(heightMap, tc+vec2(0.0,bumpmapTextureStep)).a-texture2D(heightMap, tc-vec2(0.0,bumpmapTextureStep)).a)/2.0;
-    return normalize(n - udiff * u_tangent - vdiff * v_tangent);
+    return n - udiff * u_tangent - vdiff * v_tangent;
 }
 
 // assumes that normal is normalized
@@ -50,12 +50,16 @@ vec2 project(vec3 pos){
     return vec2(atan(pos.z, pos.x)/(2.0*PI)+0.5, pos.y*0.5+0.5);
 }
 
+vec4 computeSpecularity(float specular, float specularWeight){
+    return vec4(vec3(specular*specularWeight),0.0); // weight the specularity color dependent of specularity
+}
+
 void main(void)
 {
     vec2 uv = project(localPos);
     float height = texture2D(heightMap, uv).a;
-    vec3 eyeSpaceLigthDirection = vec3(0.0,0.0,1.0);
     vec3 nBumped = height < waterLevel ? n : normal(uv);
+    nBumped = normalize(nBumped);
     vec4 diffuseSpecular = texture2D(mainTexture,uv);
     vec3 diffuse;
 
@@ -64,9 +68,9 @@ void main(void)
     getDirectionalLight(nBumped, _dLight, specularExponent, diffuse, specular);
 
     vec3 atmosphereColor = getAtmosphereLight(n, _dLight) * atmosphereColor.xyz*0.9;
-    vec3 light =max(diffuse, _ambient)*0.9;
+    vec3 light = max(diffuse, _ambient)*0.9;
 	gl_FragColor = vec4(atmosphereColor,0.0) +
-	    vec4(vec3(specular*diffuseSpecular.a),0.0) +
+	    computeSpecularity(specular, diffuseSpecular.a) +
 	    vec4(diffuseSpecular.xyz*light,1.0);
 	    //vec4(diffuseSpecular.a,0.0,0.0,1.0);
 }
