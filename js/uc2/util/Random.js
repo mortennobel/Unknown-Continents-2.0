@@ -63,6 +63,9 @@ define(["kick"],
                 var rnd = Math.pow(Math.random(), power || 1);
                 var index = Math.min(Math.floor(array.length*rnd),array.length-1);
                 return array[index];
+            },
+            randomColor: function(){
+                return new Float32Array([Math.random(),Math.random(),Math.random(),1.0]);
             }
         };
     });

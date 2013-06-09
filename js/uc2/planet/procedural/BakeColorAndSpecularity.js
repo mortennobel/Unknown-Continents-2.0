@@ -1,5 +1,5 @@
-define(["kick",'text!shaders/bake_color_and_specularity_vs.glsl', 'text!shaders/bake_color_and_specularity_fs.glsl'],
-    function (kick, vs, fs) {
+define(["kick",'text!shaders/bake_color_and_specularity_vs.glsl', 'text!shaders/bake_color_and_specularity_fs.glsl',  'uc2/util/Random'],
+    function (kick, vs, fs, Random) {
         "use strict";
 
         return function(){
@@ -35,13 +35,13 @@ define(["kick",'text!shaders/bake_color_and_specularity_vs.glsl', 'text!shaders/
                     });
                 }
                 renderMaterial.setUniform("heightMap", heightMapTexture);
-                renderMaterial.setUniform("color0", new Float32Array([0, 0, 0.5, 0]));
-                renderMaterial.setUniform("color1", new Float32Array([0, 0, 0.8, 0]));
-                renderMaterial.setUniform("color2", new Float32Array([0, 1.0, 0, 0]));
-                renderMaterial.setUniform("color3", new Float32Array([1, 0, 0, 0]));
-                renderMaterial.setUniform("color4", new Float32Array([0, 1, 0, 0]));
-                renderMaterial.setUniform("color5", new Float32Array([1, 0.3, 0, 0]));
-                renderMaterial.setUniform("color6", new Float32Array([1, 1, 1, 0]));
+                renderMaterial.setUniform("color0", Random.randomColor());//new Float32Array([0, 0, 0.5, 0]));
+                renderMaterial.setUniform("color1", Random.randomColor());//new Float32Array([0, 0, 0.8, 0]));
+                renderMaterial.setUniform("color2", Random.randomColor());//new Float32Array([0, 1.0, 0, 0]));
+                renderMaterial.setUniform("color3", Random.randomColor());//new Float32Array([1, 0, 0, 0]));
+                renderMaterial.setUniform("color4", Random.randomColor());//new Float32Array([0, 1, 0, 0]));
+                renderMaterial.setUniform("color5", Random.randomColor());//new Float32Array([1, 0.3, 0, 0]));
+                renderMaterial.setUniform("color6", Random.randomColor());//new Float32Array([1, 1, 1, 0]));
 
                 renderMaterial.setUniform("colorStop0", new Float32Array([0.2]));
                 renderMaterial.setUniform("colorStop1", new Float32Array([0.4]));
