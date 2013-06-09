@@ -25,7 +25,7 @@ const float waterLevel = 0.5;
 //#pragma include "cellular2x2x2.glsl"] for cellular2x2x2(vec3 P)
 //#pragma include "cellular3D.glsl"] cellular(vec3 P)
 
-vec3 normal(vec2 tc)
+vec3 bumpedNormal(vec2 tc)
 {
     // scale height with angle
     float scaledHeight = maxHeight*(dot(n, -normalize(pos)));
@@ -51,6 +51,7 @@ vec2 project(vec3 pos){
 }
 
 vec4 computeSpecularity(float specular, float specularWeight){
+
     return vec4(vec3(specular*specularWeight),0.0); // weight the specularity color dependent of specularity
 }
 
@@ -58,7 +59,13 @@ void main(void)
 {
     vec2 uv = project(localPos);
     float height = texture2D(heightMap, uv).a;
-    vec3 nBumped = height < waterLevel ? n : normal(uv);
+    float bumpVisibility = clamp((dot(normalize(n), _dLight[0])+0.1)*10.0,0.0,1.0);
+    vec3 nBumped = bumpedNormal(uv);
+    if (height < waterLevel ){
+        nBumped = n;
+    } else {
+        nBumped = mix(n, nBumped, bumpVisibility);
+    }
     nBumped = normalize(nBumped);
     vec4 diffuseSpecular = texture2D(mainTexture,uv);
     vec3 diffuse;
@@ -69,7 +76,10 @@ void main(void)
 
     vec3 atmosphereColor = getAtmosphereLight(n, _dLight) * atmosphereColor.xyz*0.9;
     vec3 light = max(diffuse, _ambient)*0.9;
-	gl_FragColor = vec4(atmosphereColor,0.0) +
+
+    gl_FragColor =
+        // mod(gl_FragCoord.y,10.0)<5.0?vec4(vec3(bumpVisibility),1.0):(
+        vec4(atmosphereColor,0.0) +
 	    computeSpecularity(specular, diffuseSpecular.a) +
 	    vec4(diffuseSpecular.xyz*light,1.0);
 	    //vec4(diffuseSpecular.a,0.0,0.0,1.0);
