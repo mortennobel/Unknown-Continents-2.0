@@ -22,6 +22,7 @@ define(["kick", 'uc2/util/Random'],
                 atmosphereColor: [0.0, 0.0, 1.0, 1.0],
                 rotationSpeed: 0.05,
                 maxHeight: 2.000,
+                waterLevel: 0.2,
                 showTexture: false,
                 diamondSquare: {
                     iterations: 10
@@ -62,6 +63,7 @@ define(["kick", 'uc2/util/Random'],
                 thisObj.planet.strategy = randomElement(["diamondSquare","simplex","worley"]);
                 thisObj.planet.atmosphereColor = thisObj.atmosphere.color;
                 thisObj.planet.rotationSpeed = randomFloat(-0.05, 0.05);
+                thisObj.planet.waterLevel = randomFloat(0, 1);
                 thisObj.planet.color = [randomFloat(0, 1, 0.2), randomFloat(0, 1, 0.2), randomFloat(0, 1, 0.2), 1];
                 thisObj.planet.color = [randomFloat(0, 1, 0.2), randomFloat(0, 1, 0.2), randomFloat(0, 1, 0.2), 1];
                 thisObj.planet.maxHeight = randomFloat(0, 5);

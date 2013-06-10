@@ -43,11 +43,22 @@ define(["kick",'text!shaders/bake_color_and_specularity_vs.glsl', 'text!shaders/
                 renderMaterial.setUniform("color5", Random.randomColor());//new Float32Array([1, 0.3, 0, 0]));
                 renderMaterial.setUniform("color6", Random.randomColor());//new Float32Array([1, 1, 1, 0]));
 
-                renderMaterial.setUniform("colorStop0", new Float32Array([0.2]));
-                renderMaterial.setUniform("colorStop1", new Float32Array([0.4]));
-                renderMaterial.setUniform("colorStop2", new Float32Array([0.5]));
-                renderMaterial.setUniform("colorStop3", new Float32Array([0.6]));
-                renderMaterial.setUniform("colorStop4", new Float32Array([0.8]));
+                // create a random interval 0 <= a[i] <= a[i+1] <= 1
+                // first interval is water level
+                var array = [0,0,0,0,0];
+                array[0] = config.waterLevel;
+                array[2] = Random.randomFloat(array[0],1);
+                array[1] = Random.randomFloat(array[0],array[2]);
+                array[3] = Random.randomFloat(array[2],1);
+                array[4] = Random.randomFloat(array[3],1);
+
+                renderMaterial.setUniform("colorStop0", new Float32Array([array[0]]));
+                renderMaterial.setUniform("colorStop1", new Float32Array([array[1]]));
+                renderMaterial.setUniform("colorStop2", new Float32Array([array[2]]));
+                renderMaterial.setUniform("colorStop3", new Float32Array([array[3]]));
+                renderMaterial.setUniform("colorStop4", new Float32Array([array[4]]));
+
+                renderMaterial.setUniform("waterLevel", new Float32Array([config.waterLevel]));
 
                 kick.core.Graphics.renderToTexture(renderTexture, renderMaterial);
 

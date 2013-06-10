@@ -34,6 +34,7 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                         material.setUniform("bumpmapTextureStep",new Float32Array([1/heighmapTexture.dimension[0]]) );
                         material.setUniform("atmosphereColor", config.atmosphereColor || [0.0, 0.0, 0.9, 1.0]);
                         material.setUniform("maxHeight", new Float32Array([config.maxHeight || 2.00]) );
+                        material.setUniform("waterLevel", new Float32Array([config.waterLevel || 0.50]) );
                         planetMeshRenderer.material = showTexture ? showTextureMaterial : material;
                     } else {
                         console.log("no mat");
@@ -50,7 +51,7 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                     heighmapTexture = diamondSquare.bake(heighmapTexture, config.diamondSquare || {iterations:4});
                 }
 
-                texture = bakeColorAndSpecularity.bake(texture, config.colorSpecularity, heighmapTexture);
+                texture = bakeColorAndSpecularity.bake(texture, config, heighmapTexture);
 
                 updateMaterial();
                 return heighmapTexture;

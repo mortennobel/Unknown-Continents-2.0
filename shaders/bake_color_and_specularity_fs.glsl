@@ -21,7 +21,7 @@ uniform float colorStop2;
 uniform float colorStop3;
 uniform float colorStop4;
 
-const float waterLevel = 0.5;
+uniform float waterLevel;
 
 vec4 linearGradient(float height){
     if (height < colorStop0){

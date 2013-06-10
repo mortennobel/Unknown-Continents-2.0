@@ -84,6 +84,8 @@ define([],
                     .onChange(onChangeListener);
                 planet.add(planetScapeConfig.planet,'maxHeight', 0.000,5.01)
                     .onChange(onChangeListener);
+                planet.add(planetScapeConfig.planet,'waterLevel', 0.000,1.00)
+                    .onChange(onChangeListener);
                 planet.add(planetScapeConfig.planet,'rotationSpeed', -1,1)
                     .onChange(onChangeListener);
                 var diamondSqr =  planet.addFolder('DiamondSquare');
