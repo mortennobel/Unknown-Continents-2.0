@@ -23,14 +23,20 @@ mat4 rotationMatrix(vec3 axis_, float angle)
                 0.0,                                0.0,                                0.0,                                1.0);
 }
 
-void main(void) {
+vec4 computeRotatedAtmosphere(){
     vec3 origin = (_mv * vec4(0.0,0.0,0.0,1.0)).xyz;
+    // find rotate angle so the surface is perpendicular to the visible horizon
     float lengthToOrigin = length(origin);
-    float atmosphereRotationAngle = 3.1415*0.5 - acos(1.0/lengthToOrigin);
+    const float planetRadius = 1.0;
+    float atmosphereRotationAngle = 3.1415*0.5 - acos(planetRadius/lengthToOrigin);
 
     vec4 v = vec4(vertex, 1.0);
     mat4 rotation = rotationMatrix(cross(normalize((_mv * v).xyz),normalize(vertex)), atmosphereRotationAngle);
-    v = rotation * v;
+    return rotation * v;
+}
+
+void main(void) {
+    vec4 v = computeRotatedAtmosphere();
     // compute position
     gl_Position = _mvProj * v;
 
