@@ -78,7 +78,7 @@ define([],
 
                 // planet color
                 var planet = gui.addFolder('Planet');
-                planet.add(planetScapeConfig.planet,'strategy', ["diamondSquare","worley","simplex", "cell"]).onChange(onChangeListener);
+                planet.add(planetScapeConfig.planet,'strategy', ["diamondSquare","worley","simplex", "cell"]);
                 planet.add(planetScapeConfig.planet,'showTexture');
                 planet.add(planetScapeConfig.planet,'maxHeight', 0.000,5.01);
                 planet.add(planetScapeConfig.planet,'waterLevel', 0.000,1.00);
@@ -99,7 +99,6 @@ define([],
 
                 var moon = gui.addFolder('Moons');
                 moon.add(planetScapeConfig.moons,'numberOfMoons').min(0).max(16).step(1);
-
 
                 // sun properties
                 var sun = gui.addFolder('Sun');
