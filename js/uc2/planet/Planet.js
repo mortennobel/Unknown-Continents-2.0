@@ -1,7 +1,7 @@
-define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedural/Simplex", "./procedural/BakeColorAndSpecularity", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_composition_fs.glsl',
+define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedural/Simplex","./procedural/Cell", "./procedural/BakeColorAndSpecularity", 'text!shaders/planet_composition_vs.glsl', 'text!shaders/planet_composition_fs.glsl',
     'text!shaders/unlit_alpha_vs.glsl', 'text!shaders/unlit_alpha_fs.glsl'],
 //define(["kick", 'text!shaders/planet_vs.glsl', 'text!shaders/planet_fs.glsl'],
-    function (kick, DiamondSquare, Worley, Simplex, BakeColorAndSpecularity, planet_vs, planet_fs, unlit_planet_vs, unlit_planet_fs) {
+    function (kick, DiamondSquare, Worley, Simplex,Cell, BakeColorAndSpecularity, planet_vs, planet_fs, unlit_planet_vs, unlit_planet_fs) {
         "use strict";
 
         /**
@@ -19,12 +19,12 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                 config = {},
                 heighmapTexture,
                 texture,
-                currentConfigKey = "",
                 rotation = [0,0,0,1],
                 rotationSpeed = 1000.01,
                 simplex = new Simplex(),
                 worley = new Worley(),
                 diamondSquare = new DiamondSquare(),
+                cell = new Cell(),
                 bakeColorAndSpecularity = new BakeColorAndSpecularity(),
 
                 updateMaterial = function(){
@@ -45,6 +45,8 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
             this.makePlanetTexture = function () {
                 if (config.strategy === "simplex"){
                     heighmapTexture = simplex.bake(heighmapTexture, config.simplexWorley || {});
+                } else if (config.strategy === "cell"){
+                    heighmapTexture = cell.bake(heighmapTexture, config.cell || {});
                 } else if (config.strategy === "worley"){
                     heighmapTexture = worley.bake(heighmapTexture, config.simplexWorley || {});
                 } else { // strategy === "DiamondSquare"
@@ -66,12 +68,7 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                         showTexture = config.showTexture;
                         rotationSpeed = (config.rotationSpeed || 0) / 1000;
 
-                        var configKey = config.strategy + JSON.stringify(newValue[config.strategy]);
-                        if (configKey !== currentConfigKey && material){
-                            currentConfigKey = configKey;
-                            thisObj.makePlanetTexture();
-                        }
-
+                        thisObj.makePlanetTexture();
                     }
                 }
             });
@@ -124,7 +121,7 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                 updateMaterial();
             };
 
-            this.update = function(){
+            this.update = function() {
                 thisObj.gameObject.transform.localRotation = kick.math.Quat.rotateY(rotation,rotation,rotationSpeed*time.deltaTime);
             };
         }

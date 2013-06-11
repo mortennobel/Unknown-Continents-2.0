@@ -29,6 +29,15 @@ define(["kick", 'uc2/util/Random'],
                 },
                 simplexWorley: {
                     scale: 20
+                },
+                cell:{
+                    scale: 1.0,
+                    scaleSmall: 1.0,
+                    scaleXSmall: 1.0,
+                    border: 0.1,
+                    borderSmall: 0.2,
+                    borderXSmall: 0.2,
+                    heightPower:1
                 }
             };
 
@@ -60,7 +69,7 @@ define(["kick", 'uc2/util/Random'],
                 thisObj.atmosphere.size = randomFloat(0.005, 0.3);
 
                 // planet
-                thisObj.planet.strategy = randomElement(["diamondSquare","simplex","worley"]);
+                thisObj.planet.strategy = randomElement(["diamondSquare","simplex","worley", "cell"]);
                 thisObj.planet.atmosphereColor = thisObj.atmosphere.color;
                 thisObj.planet.rotationSpeed = randomFloat(-0.05, 0.05);
                 thisObj.planet.waterLevel = randomFloat(0, 1);
@@ -69,6 +78,13 @@ define(["kick", 'uc2/util/Random'],
                 thisObj.planet.maxHeight = randomFloat(0, 5);
                 thisObj.planet.diamondSquare.iterations = randomInt(5, 10);
                 thisObj.planet.simplexWorley.scale = randomFloat(0.01, 50);
+                thisObj.planet.cell.scale = randomFloat(0.2, 1.5);
+                thisObj.planet.cell.scaleSmall = randomFloat(0.2, 1.5);
+                thisObj.planet.cell.scaleXSmall = randomFloat(0.2, 1.5);
+                thisObj.planet.cell.border = randomFloat(0.02, 0.1);
+                thisObj.planet.cell.borderSmall = randomFloat(0.02, 0.2);
+                thisObj.planet.cell.borderXSmall = randomFloat(0.02, 0.2);
+                thisObj.planet.cell.heightPower = randomFloat(0.1, 2.0);
 
                 // moon
                 thisObj.moons.numberOfMoons = randomInt(0, 16, 2);

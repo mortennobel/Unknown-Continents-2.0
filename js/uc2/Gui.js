@@ -73,49 +73,46 @@ define([],
                 var atmosphere = gui.addFolder('Atmosphere');
                 atmosphere.addColor(createColorWrapper(planetScapeConfig.atmosphere,'color'),'color')
                     .onChange(onChangeListener);
-                atmosphere.add(planetScapeConfig.atmosphere,'size', 0.00,0.3)
-                                    .onChange(onChangeListener);
+                atmosphere.add(planetScapeConfig.atmosphere,'size', 0.00,0.3);
 
 
                 // planet color
                 var planet = gui.addFolder('Planet');
-                planet.add(planetScapeConfig.planet,'strategy', ["diamondSquare","worley","simplex"]).onChange(onChangeListener);
-                planet.add(planetScapeConfig.planet,'showTexture')
-                    .onChange(onChangeListener);
-                planet.add(planetScapeConfig.planet,'maxHeight', 0.000,5.01)
-                    .onChange(onChangeListener);
-                planet.add(planetScapeConfig.planet,'waterLevel', 0.000,1.00)
-                    .onChange(onChangeListener);
-                planet.add(planetScapeConfig.planet,'rotationSpeed', -1,1)
-                    .onChange(onChangeListener);
+                planet.add(planetScapeConfig.planet,'strategy', ["diamondSquare","worley","simplex", "cell"]).onChange(onChangeListener);
+                planet.add(planetScapeConfig.planet,'showTexture');
+                planet.add(planetScapeConfig.planet,'maxHeight', 0.000,5.01);
+                planet.add(planetScapeConfig.planet,'waterLevel', 0.000,1.00);
+                planet.add(planetScapeConfig.planet,'rotationSpeed', -1,1);
                 var diamondSqr =  planet.addFolder('DiamondSquare');
-                diamondSqr.add(planetScapeConfig.planet.diamondSquare,'iterations').min(2).max(10).step(1)
-                    .onChange(onChangeListener);
+                diamondSqr.add(planetScapeConfig.planet.diamondSquare,'iterations').min(2).max(10).step(1);
                 var simplex =  planet.addFolder('Simplex/Worley');
-                simplex.add(planetScapeConfig.planet.simplexWorley,'scale', 1,40)
-                                    .onChange(onChangeListener);
+                simplex.add(planetScapeConfig.planet.simplexWorley,'scale', 1,40);
+
+                var cell =  planet.addFolder('Cell');
+                cell.add(planetScapeConfig.planet.cell,'scale', 0.2,1.5);
+                cell.add(planetScapeConfig.planet.cell,'scaleSmall', 0.2,1.5);
+                cell.add(planetScapeConfig.planet.cell,'scaleXSmall', 0.2,1.5);
+                cell.add(planetScapeConfig.planet.cell,'border', 0.02,0.1);
+                cell.add(planetScapeConfig.planet.cell,'borderSmall', 0.02,0.2);
+                cell.add(planetScapeConfig.planet.cell,'borderXSmall', 0.02,0.2);
+                cell.add(planetScapeConfig.planet.cell,'heightPower', 0.1,2.0);
 
                 var moon = gui.addFolder('Moons');
-                moon.add(planetScapeConfig.moons,'numberOfMoons').min(0).max(16).step(1)
-                                    .onChange(onChangeListener);
+                moon.add(planetScapeConfig.moons,'numberOfMoons').min(0).max(16).step(1);
 
 
                 // sun properties
                 var sun = gui.addFolder('Sun');
-                sun.addColor(createColorWrapper(planetScapeConfig.sun,'ambientColor',true),'ambientColor')
-                    .onChange(onChangeListener);
+                sun.addColor(createColorWrapper(planetScapeConfig.sun,'ambientColor',true),'ambientColor');
                 //light direction
                 var light = sun.addFolder('LightDirection');
                 var wrappedDirectionArray = createArrayWrapper(planetScapeConfig.sun, "lightDirection", [0,1,2], ["lightDirectionX","lightDirectionY","lightDirectionZ"]);
-                light.add(wrappedDirectionArray,'lightDirectionX',-1,1)
-                    .onChange(onChangeListener);
-                light.add(wrappedDirectionArray,'lightDirectionY',-1,1)
-                    .onChange(onChangeListener);
-                light.add(wrappedDirectionArray,'lightDirectionZ',-1,1)
-                    .onChange(onChangeListener);
-                sun.add(planetScapeConfig.sun,'showLightDirection')
-                    .onChange(onChangeListener);
+                light.add(wrappedDirectionArray,'lightDirectionX',-1,1);
+                light.add(wrappedDirectionArray,'lightDirectionY',-1,1);
+                light.add(wrappedDirectionArray,'lightDirectionZ',-1,1);
+                sun.add(planetScapeConfig.sun,'showLightDirection');
 
+                gui.add({updatePlanet:function(){planetScape.config = planetScapeConfig;}}, 'updatePlanet');
                 gui.add(planetScapeConfig, 'createRandom').onChange(function(){
                     var updateControllers = function(obj){
                         // Recursively update all controllers
