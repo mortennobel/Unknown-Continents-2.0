@@ -14,13 +14,25 @@ define(["kick", "./Planet", 'uc2/util/Random','./Moon'],
                         color: Random.randomVec4(config.colorFrom, config.colorTo, 1, 1),
                         maxHeight: Random.randomFloat(config.heightFrom, config.heightTo),
                         waterLevel: Random.randomFloat(0, 1),
-                        showTexture: false,
                         distance: Random.randomFloat(config.distanceFrom, config.distanceTo),
                         strategy: "DiamondSquare",
                         diamondsquare:{
                             iterations: Random.randomInt(config.iterationsFrom, config.iterationsTo),
                         },
-                        ellipse: Random.randomFloat(config.ellipseFrom, config.ellipseTo)
+                        ellipse: Random.randomFloat(config.ellipseFrom, config.ellipseTo),
+                        colors: {
+                            color0: [1,1,1,1],
+                            color1: [1,1,1,1],
+                            color2: [1,1,1,1],
+                            color3: [1,1,1,1],
+                            color4: [1,1,1,1],
+                            color5: [1,1,1,1],
+                            color6: [1,1,1,1],
+                            colorStop0:0.2,
+                            colorStop1:0.4,
+                            colorStop2:0.6,
+                            colorStop3:0.8
+                        }
                     };
                     return res;
                 },

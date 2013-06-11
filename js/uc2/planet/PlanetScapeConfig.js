@@ -23,7 +23,19 @@ define(["kick", 'uc2/util/Random'],
                 rotationSpeed: 0.05,
                 maxHeight: 2.000,
                 waterLevel: 0.2,
-                showTexture: false,
+                colors: {
+                    color0: [1,1,1,1],
+                    color1: [1,1,1,1],
+                    color2: [1,1,1,1],
+                    color3: [1,1,1,1],
+                    color4: [1,1,1,1],
+                    color5: [1,1,1,1],
+                    color6: [1,1,1,1],
+                    colorStop0:0.2,
+                    colorStop1:0.4,
+                    colorStop2:0.6,
+                    colorStop3:0.8
+                },
                 diamondSquare: {
                     iterations: 10
                 },
@@ -85,6 +97,18 @@ define(["kick", 'uc2/util/Random'],
                 thisObj.planet.cell.borderSmall = randomFloat(0.02, 0.2);
                 thisObj.planet.cell.borderXSmall = randomFloat(0.02, 0.2);
                 thisObj.planet.cell.heightPower = randomFloat(0.1, 2.0);
+
+                thisObj.planet.colors.color0 = Random.randomColor();
+                thisObj.planet.colors.color1 = Random.randomColor();
+                thisObj.planet.colors.color2 = Random.randomColor();
+                thisObj.planet.colors.color3 = Random.randomColor();
+                thisObj.planet.colors.color4 = Random.randomColor();
+                thisObj.planet.colors.color5 = Random.randomColor();
+                thisObj.planet.colors.color6 = Random.randomColor();
+                thisObj.planet.colors.colorStop2 = randomFloat(0.0, 1.0);
+                thisObj.planet.colors.colorStop1 = randomFloat(0.0, thisObj.planet.colors.colorStop2);
+                thisObj.planet.colors.colorStop0 = randomFloat(0.0, thisObj.planet.colors.colorStop1);
+                thisObj.planet.colors.colorStop3 = randomFloat(thisObj.planet.colors.colorStop2, 1.0);
 
                 // moon
                 thisObj.moons.numberOfMoons = randomInt(0, 16, 2);

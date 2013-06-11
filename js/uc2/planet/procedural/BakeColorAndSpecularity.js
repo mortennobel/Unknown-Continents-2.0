@@ -35,22 +35,22 @@ define(["kick",'text!shaders/bake_color_and_specularity_vs.glsl', 'text!shaders/
                     });
                 }
                 renderMaterial.setUniform("heightMap", heightMapTexture);
-                renderMaterial.setUniform("color0", Random.randomColor());//new Float32Array([0, 0, 0.5, 0]));
-                renderMaterial.setUniform("color1", Random.randomColor());//new Float32Array([0, 0, 0.8, 0]));
-                renderMaterial.setUniform("color2", Random.randomColor());//new Float32Array([0, 1.0, 0, 0]));
-                renderMaterial.setUniform("color3", Random.randomColor());//new Float32Array([1, 0, 0, 0]));
-                renderMaterial.setUniform("color4", Random.randomColor());//new Float32Array([0, 1, 0, 0]));
-                renderMaterial.setUniform("color5", Random.randomColor());//new Float32Array([1, 0.3, 0, 0]));
-                renderMaterial.setUniform("color6", Random.randomColor());//new Float32Array([1, 1, 1, 0]));
+                renderMaterial.setUniform("color0", config.colors.color0);//new Float32Array([0, 0, 0.5, 0]));
+                renderMaterial.setUniform("color1", config.colors.color1);//new Float32Array([0, 0, 0.8, 0]));
+                renderMaterial.setUniform("color2", config.colors.color2);//new Float32Array([0, 1.0, 0, 0]));
+                renderMaterial.setUniform("color3", config.colors.color3);//new Float32Array([1, 0, 0, 0]));
+                renderMaterial.setUniform("color4", config.colors.color4);//new Float32Array([0, 1, 0, 0]));
+                renderMaterial.setUniform("color5", config.colors.color5);//new Float32Array([1, 0.3, 0, 0]));
+                renderMaterial.setUniform("color6", config.colors.color6);//new Float32Array([1, 1, 1, 0]));
 
                 // create a random interval 0 <= a[i] <= a[i+1] <= 1
                 // first interval is water level
                 var array = [0,0,0,0,0];
                 array[0] = config.waterLevel;
-                array[2] = Random.randomFloat(array[0],1);
-                array[1] = Random.randomFloat(array[0],array[2]);
-                array[3] = Random.randomFloat(array[2],1);
-                array[4] = Random.randomFloat(array[3],1);
+                array[1] = config.waterLevel + config.colors.colorStop0*(1-config.waterLevel);
+                array[2] = config.waterLevel + config.colors.colorStop1*(1-config.waterLevel);
+                array[3] = config.waterLevel + config.colors.colorStop2*(1-config.waterLevel);
+                array[4] = config.waterLevel + config.colors.colorStop3*(1-config.waterLevel);
 
                 renderMaterial.setUniform("colorStop0", new Float32Array([array[0]]));
                 renderMaterial.setUniform("colorStop1", new Float32Array([array[1]]));

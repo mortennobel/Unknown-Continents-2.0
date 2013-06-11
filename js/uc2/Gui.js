@@ -79,10 +79,21 @@ define([],
                 // planet color
                 var planet = gui.addFolder('Planet');
                 planet.add(planetScapeConfig.planet,'strategy', ["diamondSquare","worley","simplex", "cell"]);
-                planet.add(planetScapeConfig.planet,'showTexture');
                 planet.add(planetScapeConfig.planet,'maxHeight', 0.000,5.01);
                 planet.add(planetScapeConfig.planet,'waterLevel', 0.000,1.00);
                 planet.add(planetScapeConfig.planet,'rotationSpeed', -1,1);
+                var color =  planet.addFolder('Color');
+                color.addColor(createColorWrapper(planetScapeConfig.planet.colors,'color0'),'color0');
+                color.addColor(createColorWrapper(planetScapeConfig.planet.colors,'color1'),'color1');
+                color.addColor(createColorWrapper(planetScapeConfig.planet.colors,'color2'),'color2');
+                color.addColor(createColorWrapper(planetScapeConfig.planet.colors,'color3'),'color3');
+                color.addColor(createColorWrapper(planetScapeConfig.planet.colors,'color4'),'color4');
+                color.addColor(createColorWrapper(planetScapeConfig.planet.colors,'color5'),'color5');
+                color.addColor(createColorWrapper(planetScapeConfig.planet.colors,'color6'),'color6');
+                color.add(planetScapeConfig.planet.colors,'colorStop0', 0,1);
+                color.add(planetScapeConfig.planet.colors,'colorStop1', 0,1);
+                color.add(planetScapeConfig.planet.colors,'colorStop2', 0,1);
+                color.add(planetScapeConfig.planet.colors,'colorStop3', 0,1);
                 var diamondSqr =  planet.addFolder('DiamondSquare');
                 diamondSqr.add(planetScapeConfig.planet.diamondSquare,'iterations').min(2).max(10).step(1);
                 var simplex =  planet.addFolder('Simplex/Worley');

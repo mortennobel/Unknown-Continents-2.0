@@ -12,8 +12,6 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
             // heighmapTexture width / height must be power of 2 and square
             var time,
                 material,
-                showTextureMaterial,
-                showTexture,
                 thisObj = this,
                 planetMeshRenderer,
                 config = {},
@@ -35,7 +33,7 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                         material.setUniform("atmosphereColor", config.atmosphereColor || [0.0, 0.0, 0.9, 1.0]);
                         material.setUniform("maxHeight", new Float32Array([config.maxHeight || 2.00]) );
                         material.setUniform("waterLevel", new Float32Array([config.waterLevel || 0.50]) );
-                        planetMeshRenderer.material = showTexture ? showTextureMaterial : material;
+                        planetMeshRenderer.material = material;
                     } else {
                         console.log("no mat");
                     }
@@ -65,7 +63,6 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                 config: {
                     set: function (newValue) {
                         config = newValue;
-                        showTexture = config.showTexture;
                         rotationSpeed = (config.rotationSpeed || 0) / 1000;
 
                         thisObj.makePlanetTexture();
@@ -107,13 +104,6 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                 var unlitShader = new kick.material.Shader({
                     vertexShaderSrc: unlit_planet_vs,
                     fragmentShaderSrc: unlit_planet_fs
-                });
-                showTextureMaterial = new kick.material.Material({
-                    shader: unlitShader,
-                    uniformData: {
-                        mainTexture: planet_texture,
-                        mainColor: [1,1,1,1]
-                    }
                 });
                 planetMeshRenderer.material = material;
                 planetGameObject.addComponent(planetMeshRenderer);
