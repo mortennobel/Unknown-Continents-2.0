@@ -17,13 +17,12 @@ requirejs(['kick', 'uc2/SceneFactory'],
         });
         SceneFactory();
 
-        var myAudio = new Audio('music/music.mp3');
+        var myAudio = new Audio('music/space.mp3');
         myAudio.play();
         setInterval(function(){
-            myAudio = new Audio('music/music.mp3');
+            myAudio = new Audio('music/space.mp3');
             myAudio.play();
-        }, 60000);
-
+        }, 347000);
     },
     function(err){
         var domElement = document.getElementById('canvas');
