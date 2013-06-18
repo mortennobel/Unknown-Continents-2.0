@@ -139,6 +139,27 @@ define([],
                         onChangeListener();
                     },10);
                 });
+                var stress = {};
+                var stressMethod = function(){
+                    console.log("New random");
+                    planetScapeConfig.createRandom();
+                    planetScape.config = planetScapeConfig;
+                };
+                var stressObject = null;
+                Object.defineProperty(stress, "Stress test", {
+                    set:function(newValue){
+                        if (newValue){
+                            stressObject = setInterval(stressMethod,5000);
+                        } else {
+                            clearTimeout(stressObject);
+                            stressObject = null;
+                        }
+                    },
+                    get:function(){
+                        return stressObject !== null;
+                    }
+                });
+                gui.add(stress, 'Stress test');
             }
         };
     });
