@@ -100,11 +100,6 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                 mesh.meshData = meshData;
                 planetMeshRenderer.mesh = mesh;
 
-
-                var unlitShader = new kick.material.Shader({
-                    vertexShaderSrc: unlit_planet_vs,
-                    fragmentShaderSrc: unlit_planet_fs
-                });
                 planetMeshRenderer.material = material;
                 planetGameObject.addComponent(planetMeshRenderer);
 
