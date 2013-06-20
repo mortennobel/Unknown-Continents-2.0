@@ -17854,11 +17854,7 @@ define('kick/scene/Transform',["kick/math/Mat4", "kick/math/Vec3", "kick/math/Qu
          * @param {kick.math.Vec3} up the up-vector used in the lookAt
          */
         this.lookAt = function (transform, up) {
-            if (ASSERT) {
-                if (!(transform instanceof Transform)) {
-                    Util.fail("transform must be a kick.scene.Transform");
-                }
-            }
+
             Quat.lookAt(localRotationQuat, thisObj.position, transform.position, up);
             markLocalDirty();
         };

@@ -58,6 +58,21 @@ define(["kick", 'uc2/planet/LookAtTarget','uc2/planet/PlanetScape','uc2/planet/D
             var animationComponent = new kick.animation.AnimationComponent();
             var animation = new kick.animation.Animation();
             var animationCurve = new kick.animation.Curve();
+
+            var followX = [{"time":0,"value":-3,"inSlope":0.219000012,"outSlope":0.219000012,"tangentMode":10},{"time":10,"value":-0.810000002,"inSlope":0.147000015,"outSlope":0.147000015,"tangentMode":10},{"time":20,"value":-0.0599999987,"inSlope":0.0405000001,"outSlope":0.0405000001,"tangentMode":10},{"time":30,"value":0,"inSlope":0.00300000003,"outSlope":0.00300000003,"tangentMode":10},{"time":45,"value":0,"inSlope":0,"outSlope":0,"tangentMode":1},{"time":50,"value":-0.0424413979,"inSlope":0,"outSlope":0,"tangentMode":9},{"time":55,"value":0,"inSlope":0.0307441186,"outSlope":0.0307441186,"tangentMode":10},{"time":65.0000076,"value":0.529999971,"inSlope":0.200000107,"outSlope":0.200000107,"tangentMode":10},{"time":75,"value":4,"inSlope":0.347000271,"outSlope":0.347000271,"tangentMode":10}];
+            var followY = [{"time":0,"value":0,"inSlope":0,"outSlope":0,"tangentMode":10},{"time":15,"value":0,"inSlope":0,"outSlope":0,"tangentMode":10},{"time":20,"value":0,"inSlope":0.0799999982,"outSlope":0.0799999982,"tangentMode":10},{"time":25,"value":0.800000012,"inSlope":0,"outSlope":0,"tangentMode":10},{"time":30,"value":0,"inSlope":-0.0799999982,"outSlope":-0.0799999982,"tangentMode":10},{"time":35,"value":0,"inSlope":0.0680000037,"outSlope":0.0680000037,"tangentMode":10},{"time":40,"value":0.680000007,"inSlope":0.0680000037,"outSlope":0.0680000037,"tangentMode":10},{"time":45,"value":0.680000007,"inSlope":0.0849999934,"outSlope":0.0849999934,"tangentMode":10},{"time":50,"value":1.52999997,"inSlope":-0.0849999934,"outSlope":-0.0849999934,"tangentMode":10},{"time":52.5,"value":0.680000007,"inSlope":-0.169999987,"outSlope":-0.169999987,"tangentMode":10},{"time":55,"value":0.680000007,"inSlope":0.0184999835,"outSlope":0.0184999835,"tangentMode":10},{"time":65.0000076,"value":1.04999995,"inSlope":-0.034000054,"outSlope":-0.034000054,"tangentMode":10},{"time":75,"value":0,"inSlope":-0.105000079,"outSlope":-0.105000079,"tangentMode":10}];
+            var followZ = [{"time":0,"value":3.02999997,"inSlope":-0.211999983,"outSlope":-0.211999983,"tangentMode":10},{"time":10,"value":0.910000026,"inSlope":-0.0619999915,"outSlope":-0.0619999915,"tangentMode":10},{"time":15,"value":1.35000002,"inSlope":-0.0910000056,"outSlope":-0.0910000056,"tangentMode":10},{"time":20,"value":0,"inSlope":-0.135000005,"outSlope":-0.135000005,"tangentMode":10},{"time":25,"value":0,"inSlope":0,"outSlope":0,"tangentMode":10},{"time":30,"value":0,"inSlope":0,"outSlope":0,"tangentMode":10},{"time":45,"value":0,"inSlope":0,"outSlope":0,"tangentMode":10},{"time":55,"value":0,"inSlope":0.150000006,"outSlope":0.150000006,"tangentMode":10},{"time":75,"value":6,"inSlope":0.300000012,"outSlope":0.300000012,"tangentMode":10}];
+
+            var follows = [followX, followY, followZ];
+            var followsSTR = ['x','y','z'];
+            for (var j=0;j<3;j++){
+                var c = new kick.animation.Curve();
+                var ctrlPoints = follows[j];
+                for (var i = 0;i<ctrlPoints.length;i++){
+                    c.addControlPoint(new kick.animation.ControlPoint(ctrlPoints[i]));
+                }
+                animation.addCurve(c, "lookAtTarget."+followsSTR[j]);
+            }
             animationCurve.curveType = animationCurve.VEC3;
             animation.addCurve(animationCurve, "transform.localPosition");
             animation.addEventListener("animationRestart", randomizePlanet);
