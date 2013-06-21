@@ -27,7 +27,8 @@ vec4 computeRotatedAtmosphere(){
     // find rotate angle so the surface is perpendicular to the visible horizon
     float lengthToOrigin = length(origin);
     const float planetRadius = 1.0;
-    float atmosphereRotationAngle = 3.1415*0.5 - acos(planetRadius/lengthToOrigin);
+    // should be 3.1415*0.4, but reduced to fix collision with near-plane
+    float atmosphereRotationAngle = 3.1415*0.4 - acos(planetRadius/lengthToOrigin);
 
     vec4 v = vec4(vertex, 1.0);
     mat3 rotation = rotationMatrix(cross(((_mv * v).xyz),vertex), atmosphereRotationAngle);
