@@ -124,6 +124,9 @@ define(["kick", 'uc2/util/Random'],
                 thisObj.moons.iterationsTo = randomInt(5, 10);
                 thisObj.moons.ellipseFrom = randomFloat(1, 1.3);
                 thisObj.moons.ellipseTo = thisObj.moons.ellipseFrom + randomFloat(0, 1.0);
+                //
+                thisObj.sun.lightDirection = Random.randomDirection();
+
             };
             this.createRandom();
         };

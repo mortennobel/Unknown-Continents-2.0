@@ -1,6 +1,7 @@
 define(["kick"],
     function (kick) {
         "use strict";
+        var Vec3 = kick.math.Vec3
 
         return {
             // power < 1 makes high number more likely
@@ -16,7 +17,14 @@ define(["kick"],
                 var rnd = Math.pow(Math.random(), power || 1);
                 return (rnd * (to - from)) + from;
             },
-
+            randomDirection: function(){
+                var rnd;
+                do{
+                    rnd = [Math.random()*2-1,Math.random()*2-1,Math.random()*2-1];
+                } while((rnd[0] === 0 && rnd[1] === 0 && rnd[2] === 0 ) || Vec3.length(rnd)>1);
+                Vec3.normalize(rnd,rnd);
+                return rnd;
+            },
             // power < 1 makes high number more likely
             // power > 1 makes high number less likely
             randomVec3: function (from, to, power){
