@@ -107,7 +107,9 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
             };
 
             this.update = function() {
-                thisObj.gameObject.transform.localRotation = kick.math.Quat.rotateY(rotation,rotation,rotationSpeed*time.deltaTime);
+                if (thisObj.gameObject && thisObj.gameObject.transform){
+                    thisObj.gameObject.transform.localRotation = kick.math.Quat.rotateY(rotation,rotation,rotationSpeed*time.deltaTime);
+                }
             };
         }
     });
