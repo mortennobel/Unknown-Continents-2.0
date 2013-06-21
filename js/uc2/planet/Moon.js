@@ -75,9 +75,11 @@ define(["kick", "./Planet", 'uc2/util/Random'],
             };
 
             this.update = function(){
-                var pos = [ellipse*distance*Math.sin(thisObj.rotationOffset + time.time * movementSpeed), 0, distance * Math.cos(thisObj.rotationOffset + time.time * movementSpeed)];
-                pos = kick.math.Vec3.transformQuat(pos, pos, randomRotation);
-                thisObj.gameObject.transform.localPosition = pos;
+                if (thisObj.gameObject){
+                    var pos = [ellipse*distance*Math.sin(thisObj.rotationOffset + time.time * movementSpeed), 0, distance * Math.cos(thisObj.rotationOffset + time.time * movementSpeed)];
+                    pos = kick.math.Vec3.transformQuat(pos, pos, randomRotation);
+                    thisObj.gameObject.transform.localPosition = pos;
+                }
             };
         }
     });
