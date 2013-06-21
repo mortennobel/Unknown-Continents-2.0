@@ -160,6 +160,7 @@ define([],
                     }
                 });
                 gui.add(stress, 'Stress test');
+                return gui;
             }
         };
     });

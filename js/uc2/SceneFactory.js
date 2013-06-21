@@ -1,8 +1,8 @@
-define(["kick", 'uc2/planet/LookAtTarget','uc2/planet/PlanetScape','uc2/planet/DebugRotateComponent','uc2/planet/PlanetScapeConfig', 'uc2/Gui',
+define(["kick", 'uc2/planet/LookAtTarget','uc2/planet/HideGUIDetector','uc2/planet/PlanetScape','uc2/planet/DebugRotateComponent','uc2/planet/PlanetScapeConfig', 'uc2/Gui',
         'text!shaders/webgl-noise/noise2D.glsl', 'text!shaders/webgl-noise/noise3D.glsl', 'text!shaders/webgl-noise/noise4D.glsl',
         'text!shaders/cellular-noise/cellular2D.glsl','text!shaders/cellular-noise/cellular2x2.glsl','text!shaders/cellular-noise/cellular2x2x2.glsl','text!shaders/cellular-noise/cellular3D.glsl'
     ],
-    function (kick, LookAtTarget, PlanetScape, DebugRotateComponent, PlanetScapeConfig, Gui, noise2D, noise3D, noise4D, cellular2D, cellular2x2, cellular2x2x2, cellular3D) {
+    function (kick, LookAtTarget, HideGUIDetector, PlanetScape, DebugRotateComponent, PlanetScapeConfig, Gui, noise2D, noise3D, noise4D, cellular2D, cellular2x2, cellular2x2x2, cellular3D) {
     "use strict";
 
     return function () {
@@ -89,15 +89,18 @@ define(["kick", 'uc2/planet/LookAtTarget','uc2/planet/PlanetScape','uc2/planet/D
             }
             cameraGO.addComponent(animationComponent);
             animation.playing = true;
+
+            return cameraGO;
         }
         var randomizePlanet = function(){
             planetConfig.createRandom();
             planetScape.config = planetConfig;
         };
-        buildCamera(scene);
+        var gameObject = buildCamera(scene);
         var planetConfig = new PlanetScapeConfig();
         var planetScape = new PlanetScape(scene, planetConfig);
         var gui = Gui.createGui(planetScape,planetConfig);
+        gameObject.addComponent(new HideGUIDetector(gui));
         var fullWindow = scene.createGameObject({name: "FullWindow"});
         fullWindow.addComponent(new kick.components.FullWindow());
     }
