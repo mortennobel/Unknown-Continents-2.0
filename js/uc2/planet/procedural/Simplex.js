@@ -8,7 +8,7 @@ define(["kick",'text!shaders/simplex_noise_vs.glsl', 'text!shaders/simplex_noise
                 shader,
                 renderMaterial;
 
-            this.bake = function(texture, config){
+            this.bake = function(texture, config, onFinish){
                 if (!texture || !renderTexture || renderTexture.colorTexture !== texture){
                     if (texture){
                         texture.destroy();
@@ -39,7 +39,7 @@ define(["kick",'text!shaders/simplex_noise_vs.glsl', 'text!shaders/simplex_noise
                 renderMaterial.setUniform("scale", new Float32Array([config.scale]));
                 kick.core.Graphics.renderToTexture(renderTexture, renderMaterial);
 
-                return texture;
+                onFinish(texture);
             }
         };
     });

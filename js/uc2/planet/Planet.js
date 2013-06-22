@@ -38,23 +38,26 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                         console.log("no mat");
                     }
                     rotationSpeed = config.rotationSpeed/1000 || 0.0001;
+                },
+                onHeightMapFinish = function(heighmapTexture_){
+                    heighmapTexture = heighmapTexture_;
+                    bakeColorAndSpecularity.bake(texture, config, heighmapTexture, function(t){
+                        texture = t;
+                        updateMaterial();
+                    });
                 };
+
 
             this.makePlanetTexture = function () {
                 if (config.strategy === "simplex"){
-                    heighmapTexture = simplex.bake(heighmapTexture, config.simplexWorley || {});
+                    heighmapTexture = simplex.bake(heighmapTexture, config.simplexWorley || {}, onHeightMapFinish);
                 } else if (config.strategy === "cell"){
-                    heighmapTexture = cell.bake(heighmapTexture, config.cell || {});
+                    heighmapTexture = cell.bake(heighmapTexture, config.cell || {}, onHeightMapFinish);
                 } else if (config.strategy === "worley"){
-                    heighmapTexture = worley.bake(heighmapTexture, config.simplexWorley || {});
+                    heighmapTexture = worley.bake(heighmapTexture, config.simplexWorley || {}, onHeightMapFinish);
                 } else { // strategy === "DiamondSquare"
-                    heighmapTexture = diamondSquare.bake(heighmapTexture, config.diamondSquare || {iterations:4});
+                    heighmapTexture = diamondSquare.bake(heighmapTexture, config.diamondSquare || {iterations:4}, onHeightMapFinish);
                 }
-
-                texture = bakeColorAndSpecularity.bake(texture, config, heighmapTexture);
-
-                updateMaterial();
-                return heighmapTexture;
             };
 
 
@@ -89,7 +92,7 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                     uniformData: {
                     }
                 });
-                var planet_texture = thisObj.makePlanetTexture();
+                thisObj.makePlanetTexture();
                 var mesh = new kick.mesh.Mesh(
                     {
                         dataURI: "kickjs://mesh/uvsphere/?slices=100&stacks=200&radius=" + planet_radius,
@@ -103,7 +106,6 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                 planetMeshRenderer.material = material;
                 planetGameObject.addComponent(planetMeshRenderer);
 
-                updateMaterial();
             };
 
             this.update = function() {

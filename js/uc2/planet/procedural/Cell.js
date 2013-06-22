@@ -8,7 +8,7 @@ define(["kick",'text!shaders/cell_noise_vs.glsl', 'text!shaders/cell_noise_fs.gl
                 shader,
                 renderMaterial;
 
-            this.bake = function(texture, config) {
+            this.bake = function(texture, config, onFinish) {
                 if (!texture || !renderTexture || renderTexture.colorTexture !== texture) {
                     if (texture) {
                         texture.destroy();
@@ -42,7 +42,7 @@ define(["kick",'text!shaders/cell_noise_vs.glsl', 'text!shaders/cell_noise_fs.gl
                 renderMaterial.setUniform("heightPower", new Float32Array([config.heightPower || (Math.random()*0.5)]));
                 kick.core.Graphics.renderToTexture(renderTexture, renderMaterial);
 
-                return texture;
+                onFinish(texture);
             }
         };
     });

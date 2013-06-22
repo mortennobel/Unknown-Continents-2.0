@@ -8,7 +8,7 @@ define(["kick",'text!shaders/bake_color_and_specularity_vs.glsl', 'text!shaders/
                 shader,
                 renderMaterial;
 
-            this.bake = function(texture, config, heightMapTexture){
+            this.bake = function(texture, config, heightMapTexture, onFinish){
                 if (!texture || !renderTexture || renderTexture.colorTexture !== texture){
                     if (texture){
                         texture.destroy();
@@ -62,7 +62,7 @@ define(["kick",'text!shaders/bake_color_and_specularity_vs.glsl', 'text!shaders/
 
                 kick.core.Graphics.renderToTexture(renderTexture, renderMaterial);
 
-                return texture;
+                onFinish(texture);
             }
         };
     });
