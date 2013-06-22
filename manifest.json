@@ -9,7 +9,7 @@
   },
   "app": {
     "background": {
-      "scripts": ["chrome_app_main.js"]
+      "scripts": ["js/chrome_app_main.js"]
     }
   },
   "permissions": ["fullscreen" ]
