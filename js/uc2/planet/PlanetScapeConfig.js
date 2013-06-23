@@ -119,7 +119,7 @@ define(["kick", 'uc2/util/Random'],
                 thisObj.moons.heightFrom =  randomFloat(1.1, 1.5);
                 thisObj.moons.heightTo =  randomFloat(1.5, 2.5);
                 thisObj.moons.sizeFrom =  randomFloat(0.01, 0.05);
-                thisObj.moons.sizeTo =  randomFloat(0.05, 0.1);
+                thisObj.moons.sizeTo =  randomFloat(0.05, 0.2);
                 thisObj.moons.iterationsFrom = randomInt(0, 5);
                 thisObj.moons.iterationsTo = randomInt(5, 10);
                 thisObj.moons.ellipseFrom = randomFloat(1, 1.3);
