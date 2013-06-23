@@ -79,7 +79,7 @@ define(["kick", 'uc2/planet/LookAtTarget','uc2/planet/HideGUIDetector','uc2/plan
             }
             animationCurve.curveType = animationCurve.VEC3;
             animation.addCurve(animationCurve, "transform.localPosition");
-            animation.addEventListener("animationRestart", randomizePlanet);
+            animation.addEventListener("animationLoop", randomizePlanet);
 
             animation.speed = 0.5;
 
