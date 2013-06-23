@@ -52,13 +52,13 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
 
             this.makePlanetTexture = function () {
                 if (config.strategy === "simplex"){
-                    heighmapTexture = simplex.bake(heighmapTexture, config.simplexWorley || {}, onHeightMapFinish);
+                    simplex.bake(heighmapTexture, config.simplexWorley || {}, onHeightMapFinish);
                 } else if (config.strategy === "cell"){
-                    heighmapTexture = cell.bake(heighmapTexture, config.cell || {}, onHeightMapFinish);
+                    cell.bake(heighmapTexture, config.cell || {}, onHeightMapFinish);
                 } else if (config.strategy === "worley"){
-                    heighmapTexture = worley.bake(heighmapTexture, config.simplexWorley || {}, onHeightMapFinish);
+                    worley.bake(heighmapTexture, config.simplexWorley || {}, onHeightMapFinish);
                 } else { // strategy === "DiamondSquare"
-                    heighmapTexture = diamondSquare.bake(heighmapTexture, config.diamondSquare || {iterations:4}, onHeightMapFinish);
+                    diamondSquare.bake(heighmapTexture, config.diamondSquare || {iterations:4}, onHeightMapFinish);
                 }
             };
 
@@ -80,6 +80,13 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                 time = engine.time;
                 var scene = engine.activeScene;
                 var planetGameObject = thisObj.gameObject;
+
+                planetGameObject.addComponent(simplex);
+                planetGameObject.addComponent(worley);
+                planetGameObject.addComponent(diamondSquare);
+                planetGameObject.addComponent(cell);
+                planetGameObject.addComponent(bakeColorAndSpecularity);
+
                 planetMeshRenderer = new kick.scene.MeshRenderer();
                 var planet_radius = 1;
                 var shader = new kick.material.Shader({

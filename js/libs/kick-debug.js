@@ -2787,8 +2787,8 @@ define('kick/core/EngineSingleton',["./Constants"], function (Constants) {
      * @default null
      * @static
      */
-    Object.defineProperties(EngineSingleton, {
-        engine: {
+    Object.defineProperty(EngineSingleton, "engine",
+        {
             set: function (newEngine) {
                 if (currentEngine !== null && true) {
                     console.log("Engine is created twice in same context.");
@@ -2802,8 +2802,7 @@ define('kick/core/EngineSingleton',["./Constants"], function (Constants) {
                 return currentEngine;
             }
 
-        }
-    });
+        });
     Object.freeze(EngineSingleton);
 
     return EngineSingleton;
@@ -11603,6 +11602,7 @@ define('kick/texture/Texture',["kick/core/ProjectAsset", "kick/core/Constants", 
                 _hasDataOnGPU = false,
                 _dataURI =  "memory://void",
                 _flipY =  true,
+                _type,
                 _intFormat = 6408,
                 _textureType = 3553,
                 _boundTextureType = null,
@@ -11727,7 +11727,6 @@ define('kick/texture/Texture',["kick/core/ProjectAsset", "kick/core/Constants", 
                     }
                     gl.pixelStorei(3317, 1);
                     gl.texImage2D(3553, 0, _intFormat, _intFormat, 5121, imageObj);
-
                     Vec2.copy(_dimension, [imageObj.width, imageObj.height]);
                 } else {
                     cubemapOrder = [
@@ -11756,6 +11755,7 @@ define('kick/texture/Texture',["kick/core/ProjectAsset", "kick/core/Constants", 
                     }
                     Vec2.copy(_dimension, [width, height]);
                 }
+                _type = 5121;
                 thisObj.apply();
                 if (_generateMipmaps) {
                     createMipmaps();
@@ -11781,23 +11781,80 @@ define('kick/texture/Texture',["kick/core/ProjectAsset", "kick/core/Constants", 
             };
 
             /**
+             * Updates a subset of the texture
+             * Note the type of pixels is assumed to be the same as in setImageData
+             * @example
+             *     var texture = new kick.texture.Texture();
+             *     texture.setImageData(2,2,0,5121,null);
+             *     texture.setSubImageData(0, 0, 1, 1, new Uint8Array([255,255,255,255]));
+             * @method setSubImageData
+             * @param {Number} xoffset
+             * @param {Number} yoffset
+             * @param {Number} width
+             * @param {Number} height
+             * @param {ArrayBufferView} pixels
+             */
+            this.setSubImageData = function (xoffset, yoffset, width, height, pixels) {
+                if (true) {
+                    if (!_textureType) {
+                        Util.fail("Texture.textureType not set");
+                        return;
+                    }
+                    if (!_hasDataOnGPU){
+                        Util.fail("Texture.setSubImageData must be called after Texture.setImageData or Texture.setImage");
+                    }
+                    if (width <=0 || height <=0){
+                        Util.fail("Texture.setSubImageData width and height must be larger than 0");
+                    }
+                    if (xoffset + width > _dimension[0]){
+                        Util.fail("Texture.setSubImageData xoffset ("+xoffset+") + width ("+width+") must be less than / equal to texture width ("+_dimension[0]+")");
+                    }
+                    if (yoffset + height > _dimension[1]){
+                        Util.fail("Texture.setSubImageData xoffset ("+yoffset+") + width ("+height+") must be less than / equal to texture width ("+_dimension[1]+")");
+                    }
+                }
+                var i,
+                    textureSides = _textureType === 3553 ?
+                        [3553] :
+                        [34069,
+                            34070,
+                            34071,
+                            34072,
+                            34073,
+                            34074];
+                thisObj.bind(0); // bind to texture slot 0
+                glState.currentMaterial = null; // for material to rebind
+                gl.pixelStorei(3317, 1);
+                for (i = 0; i < textureSides.length; i++) {
+                    gl.texSubImage2D(textureSides[i], 0, xoffset, yoffset, width, height, _intFormat, _type, pixels);
+                }
+            };
+
+            /**
              * Set a image using a raw bytearray in a specified format.
              * GL\_FLOAT / GL\_HALF\_FLOAT\_OES should only be used if extension is supported (See GLState.textureFloatExtension / GLState.textureFloatHalfExtension).
              * If only one of GL\_FLOAT/GL\_HALF\_FLOAT\_OES is supported, then the engine will silently use the supported type.
              * If used on cubemap-texture then all 6 sides of the cube is assigned
+             * @example
+             *     texture = new kick.texture.Texture();
+             *     var data = new Uint8Array([
+             *         255,255,255,255, 255,0,0,255,
+             *         0,255,0,255, 0,0,255,255
+             *     ]);
+             *     texture.setImageData(2,2,0,5121,data);
              * @method setImageData
              * @param {Number} width image width in pixels
              * @param {Number} height image height in pixels
              * @param {Number} border image border in pixels
-             * @param {Object} type GL\_FLOAT, GL\_HALF_FLOAT_OES, GL\_UNSIGNED_BYTE, GL\_UNSIGNED_SHORT\_4\_4\_4\_4, GL\_UNSIGNED\_SHORT\_5\_5\_5\_1 or GL\_UNSIGNED\_SHORT\_5\_6\_5
-             * @param {Array} pixels array of pixels (may be null)
+             * @param {Object} type GL\_FLOAT, GL\_HALF\_FLOAT_OES, GL\_UNSIGNED\_BYTE, GL\_UNSIGNED\_SHORT\_4\_4\_4\_4, GL\_UNSIGNED\_SHORT\_5\_5\_5\_1 or GL\_UNSIGNED\_SHORT\_5\_6\_5
+             * @param {ArrayBufferView} pixels array of pixels (may be null)
              * @param {String} dataURI String representing the image
+             * @param {Number} [cubemapIndex] The cubemap index (only for cubemaps) [+x,-x,+y,-y,+z,-z]. Default is all cubemaps.
              */
-            this.setImageData = function (width, height, border, type, pixels, dataURI) {
+            this.setImageData = function (width, height, border, type, pixels, dataURI, cubemapIndex) {
                 createImageFunction = thisObj.setImageData;
                 createImageFunctionParameters = arguments;
-                var i,
-                    textureSides = _textureType === 3553 ?
+                var textureSides = _textureType === 3553 ?
                             [3553] :
                             [34069,
                                 34070,
@@ -11845,14 +11902,20 @@ define('kick/texture/Texture',["kick/core/ProjectAsset", "kick/core/Constants", 
                 _dataURI = dataURI;
 
                 thisObj.bind(0); // bind to texture slot 0
-                for (i = 0; i < textureSides.length; i++) {
-                    gl.pixelStorei(3317, 1);
-                    gl.texImage2D(textureSides[i], 0, _intFormat, width, height, border, _intFormat, type, pixels);
+                gl.pixelStorei(3317, 1);
+                if (!Number.isFinite(cubemapIndex) || _textureType === 3553){
+                    gl.texImage2D(textureSides[cubemapIndex || 0], 0, _intFormat, width, height, border, _intFormat, type, pixels);
+                } else {
+                    for (var i = 0; i < textureSides.length; i++) {
+                        gl.texImage2D(textureSides[i], 0, _intFormat, width, height, border, _intFormat, type, pixels);
+                    }
                 }
+
                 gl.texParameteri(_textureType, 10240, _magFilter);
                 gl.texParameteri(_textureType, 10241, _minFilter);
                 gl.texParameteri(_textureType, 10242, _wrapS);
                 gl.texParameteri(_textureType, 10243, _wrapT);
+                _type = type;
                 if (_generateMipmaps) {
                     createMipmaps();
                 }
@@ -11865,12 +11928,12 @@ define('kick/texture/Texture',["kick/core/ProjectAsset", "kick/core/Constants", 
              * @method setTemporaryTexture
              */
             this.setTemporaryTexture = function () {
-                var whiteImage = new Uint8Array([255, 255, 255,
-                        255, 255, 255,
-                        255, 255, 255,
-                        255, 255, 255]),
+                var whiteImage = new Uint8Array([255, 255, 255, 255,
+                        255, 255, 255,255,
+                        255, 255, 255,255,
+                        255, 255, 255,255]),
                     oldIntFormat = _intFormat;
-                this.internalFormat = 6407;
+                this.internalFormat = 6408;
                 this.setImageData(2, 2, 0, 5121, whiteImage, "kickjs://texture/white/");
                 _intFormat = oldIntFormat;
             };
@@ -20951,6 +21014,7 @@ define('kick/core/Graphics',["kick/core/Constants", "kick/scene/Camera", "kick/s
          * @method renderToTexture
          * @param {kick.texture.RenderTexture} renderTexture
          * @param {kick.material.Material} material
+         * @param {kick.math.Vec4} [normalizedViewportRect=[0,0,1,1]]
          * @static
          */
         renderToTexture: (function(){
@@ -20958,7 +21022,7 @@ define('kick/core/Graphics',["kick/core/Constants", "kick/scene/Camera", "kick/s
                 engine,
                 engineUniforms,
                 meshRenderer;
-            return function(renderTexture, material){
+            return function(renderTexture, material, normalizedViewportRect){
                 if (ASSERT){
                     if (!(renderTexture instanceof RenderTexture)){
                         fail("Graphics.renderToTexture: renderTexture must be of type RenderTexture");
@@ -20967,6 +21031,7 @@ define('kick/core/Graphics',["kick/core/Constants", "kick/scene/Camera", "kick/s
                         fail("Graphics.renderToTexture: material must be of type Material");
                     }
                 }
+                normalizedViewportRect  = normalizedViewportRect || [0,0,1,1];
                 if (!camera){
                     engine = EngineSingleton.engine;
                     camera = new Camera({
@@ -21005,6 +21070,7 @@ define('kick/core/Graphics',["kick/core/Constants", "kick/scene/Camera", "kick/s
                     };
                     meshRenderer.activated();
                 }
+                camera.normalizedViewportRect = normalizedViewportRect;
                 camera.renderTarget = renderTexture;
                 camera.setupCamera();
                 meshRenderer.material = material;
