@@ -2,9 +2,8 @@ define(["kick",'text!shaders/worley_noise_vs.glsl', 'text!shaders/worley_noise_f
     function (kick, vs, fs) {
         "use strict";
 
-        return function(){
-            var textureDim = 1024*2,
-                renderTexture,
+        return function(textureDim){
+            var renderTexture,
                 shader,
                 renderMaterial;
 

@@ -2,9 +2,8 @@ define(["kick",'text!shaders/bake_color_and_specularity_vs.glsl', 'text!shaders/
     function (kick, vs, fs, Random) {
         "use strict";
 
-        return function(){
-            var textureDim = 1024*2,
-                renderTexture,
+        return function(textureDim){
+            var renderTexture,
                 shader,
                 renderMaterial;
 

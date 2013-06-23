@@ -2,9 +2,8 @@ define(["kick",'text!shaders/cell_noise_vs.glsl', 'text!shaders/cell_noise_fs.gl
     function (kick, vs, fs) {
         "use strict";
 
-        return function(){
-            var textureDim = 1024*2,
-                renderTexture,
+        return function(textureDim){
+            var renderTexture,
                 shader,
                 renderMaterial;
 
