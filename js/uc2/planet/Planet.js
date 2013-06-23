@@ -9,6 +9,8 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
          */
         return function () {
 
+            console.log("Planet created");
+
             // heighmapTexture width / height must be power of 2 and square
             var time,
                 material,
@@ -72,8 +74,6 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                     }
                 }
             });
-
-
 
             this.activated = function(){
                 var engine = kick.core.Engine.instance;

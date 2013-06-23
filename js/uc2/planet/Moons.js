@@ -1,4 +1,4 @@
-define(["kick", "./Planet", 'uc2/util/Random','./Moon'],
+define(["kick", "./Planet", 'uc2/util/Random','./MoonSimple'],
     function (kick, Planet, Random, Moon) {
         "use strict";
 
@@ -19,6 +19,7 @@ define(["kick", "./Planet", 'uc2/util/Random','./Moon'],
                         diamondsquare:{
                             iterations: Random.randomInt(config.iterationsFrom, config.iterationsTo),
                         },
+                        surfaceScale: Random.randomInt(config.surfaceScaleFrom, config.surfaceScaleTo),
                         ellipse: Random.randomFloat(config.ellipseFrom, config.ellipseTo),
                         colors: {
                             color0: [1,1,1,1],

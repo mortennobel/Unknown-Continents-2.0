@@ -60,8 +60,8 @@ define(["kick", 'uc2/util/Random'],
 
             this.moons = {
                 numberOfMoons: 3,
-                colorFrom: [0.1, 0.1, 0.1, 0.1],
-                colorTo: [1.0, 1.0, 1.0, 1.0],
+                colorFrom: [0.6, 0.6, 0.6, 1.0],
+                colorTo: [0.8, 0.8, 0.8, 1.0],
                 heightFrom: 0.000,
                 heightTo: 5.000,
                 distanceFrom: 2,
@@ -70,6 +70,8 @@ define(["kick", 'uc2/util/Random'],
                 sizeTo: 0.1,
                 iterationsFrom: 2,
                 iterationsTo: 7,
+                surfaceScaleFrom: 0.5,
+                surfaceScaleTo: 3,
                 ellipseFrom: 1.0,
                 ellipseTo: 2.3
             };
@@ -112,10 +114,10 @@ define(["kick", 'uc2/util/Random'],
 
                 // moon
                 thisObj.moons.numberOfMoons = randomInt(0, 16, 2);
-                thisObj.moons.colorFrom = [randomFloat(0, 0.1), randomFloat(0, 0.1), randomFloat(0, 0.1), 1];
-                thisObj.moons.colorTo = [thisObj.moons.colorFrom[0] + randomFloat(0, 0.1),
+                //thisObj.moons.colorFrom = [randomFloat(0, 0.1), randomFloat(0, 0.1), randomFloat(0, 0.1), 1];
+                /*thisObj.moons.colorTo = [thisObj.moons.colorFrom[0] + randomFloat(0, 0.1),
                     thisObj.moons.colorFrom[0] + randomFloat(0, 0.1),
-                    thisObj.moons.colorFrom[0] + randomFloat(0, 0.1), 1];
+                    thisObj.moons.colorFrom[0] + randomFloat(0, 0.1), 1];*/
                 thisObj.moons.heightFrom =  randomFloat(1.1, 1.5);
                 thisObj.moons.heightTo =  randomFloat(1.5, 2.5);
                 thisObj.moons.sizeFrom =  randomFloat(0.01, 0.05);

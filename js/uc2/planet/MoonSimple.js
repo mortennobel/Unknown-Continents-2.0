@@ -1,8 +1,9 @@
-define(["kick", "./Planet", 'uc2/util/Random'],
-    function (kick, Planet, Random) {
+define(["kick", "./Planet", 'uc2/util/Random', 'text!shaders/moon_vs.glsl', 'text!shaders/moon_fs.glsl'],
+    function (kick, Planet, Random, moon_vs, moon_fs) {
         "use strict";
 
         var shader;
+        var mesh;
 
         /**
          * Moon class constructor function
@@ -15,14 +16,17 @@ define(["kick", "./Planet", 'uc2/util/Random'],
                 ellipse = 1.0,
                 moonConfig,
                 transform,
-                planet,
+                material,
                 randomRotation,
                 updateConfig = function () {
-                    if (planet && moonConfig) {
-                        planet.config = moonConfig;
+                    if (moonConfig && thisObj.gameObject) {
                         thisObj.gameObject.transform.localScale = [moonConfig.size, moonConfig.size, moonConfig.size];
                         distance = moonConfig.distance;
                         ellipse = moonConfig.ellipse;
+                        if (material){
+                            material.setUniform("scale", new Float32Array([moonConfig.surfaceScale || 5]));
+                            material.setUniform("color", moonConfig.color);
+                        }
                     }
                 };
 
@@ -64,15 +68,43 @@ define(["kick", "./Planet", 'uc2/util/Random'],
 
             this.activated = function(){
                 randomRotation = Random.randomQuatRotation(-Math.PI/2,Math.PI/2);
-                planet = new Planet();
-                if (moonConfig){
-                    planet.config = moonConfig;
-                }
-                thisObj.gameObject.addComponent(planet);
                 transform = thisObj.gameObject.transform;
                 thisObj.gameObject.name = "moon";
                 var engine = kick.core.Engine.instance;
                 time = engine.time;
+
+                var moonGameObject = thisObj.gameObject;
+                var moonMeshRenderer = new kick.scene.MeshRenderer();
+                var moon_radius = 1;
+
+                shader = shader || new kick.material.Shader({
+                    vertexShaderSrc: moon_vs,
+                    fragmentShaderSrc: moon_fs
+                });
+
+
+                material = material || new kick.material.Material( {
+                    shader: shader,
+                    uniformData: {
+                    }
+                });
+
+                if (!mesh){
+                    mesh = new kick.mesh.Mesh(
+                    {
+                        dataURI: "kickjs://mesh/uvsphere/?slices=100&stacks=200&radius=" + moon_radius,
+                        name: "Default object"
+                    });
+                    var meshData = mesh.meshData;
+                    meshData.recalculateTangents();
+                    mesh.meshData = meshData;
+                }
+
+                moonMeshRenderer.mesh = mesh;
+
+                moonMeshRenderer.material = material;
+                moonGameObject.addComponent(moonMeshRenderer);
+
                 updateConfig();
             };
 
