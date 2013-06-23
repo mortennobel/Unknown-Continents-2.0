@@ -10,19 +10,13 @@ requirejs.config({
     waitSeconds: 30
 });
 
-requirejs(['kick', 'uc2/SceneFactory'],
-    function (kick,SceneFactory) {
+requirejs(['kick', 'uc2/SceneFactory', 'uc2/Music'],
+    function (kick,SceneFactory,Music) {
         new kick.core.Engine('canvas', {
             enableDebugContext: debug
         });
         SceneFactory();
-
-        var myAudio = new Audio('music/space.mp3');
-        myAudio.play();
-        setInterval(function(){
-            myAudio = new Audio('music/space.mp3');
-            myAudio.play();
-        }, 347000);
+        Music.startLoop(debug);
     },
     function(err){
         var domElement = document.getElementById('canvas');
