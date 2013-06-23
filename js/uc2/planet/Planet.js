@@ -9,8 +9,6 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
          */
         return function () {
 
-            console.log("Planet created");
-
             // heighmapTexture width / height must be power of 2 and square
             var time,
                 material,
@@ -21,11 +19,11 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                 texture,
                 rotation = [0,0,0,1],
                 rotationSpeed = 1000.01,
-                simplex = new Simplex(),
-                worley = new Worley(),
-                diamondSquare = new DiamondSquare(),
-                cell = new Cell(),
-                bakeColorAndSpecularity = new BakeColorAndSpecularity(),
+                simplex,
+                worley,
+                diamondSquare,
+                cell,
+                bakeColorAndSpecularity,
 
                 updateMaterial = function(){
                     if (material){
@@ -69,8 +67,9 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                     set: function (newValue) {
                         config = newValue;
                         rotationSpeed = (config.rotationSpeed || 0) / 1000;
-
-                        thisObj.makePlanetTexture();
+                        if (bakeColorAndSpecularity){
+                            thisObj.makePlanetTexture();
+                        }
                     }
                 }
             });
@@ -80,6 +79,16 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                 time = engine.time;
                 var scene = engine.activeScene;
                 var planetGameObject = thisObj.gameObject;
+
+                var maxTextureSize = engine.gl.getParameter(engine.gl.MAX_TEXTURE_SIZE);
+                console.log(maxTextureSize );
+                maxTextureSize = Math.min(4096,maxTextureSize);
+
+                simplex = new Simplex(maxTextureSize);
+                worley = new Worley(maxTextureSize);
+                diamondSquare = new DiamondSquare(maxTextureSize);
+                cell = new Cell(maxTextureSize);
+                bakeColorAndSpecularity = new BakeColorAndSpecularity(maxTextureSize);
 
                 planetGameObject.addComponent(simplex);
                 planetGameObject.addComponent(worley);
