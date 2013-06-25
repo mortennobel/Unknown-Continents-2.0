@@ -69,6 +69,7 @@ define(["kick", 'uc2/planet/LookAtTarget','uc2/planet/HideGUIDetector','uc2/plan
             var followY = [{"time":0,"value":0,"inSlope":0,"outSlope":0,"tangentMode":10},{"time":15,"value":0,"inSlope":0,"outSlope":0,"tangentMode":10},{"time":20,"value":0,"inSlope":0.0799999982,"outSlope":0.0799999982,"tangentMode":10},{"time":25,"value":0.800000012,"inSlope":0,"outSlope":0,"tangentMode":10},{"time":30,"value":0,"inSlope":-0.0799999982,"outSlope":-0.0799999982,"tangentMode":10},{"time":35,"value":0,"inSlope":0.0680000037,"outSlope":0.0680000037,"tangentMode":10},{"time":40,"value":0.680000007,"inSlope":0.0680000037,"outSlope":0.0680000037,"tangentMode":10},{"time":45,"value":0.680000007,"inSlope":0.0849999934,"outSlope":0.0849999934,"tangentMode":10},{"time":50,"value":1.52999997,"inSlope":-0.0849999934,"outSlope":-0.0849999934,"tangentMode":10},{"time":52.5,"value":0.680000007,"inSlope":-0.169999987,"outSlope":-0.169999987,"tangentMode":10},{"time":55,"value":0.680000007,"inSlope":0.0184999835,"outSlope":0.0184999835,"tangentMode":10},{"time":65.0000076,"value":1.04999995,"inSlope":-0.034000054,"outSlope":-0.034000054,"tangentMode":10},{"time":75,"value":0,"inSlope":0,"outSlope":0,"tangentMode":0}];
             var followZ = [{"time":0,"value":3.02999997,"inSlope":0,"outSlope":0,"tangentMode":0},{"time":10,"value":0.910000026,"inSlope":-0.0619999915,"outSlope":-0.0619999915,"tangentMode":10},{"time":15,"value":1.35000002,"inSlope":-0.0910000056,"outSlope":-0.0910000056,"tangentMode":10},{"time":20,"value":0,"inSlope":-0.135000005,"outSlope":-0.135000005,"tangentMode":10},{"time":25,"value":0,"inSlope":0,"outSlope":0,"tangentMode":10},{"time":30,"value":0,"inSlope":0,"outSlope":0,"tangentMode":10},{"time":45,"value":0,"inSlope":0,"outSlope":0,"tangentMode":10},{"time":55,"value":0,"inSlope":0.150000006,"outSlope":0.150000006,"tangentMode":10},{"time":75,"value":6,"inSlope":0,"outSlope":0,"tangentMode":0}];
 
+            var moonDistance = [{"time":0,"value":0,"inSlope":0.200000003,"outSlope":0.200000003,"tangentMode":10},{"time":5,"value":1,"inSlope":0,"outSlope":0,"tangentMode":0},{"time":70,"value":1,"inSlope":0,"outSlope":0,"tangentMode":0},{"time":75,"value":0,"inSlope":-0.200000003,"outSlope":-0.200000003,"tangentMode":10}];
             var follows = [followX, followY, followZ];
             var followsSTR = ['x','y','z'];
             for (var j=0;j<3;j++){
@@ -79,6 +80,11 @@ define(["kick", 'uc2/planet/LookAtTarget','uc2/planet/HideGUIDetector','uc2/plan
                 }
                 animation.addCurve(c, "lookAtTarget."+followsSTR[j]);
             }
+            var moonDistanceCurve = new kick.animation.Curve();
+            for (var i = 0;i<moonDistance.length;i++){
+                moonDistanceCurve.addControlPoint(new kick.animation.ControlPoint(moonDistance[i]));
+            }
+            animation.addCurve(moonDistanceCurve, "lookAtTarget.moonDistance");
             animationCurve.curveType = animationCurve.VEC3;
             animation.addCurve(animationCurve, "transform.localPosition");
             animation.addEventListener("animationLoop", randomizePlanet);

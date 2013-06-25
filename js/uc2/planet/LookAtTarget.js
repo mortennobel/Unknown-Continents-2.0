@@ -5,6 +5,7 @@ define(["kick"],
         return function () {
             var thisObj = this;
             var position = [0,0,0];
+            var d = 1;
 
             this.targetTransform = null;
 
@@ -27,6 +28,14 @@ define(["kick"],
                     set:function(z){
                         position[2] = z;
                         this.targetTransform.localPosition = position;
+                    }
+                },
+                moonDistance: {
+                    set:function(dist){
+                        d = dist;
+                    },
+                    get:function(){
+                        return d;
                     }
                 }
             } );

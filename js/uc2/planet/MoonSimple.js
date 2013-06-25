@@ -1,5 +1,5 @@
-define(["kick", "./Planet", 'uc2/util/Random', 'text!shaders/moon_vs.glsl', 'text!shaders/moon_fs.glsl'],
-    function (kick, Planet, Random, moon_vs, moon_fs) {
+define(["kick", "./Planet", 'uc2/util/Random', 'text!shaders/moon_vs.glsl', 'text!shaders/moon_fs.glsl', './LookAtTarget'],
+    function (kick, Planet, Random, moon_vs, moon_fs, LookAtTarget) {
         "use strict";
 
         var shader;
@@ -18,6 +18,7 @@ define(["kick", "./Planet", 'uc2/util/Random', 'text!shaders/moon_vs.glsl', 'tex
                 transform,
                 material,
                 randomRotation,
+                lookAtTarget,
                 updateConfig = function () {
                     if (moonConfig && thisObj.gameObject) {
                         thisObj.gameObject.transform.localScale = [moonConfig.size, moonConfig.size, moonConfig.size];
@@ -92,7 +93,7 @@ define(["kick", "./Planet", 'uc2/util/Random', 'text!shaders/moon_vs.glsl', 'tex
                 if (!mesh){
                     mesh = new kick.mesh.Mesh(
                     {
-                        dataURI: "kickjs://mesh/uvsphere/?slices=100&stacks=200&radius=" + moon_radius,
+                        dataURI: "kickjs://mesh/uvsphere/?slices=50&stacks=100&radius=" + moon_radius,
                         name: "Default object"
                     });
                     var meshData = mesh.meshData;
@@ -106,11 +107,14 @@ define(["kick", "./Planet", 'uc2/util/Random', 'text!shaders/moon_vs.glsl', 'tex
                 moonGameObject.addComponent(moonMeshRenderer);
 
                 updateConfig();
+
+                lookAtTarget = this.gameObject.scene.findComponentsOfType(LookAtTarget);
             };
 
             this.update = function(){
                 if (thisObj.gameObject){
-                    var pos = [ellipse*distance*Math.sin(thisObj.rotationOffset + time.time * movementSpeed), 0, distance * Math.cos(thisObj.rotationOffset + time.time * movementSpeed)];
+                    var distScale = lookAtTarget.moonDistance;
+                    var pos = [ellipse*distScale*distance*Math.sin(thisObj.rotationOffset + time.time * movementSpeed), 0, distance *distScale* Math.cos(thisObj.rotationOffset + time.time * movementSpeed)];
                     pos = kick.math.Vec3.transformQuat(pos, pos, randomRotation);
                     thisObj.gameObject.transform.localPosition = pos;
                 }

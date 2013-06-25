@@ -81,7 +81,6 @@ define(["kick", "./procedural/DiamondSquare", "./procedural/Worley","./procedura
                 var planetGameObject = thisObj.gameObject;
 
                 var maxTextureSize = engine.gl.getParameter(engine.gl.MAX_TEXTURE_SIZE);
-                console.log(maxTextureSize );
                 maxTextureSize = Math.min(4096,maxTextureSize);
 
                 simplex = new Simplex(maxTextureSize);
