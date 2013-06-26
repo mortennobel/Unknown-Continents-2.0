@@ -19,7 +19,12 @@ define(["kick", "./Planet", 'uc2/util/Random','./MoonSimple'],
                         diamondsquare:{
                             iterations: Random.randomInt(config.iterationsFrom, config.iterationsTo),
                         },
-                        surfaceScale: Random.randomInt(config.surfaceScaleFrom, config.surfaceScaleTo),
+                        surfaceScale: new Float32Array([
+                            Random.randomFloat(config.surfaceScaleFrom, config.surfaceScaleTo),
+                            Random.randomFloat(config.surfaceScaleFrom, config.surfaceScaleTo),
+                            Random.randomFloat(config.surfaceScaleFrom, config.surfaceScaleTo),
+                            Random.randomFloat(config.surfaceScaleFrom, config.surfaceScaleTo)
+                        ]),
                         ellipse: Random.randomFloat(config.ellipseFrom, config.ellipseTo),
                         colors: {
                             color0: [1,1,1,1],

@@ -4,7 +4,7 @@ precision highp float;
 varying vec3 pos;
 varying vec3 norm;
 
-uniform float scale;
+uniform vec4 scale;
 uniform vec4 color;
 
 
@@ -12,13 +12,13 @@ uniform vec4 color;
 #pragma include "light.glsl"
 
 
-float getHeight(vec3 pos, float scale){
+float getHeight(vec3 pos, vec4 scale){
     float n =
-        snoise(vec4(pos*scale,0.0))+
-        0.5*snoise(vec4(pos*scale*2.0,2.0))+
-        0.25*snoise(vec4(pos*scale*4.0,4.0))+
-        0.125*snoise(vec4(pos*scale*8.0,6.0))+
-        0.0625*snoise(vec4(pos*scale*16.0,8.0))
+        snoise(vec4(pos*scale.x,0.0))+
+        0.5*snoise(vec4(pos*scale.y*2.0,2.0))+
+        0.25*snoise(vec4(pos*scale.z*4.0,4.0))+
+        0.125*snoise(vec4(pos*scale.w*8.0,6.0))+
+        0.0625*snoise(vec4(pos*scale.x*16.0,8.0))
         ;
     float height = 0.4*n+0.5;
     

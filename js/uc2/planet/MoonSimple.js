@@ -25,7 +25,7 @@ define(["kick", "./Planet", 'uc2/util/Random', 'text!shaders/moon_vs.glsl', 'tex
                         distance = moonConfig.distance;
                         ellipse = moonConfig.ellipse;
                         if (material){
-                            material.setUniform("scale", new Float32Array([moonConfig.surfaceScale || 5]));
+                            material.setUniform("scale", moonConfig.surfaceScale);
                             material.setUniform("color", moonConfig.color);
                         }
                     }
@@ -108,7 +108,7 @@ define(["kick", "./Planet", 'uc2/util/Random', 'text!shaders/moon_vs.glsl', 'tex
 
                 updateConfig();
 
-                lookAtTarget = this.gameObject.scene.findComponentsOfType(LookAtTarget);
+                lookAtTarget = this.gameObject.scene.findComponentsOfType(LookAtTarget)[0];
             };
 
             this.update = function(){
