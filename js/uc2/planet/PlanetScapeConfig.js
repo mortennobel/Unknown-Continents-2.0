@@ -13,7 +13,7 @@ define(["kick", 'uc2/util/Random'],
 
             this.sun = {
                 lightDirection: [1, 1, 1],
-                ambientColor: [0.03, 0.03, 0.03],
+                ambientColor: [0.15, 0.15, 0.15],
                 showLightDirection: debug
             };
 

@@ -13,7 +13,7 @@ define(["kick", 'uc2/planet/Planet'],
                 thisObj = this,
                 transform,
                 planetTransform,
-                ambientColor = [0.03, 0.03, 0.03],
+                ambientColor = [0.15, 0.15, 0.15],
                 buildLight = function(){
                     var lightGO = thisObj.gameObject;
                     lightComponent = new kick.scene.Light({
@@ -25,7 +25,7 @@ define(["kick", 'uc2/planet/Planet'],
 
                     lightAmbientComponent = new kick.scene.Light({
                         type: kick.scene.Light.TYPE_AMBIENT,
-                        color: [0.1,0.1,0.1]
+                        color: ambientColor
                     });
                     lightGO.addComponent(lightAmbientComponent);
                 };
@@ -91,6 +91,7 @@ define(["kick", 'uc2/planet/Planet'],
                     set:function(val){
                         ambientColor = [val[0], val[1], val[2]];
                         if (lightAmbientComponent){
+                            console.log("Update ambient color to ",ambientColor);
                             lightAmbientComponent.color = ambientColor;
                         }
                     },
