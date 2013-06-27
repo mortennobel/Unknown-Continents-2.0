@@ -1,8 +1,10 @@
-define(["kick", 'uc2/planet/LookAtTarget','uc2/planet/HideGUIDetector','uc2/planet/PlanetScape','uc2/planet/DebugRotateComponent','uc2/planet/PlanetScapeConfig', 'uc2/Gui',
+define(["kick", 'uc2/util/CameraRenderToTexture','uc2/util/PostProcessingEffect','uc2/planet/LookAtTarget','uc2/planet/HideGUIDetector','uc2/planet/PlanetScape','uc2/planet/DebugRotateComponent','uc2/planet/PlanetScapeConfig', 'uc2/Gui',
         'text!shaders/webgl-noise/noise2D.glsl', 'text!shaders/webgl-noise/noise3D.glsl', 'text!shaders/webgl-noise/noise4D.glsl',
-        'text!shaders/cellular-noise/cellular2D.glsl','text!shaders/cellular-noise/cellular2x2.glsl','text!shaders/cellular-noise/cellular2x2x2.glsl','text!shaders/cellular-noise/cellular3D.glsl'
+        'text!shaders/cellular-noise/cellular2D.glsl','text!shaders/cellular-noise/cellular2x2.glsl','text!shaders/cellular-noise/cellular2x2x2.glsl','text!shaders/cellular-noise/cellular3D.glsl',
+    'text!shaders/bloom_1_pass_vs.glsl','text!shaders/bloom_1_pass_fs.glsl','text!shaders/bloom_2_pass_vs.glsl','text!shaders/bloom_2_pass_fs.glsl','text!shaders/bloom_3_pass_vs.glsl','text!shaders/bloom_3_pass_fs.glsl'
     ],
-    function (kick, LookAtTarget, HideGUIDetector, PlanetScape, DebugRotateComponent, PlanetScapeConfig, Gui, noise2D, noise3D, noise4D, cellular2D, cellular2x2, cellular2x2x2, cellular3D) {
+    function (kick, CameraRenderToTexture, PostProcessingEffect, LookAtTarget, HideGUIDetector, PlanetScape, DebugRotateComponent, PlanetScapeConfig, Gui, noise2D, noise3D, noise4D, cellular2D, cellular2x2, cellular2x2x2, cellular3D,
+        bloom1vs,bloom1fs,bloom2vs,bloom2fs,bloom3vs,bloom3fs) {
     "use strict";
 
     return function () {
@@ -97,6 +99,36 @@ define(["kick", 'uc2/planet/LookAtTarget','uc2/planet/HideGUIDetector','uc2/plan
             }
             cameraGO.addComponent(animationComponent);
             animation.playing = true;
+
+            var ppe = new CameraRenderToTexture();
+            cameraGO.addComponent(ppe);
+
+            function createMaterial(vs, fs,  materialUniforms) {
+                var shader = new kick.material.Shader();
+                shader.vertexShaderSrc = vs;
+                shader.fragmentShaderSrc = fs;
+                shader.apply();
+
+                return new kick.material.Material({
+                    name: "Some material",
+                    shader: shader,
+                    uniformData: materialUniforms
+                });
+            }
+
+            var postEffect = new PostProcessingEffect();
+            postEffect.material = createMaterial(bloom1vs, bloom1fs, {mainTexture: ppe.texture});
+            ppe.addEffect(postEffect);
+            var postEffectBlur = new PostProcessingEffect();
+            postEffectBlur.material = createMaterial(bloom2vs, bloom2fs, {mainTexture: postEffect.texture});
+            ppe.addEffect(postEffectBlur);
+            var postEffectBlur2 = new PostProcessingEffect();
+            postEffectBlur2.material = createMaterial(bloom3vs, bloom3fs, {mainTexture: postEffectBlur.texture, originTexture: ppe.texture});
+            //ppe.addEffect(postEffectBlur2);
+            ppe.addEventListener("screenSizeChanged",function(dim){
+                postEffectBlur.material.setUniform("height", new Float32Array([dim[1]]));
+                postEffectBlur2.material.setUniform("width", new Float32Array([dim[0]]));
+            });
 
             return cameraGO;
         }
