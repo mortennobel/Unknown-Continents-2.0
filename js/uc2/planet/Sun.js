@@ -44,6 +44,7 @@ define(["kick", 'uc2/planet/Planet'],
                     material: new kick.material.Material( {
                         shader: engine.project.load(engine.project.ENGINE_SHADER_UNLIT),
                         uniformData: {
+                            mainColor: [20,20,20,20]
                         }
                     })
                 });

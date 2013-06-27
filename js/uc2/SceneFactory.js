@@ -124,7 +124,7 @@ define(["kick", 'uc2/util/CameraRenderToTexture','uc2/util/PostProcessingEffect'
             ppe.addEffect(postEffectBlur);
             var postEffectBlur2 = new PostProcessingEffect();
             postEffectBlur2.material = createMaterial(bloom3vs, bloom3fs, {mainTexture: postEffectBlur.texture, originTexture: ppe.texture});
-            //ppe.addEffect(postEffectBlur2);
+            ppe.addEffect(postEffectBlur2);
             ppe.addEventListener("screenSizeChanged",function(dim){
                 postEffectBlur.material.setUniform("height", new Float32Array([dim[1]]));
                 postEffectBlur2.material.setUniform("width", new Float32Array([dim[0]]));
