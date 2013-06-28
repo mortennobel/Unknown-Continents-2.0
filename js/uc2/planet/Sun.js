@@ -44,13 +44,13 @@ define(["kick", 'uc2/planet/Planet'],
                     material: new kick.material.Material( {
                         shader: engine.project.load(engine.project.ENGINE_SHADER_UNLIT),
                         uniformData: {
-                            mainColor: [20,20,20,20]
+                            mainColor: [2,2,2,1]
                         }
                     })
                 });
                 thisObj.gameObject.addComponent(meshRenderer);
                 thisObj.lightDirection = position;
-                thisObj.gameObject.transform.localScale = [0.5,0.5,0.5];
+                thisObj.gameObject.transform.localScale = [1.0,1.0,1.0];
             };
 
             Object.defineProperties(this, {

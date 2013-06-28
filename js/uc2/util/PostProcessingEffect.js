@@ -24,7 +24,7 @@ define(["kick"],
                 texture.wrapT = Constants.GL_CLAMP_TO_EDGE;
                 width = engine.canvasDimension[0];
                 height = engine.canvasDimension[1];
-                texture.setImageData(width, height, 0, Constants.GL_UNSIGNED_BYTE, null, "");
+                texture.setImageData(width, height, 0, Constants.GL_FLOAT, null, "");
                 renderTexture = new kick.texture.RenderTexture({colorTexture: texture});
             };
 
@@ -55,7 +55,7 @@ define(["kick"],
                 if (width !== engine.canvasDimension[0]*this.scale || height !== engine.canvasDimension[1]*this.scale){
                     width = engine.canvasDimension[0]*this.scale;
                     height = engine.canvasDimension[1]*this.scale;
-                    texture.setImageData(width, height, 0, Constants.GL_UNSIGNED_BYTE, null, "");
+                    texture.setImageData(width, height, 0, Constants.GL_FLOAT, null, "");
                     renderTexture.colorTexture = texture;
                 }
             };
