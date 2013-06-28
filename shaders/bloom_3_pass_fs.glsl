@@ -6,7 +6,7 @@ varying vec2 vUv;
 uniform sampler2D mainTexture;
 uniform sampler2D originTexture;
 
-const float LumThresh = 0.75;
+const float BloomAmount = 0.75;
 
 uniform float width;
 
@@ -35,5 +35,5 @@ void main(void)
   sum += texture2D(mainTexture, vUv + vec2(dy*8.0,0.0)) * 0.023526;
   sum += texture2D(mainTexture, vUv + vec2(dy*9.0,0.0)) * 0.016745;
 
-  gl_FragColor = sum + texture2D(originTexture, vUv);
+  gl_FragColor = sum * BloomAmount + texture2D(originTexture, vUv);
 }
