@@ -1,17 +1,18 @@
-define(["kick", 'uc2/planet/Planet'],
-    function (kick, Planet) {
+define(["kick", 'uc2/planet/Planet', './LookAtTarget'],
+    function (kick, Planet, LookAtTarget) {
         "use strict";
 
         //Sun object
         return function(){
             var thisObj = this,
                 position = kick.math.Vec3.create(),
+                positionReuse = kick.math.Vec3.create(),
                 lightComponent,
                 lightAmbientComponent,
                 meshRenderer,
                 enabled = true,
-                thisObj = this,
                 transform,
+                lookAtTarget,
                 planetTransform,
                 ambientColor = [0.15, 0.15, 0.15],
                 buildLight = function(){
@@ -51,6 +52,16 @@ define(["kick", 'uc2/planet/Planet'],
                 thisObj.gameObject.addComponent(meshRenderer);
                 thisObj.lightDirection = position;
                 thisObj.gameObject.transform.localScale = [1.0,1.0,1.0];
+                lookAtTarget = this.gameObject.scene.findComponentsOfType(LookAtTarget)[0];
+            };
+
+            // make sure sun is not visible during shifts
+            this.update = function(){
+                var distScale = lookAtTarget.moonDistance;
+                for (var i=0;i<3;i++){
+                    positionReuse[i] = position[i] * distScale;
+                }
+                thisObj.gameObject.transform.localPosition = positionReuse;
             };
 
             Object.defineProperties(this, {
