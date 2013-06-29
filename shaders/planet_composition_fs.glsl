@@ -77,10 +77,10 @@ void main(void)
     vec3 atmosphereColor = getAtmosphereLight(n, _dLight) * atmosphereColor.xyz*0.9;
     vec3 light = max(diffuse, _ambient)*0.9;
 
-    gl_FragColor =
+    gl_FragColor = min(vec4(1.0),
         // mod(gl_FragCoord.y,10.0)<5.0?vec4(vec3(bumpVisibility),1.0):(
         vec4(atmosphereColor,0.0) +
 	    computeSpecularity(specular, diffuseSpecular.a) +
-	    vec4(diffuseSpecular.xyz*light,1.0);
-	    //vec4(diffuseSpecular.a,0.0,0.0,1.0);
+	    vec4(diffuseSpecular.xyz*light,1.0));
+	    //vec4(diffuseSpecular.a,0.0,0.0,1.0));
 }

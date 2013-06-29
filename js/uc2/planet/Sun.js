@@ -1,5 +1,5 @@
-define(["kick", 'uc2/planet/Planet', './LookAtTarget'],
-    function (kick, Planet, LookAtTarget) {
+define(["kick", 'uc2/planet/Planet', './LookAtTarget', 'text!shaders/sun_vs.glsl', 'text!shaders/sun_fs.glsl'],
+    function (kick, Planet, LookAtTarget, vs, fs) {
         "use strict";
 
         //Sun object
@@ -40,18 +40,25 @@ define(["kick", 'uc2/planet/Planet', './LookAtTarget'],
                 buildLight();
 
                 var mesh = engine.project.load(engine.project.ENGINE_MESH_UVSPHERE);
+
+                var shader = new kick.material.Shader({
+                    vertexShaderSrc: vs,
+                    fragmentShaderSrc: fs,
+                    blend: true,
+                    blendDFactor: kick.core.Constants.GL_ONE,
+                    blendSFactor: kick.core.Constants.GL_SRC_ALPHA,
+                    renderOrder: 2000
+                });
+
                 meshRenderer = new kick.scene.MeshRenderer({
                     mesh: mesh,
                     material: new kick.material.Material( {
-                        shader: engine.project.load(engine.project.ENGINE_SHADER_UNLIT),
-                        uniformData: {
-                            mainColor: [2,2,2,1]
-                        }
+                        shader: shader
                     })
                 });
                 thisObj.gameObject.addComponent(meshRenderer);
                 thisObj.lightDirection = position;
-                thisObj.gameObject.transform.localScale = [1.0,1.0,1.0];
+                thisObj.gameObject.transform.localScale = [4.0,4.0,4.0];
                 lookAtTarget = this.gameObject.scene.findComponentsOfType(LookAtTarget)[0];
             };
 

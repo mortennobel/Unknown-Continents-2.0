@@ -6,7 +6,7 @@ varying vec2 vUv;
 uniform sampler2D mainTexture;
 uniform sampler2D originTexture;
 
-const float BloomAmount = 0.75;
+const float BloomAmount = 1.0;
 
 uniform float width;
 
